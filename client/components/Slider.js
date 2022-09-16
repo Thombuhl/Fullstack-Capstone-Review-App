@@ -10,9 +10,9 @@ const Slider = () => {
       <SliderContainer>
         <SliderInput
           type="range"
-          min="1"
-          max="50"
-          value="23"
+          min={1}
+          max={5}
+          value={0}
           className="slider"
           onChange={handleOnChange}
         ></SliderInput>
