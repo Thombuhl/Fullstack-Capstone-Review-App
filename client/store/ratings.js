@@ -1,24 +1,30 @@
-import axios from "axios";
+import axios from 'axios';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const ratings = (state = [], action) => {
-  if (action.type === "SET_RATINGS") {
-    return action.ratings;
-  }
-  return state;
-};
-
-//GET all tasks
-export const fetchRatings = () => {
-  return async (dispatch) => {
-    const ratings = (
-      await axios.get("/api/ratings", {
+const fetchRatings = createAsyncThunk('ratings/fetchRatings', async () => {
+    const response = await axios.get('/api/ratings', {
         headers: {
-          authorization: window.localStorage.getItem("token"),
+            authorization: window.localStorage.getItem('token'),
         },
-      })
-    ).data;
-    dispatch({ type: "SET_RATINGS", ratings });
-  };
-};
+    });
+    return response.data;
+});
 
-export default ratings;
+const ratingsSlice = createSlice({
+    name: 'ratings',
+    initialState: [],
+    reducers: {
+        addRating(state, action) {
+            state.push(action.payload);
+        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchRatings.fulfilled, (state, action) => {
+            state.push(...action.payload);
+        });
+    },
+});
+
+export const { addRating } = ratingsSlice.actions;
+export { fetchRatings };
+export default ratingsSlice.reducer;

@@ -1,24 +1,33 @@
-import axios from "axios";
+import axios from 'axios';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const restaurants = (state = [], action) => {
-  if (action.type === "SET_RESTAURANTS") {
-    return action.restaurants;
-  }
-  return state;
-};
+const fetchRestaurants = createAsyncThunk(
+    'restaurants/fetchRestaurants',
+    async () => {
+        const response = await axios.get('/api/restaurants', {
+            headers: {
+                authorization: window.localStorage.getItem('token'),
+            },
+        });
+        return response.data;
+    }
+);
 
-//GET all tasks
-export const fetchRestaurants = () => {
-  return async (dispatch) => {
-    const restaurants = (
-      await axios.get("/api/restaurants", {
-        headers: {
-          authorization: window.localStorage.getItem("token"),
+const restaurantsSlice = createSlice({
+    name: 'restaurants',
+    initialState: [],
+    reducers: {
+        addRestaurant(state, action) {
+            state.push(action.payload);
         },
-      })
-    ).data;
-    dispatch({ type: "SET_RESTAURANTS", restaurants });
-  };
-};
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchRestaurants.fulfilled, (state, action) => {
+            state.push(...action.payload);
+        });
+    },
+});
 
-export default restaurants;
+export const { addRestaurant } = restaurantsSlice.actions;
+export { fetchRestaurants };
+export default restaurantsSlice.reducer;
