@@ -1,21 +1,7 @@
-const { db } = require('./db')
-const PORT = process.env.PORT || 8080
-const app = require('./app')
-const seed = require('../script/seed');
+const app = require("./app");
 
-const init = async () => {
-  try {
-    if(process.env.SEED === 'true'){
-      await seed();
-    }
-    else {
-      await db.sync()
-    }
-    // start listening (and create a 'server' object representing our server)
-    app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
-  } catch (ex) {
-    console.log(ex)
-  }
-}
+//Name port
+const port = process.env.PORT || 8080;
 
-init()
+//Listen to port.
+app.listen(port, () => console.log(`listening on port ${port}`));

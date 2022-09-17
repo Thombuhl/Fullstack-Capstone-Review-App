@@ -1,5 +1,4 @@
 //this is the access point for all things database related!
-
 const db = require("./db");
 
 const User = require("./models/User");
@@ -8,7 +7,8 @@ const PreferenceLabel = require("./models/PreferenceLabel");
 const Restaurant = require("./models/Restaurant");
 const Rating = require("./models/Rating");
 const Preference = require("./models/Preference");
-//associations could go here!
+
+//Associations
 User.hasMany(UserPreference);
 User.hasMany(PreferenceLabel);
 
