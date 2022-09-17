@@ -37,12 +37,12 @@ async function seed() {
     User.create({ username: "dave", password: "123" }),
   ]);
 
-  const [date, quick, hungry, lazy, budget] = await Promise.all([
-    Preference.create({ name: "Date Night" }),
-    Preference.create({ name: "Quick Snack" }),
-    Preference.create({ name: "Very Hungry" }),
-    Preference.create({ name: "Lazy" }),
-    Preference.create({ name: "Budget" }),
+  const [cleaniness, service, authenticity, cost, overall] = await Promise.all([
+    Preference.create({ name: "Cleaniness" }),
+    Preference.create({ name: "Service" }),
+    Preference.create({ name: "Authenticity" }),
+    Preference.create({ name: "Cost" }),
+    Preference.create({ name: "Overall" }),
   ]);
 
   const [one, two, three, four, five] = await Promise.all([
@@ -162,27 +162,27 @@ async function seed() {
 
   one.restaurantId = tupelo.id;
   one.userId = 1;
-  one.preferenceId = date.id;
+  one.preferenceId = cleaniness.id;
   await one.save();
 
   two.restaurantId = carmine.id;
   two.userId = 2;
-  two.preferenceId = quick.id;
+  two.preferenceId = service.id;
   await two.save();
 
   three.restaurantId = wanton.id;
   three.userId = 3;
-  three.preferenceId = hungry.id;
+  three.preferenceId = authenticity.id;
   await three.save();
 
   four.restaurantId = grande.id;
   four.userId = 4;
-  four.preferenceId = lazy.id;
+  four.preferenceId = cost.id;
   await four.save();
 
   five.restaurantId = porta.id;
   five.userId = 5;
-  five.preferenceId = budget.id;
+  five.preferenceId = overall.id;
   await five.save();
 
   // date, quick, hungry, lazy, budget
