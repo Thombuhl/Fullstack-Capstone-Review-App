@@ -4,7 +4,7 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import Preference from "./components/Preference";
-import { me } from "./store";
+import { me, fetchRatings, fetchRestaurants } from "./store";
 
 /**
  * COMPONENT
@@ -52,6 +52,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());
+      dispatch(fetchRatings());
+      dispatch(fetchRestaurants());
     },
   };
 };
