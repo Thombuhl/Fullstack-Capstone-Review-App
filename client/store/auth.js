@@ -56,16 +56,21 @@ export default authSlice.reducer;
 /**
  * ACTION TYPES
  */
+
 // const SET_AUTH = 'SET_AUTH';
+
 
 /**
  * ACTION CREATORS
  */
+
 // const setAuth = (auth) => ({ type: SET_AUTH, auth });
+
 
 /**
  * THUNK CREATORS
  */
+
 // export const me = () => async (dispatch) => {
 //     const token = window.localStorage.getItem(TOKEN);
 //     if (token) {
@@ -100,6 +105,7 @@ export default authSlice.reducer;
 //         auth: {},
 //     };
 // };
+
 
 /**
  * REDUCER
