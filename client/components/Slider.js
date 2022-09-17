@@ -32,10 +32,6 @@ const Slider = (prefrencetype) => {
   );
 };
 
-const mapDispatchToProps = () => {
-  return (
-    
-  )
-}
+
 
 export default connect()(Slider);
