@@ -2,15 +2,22 @@
 
 const {
   db,
-  models: { User, Restaurant, Preference, Rating },
+  models: {
+    User,
+    Restaurant,
+    Preference,
+    Rating,
+    UserPreference,
+    PreferenceLabel,
+  },
 } = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
-const UserPreference = require("../server/db/models/UserPreference");
-const PreferenceLabel = require("../server/db/models/PreferenceLabel");
+// const UserPreference = require("../server/db/models/UserPreference");
+// const PreferenceLabel = require("../server/db/models/PreferenceLabel");
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
@@ -30,7 +37,7 @@ async function seed() {
     User.create({ username: "dave", password: "123" }),
   ]);
 
-  const preferences = await Promise.all([
+  const [date, quick, hungry, lazy, budget] = await Promise.all([
     Preference.create({ name: "Date Night" }),
     Preference.create({ name: "Quick Snack" }),
     Preference.create({ name: "Very Hungry" }),
@@ -38,7 +45,7 @@ async function seed() {
     Preference.create({ name: "Budget" }),
   ]);
 
-  const ratings = await Promise.all([
+  const [one, two, three, four, five] = await Promise.all([
     Rating.create({
       score: Math.round((Math.random() * 5 * 10) / 10),
       comment: "This place sucks.",
@@ -66,7 +73,7 @@ async function seed() {
   ]);
 
   // Creating 5 Restaruants
-  const restaurants = await Promise.all([
+  const [tupelo, carmine, wanton, grande, porta] = await Promise.all([
     Restaurant.create({
       name: "Tupelo Honey",
       description:
@@ -115,20 +122,20 @@ async function seed() {
   ]);
 
   // Generates Junction "UserPreference" table where there are 10 users each with 5 preferenceIds and preferencelabelIds. Row sum equlas 50
-  users.forEach(async (user) => {
-    let i = 0;
-    while (i < 5) {
-      await Promise.all([
-        UserPreference.create({
-          score: Math.round((Math.random() * 5 * 10) / 10),
-          userId: user.id,
-          preferenceId: i + 1,
-          preferencelabelId: i + 1,
-        }),
-      ]);
-      i++;
-    }
-  });
+  // users.forEach(async (user) => {
+  //   let i = 0;
+  //   while (i < 5) {
+  //     await Promise.all([
+  //       UserPreference.create({
+  //         score: Math.round((Math.random() * 5 * 10) / 10),
+  //         userId: user.id,
+  //         preferenceId: i + 1,
+  //         preferencelabelId: i + 1,
+  //       }),
+  //     ]);
+  //     i++;
+  //   }
+  // });
 
   await Promise.all([
     PreferenceLabel.create({
@@ -152,6 +159,33 @@ async function seed() {
       userId: 6,
     }),
   ]);
+
+  one.restaurantId = tupelo.id;
+  one.userId = 1;
+  one.preferenceId = date.id;
+  await one.save();
+
+  two.restaurantId = carmine.id;
+  two.userId = 2;
+  two.preferenceId = quick.id;
+  await two.save();
+
+  three.restaurantId = wanton.id;
+  three.userId = 3;
+  three.preferenceId = hungry.id;
+  await three.save();
+
+  four.restaurantId = grande.id;
+  four.userId = 4;
+  four.preferenceId = lazy.id;
+  await four.save();
+
+  five.restaurantId = porta.id;
+  five.userId = 5;
+  five.preferenceId = budget.id;
+  await five.save();
+
+  // date, quick, hungry, lazy, budget
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);

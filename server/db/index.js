@@ -12,8 +12,8 @@ const Preference = require("./models/Preference");
 User.hasMany(UserPreference);
 User.hasMany(PreferenceLabel);
 
-Restaurant.hasMany(Rating);
 Rating.belongsTo(Restaurant);
+Restaurant.hasMany(Rating);
 
 Preference.hasMany(Rating);
 Preference.hasMany(UserPreference);
