@@ -122,20 +122,20 @@ async function seed() {
   ]);
 
   // Generates Junction "UserPreference" table where there are 10 users each with 5 preferenceIds and preferencelabelIds. Row sum equlas 50
-  // users.forEach(async (user) => {
-  //   let i = 0;
-  //   while (i < 5) {
-  //     await Promise.all([
-  //       UserPreference.create({
-  //         score: Math.round((Math.random() * 5 * 10) / 10),
-  //         userId: user.id,
-  //         preferenceId: i + 1,
-  //         preferencelabelId: i + 1,
-  //       }),
-  //     ]);
-  //     i++;
-  //   }
-  // });
+  users.forEach(async (user) => {
+    let i = 0;
+    while (i < 5) {
+      await Promise.all([
+        UserPreference.create({
+          score: Math.round((Math.random() * 5 * 10) / 10),
+          userId: user.id,
+          preferenceId: i + 1,
+          preferencelabelId: i + 1,
+        }),
+      ]);
+      i++;
+    }
+  });
 
   await Promise.all([
     PreferenceLabel.create({
