@@ -5,7 +5,7 @@ import { logout } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>FS-App-Template</h1>
+    
     <nav>
       {isLoggedIn ? (
         <div>
@@ -14,17 +14,27 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <div> <Link to="/preference">Preference</Link></div>
         </div>
       ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/preference">Preference</Link>
+        
+    <div class="text-end">
+    <div class="row">
+      <div class="col-md-1"> <Link to="/login">Login</Link></div>
+    </div>
+      <div class="px-4 py-5 my-5 text-center">
+      <img class="d-block mx-auto mb-4" src="logoCha.png" alt="" width="auto" height="70" />
+        <h1 class="py-4 display-5 fw-bold">Finding the resturant you need</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+
+        </div>
+           {/* The navbar will show these links before you log in */}
+    </div>
+
         </div>
       )}
     </nav>
-    <hr />
   </div>
 );
 
