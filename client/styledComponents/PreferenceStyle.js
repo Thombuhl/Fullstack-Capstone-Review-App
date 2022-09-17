@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: rgb(247, 247, 247);
 `;
 
@@ -19,12 +19,18 @@ export const Text = styled.p`
 export const AllPreferences = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+`;
+
+export const SliderPreferences = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 75%;
 `;
 
 export const PreferenceContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  margin: 3rem;
 `;
 
 export const PreferenceText = styled.div`
@@ -35,7 +41,7 @@ export const PreferenceText = styled.div`
   color: rgb(74, 74, 74);
   font-size: 1.8rem;
   display: flex;
-  margin: 2.5rem;
+  margin-right: 1.5rem;
 `;
 
 export const Button = styled.button`

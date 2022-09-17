@@ -1,18 +1,29 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { SliderContainer, SliderInput } from "../styledComponents/SliderStyle";
+import { connect, useDispatch } from "react-redux";
+import {
+  SliderContainer,
+  SliderInput,
+  SliderValueText,
+} from "../styledComponents/SliderStyle";
 
-const handleOnChange = (evt) => {};
+const Slider = (prefrencetype) => {
+  const [prefrence, setPreference] = useState(3);
+  const dispatch = useDispatch();
 
-const Slider = () => {
+  const handleOnChange = (evt) => {
+    setPreference(evt.target.value);
+    dispatch({})
+  };
+
   return (
     <>
+      <SliderValueText>{sliderVal}</SliderValueText>
       <SliderContainer>
         <SliderInput
           type="range"
           min={1}
           max={5}
-          value={0}
+          value={sliderVal}
           className="slider"
           onChange={handleOnChange}
         ></SliderInput>
@@ -20,5 +31,11 @@ const Slider = () => {
     </>
   );
 };
+
+const mapDispatchToProps = () => {
+  return (
+    
+  )
+}
 
 export default connect()(Slider);

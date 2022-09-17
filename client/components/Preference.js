@@ -7,35 +7,40 @@ import {
   Button,
   PreferenceText,
   AllPreferences,
+  PreferenceContainer,
+  SliderPreferences,
 } from "../styledComponents/PreferenceStyle";
 
 const Preference = () => {
   return (
     <>
+      <Text> Lets Setup your Preferences</Text>
       <Container>
-        <Text> Lets Setup your Preferences</Text>
         <AllPreferences>
-          <PreferenceText>
-            Cleaniness
-            <Slider />
-          </PreferenceText>
-          <PreferenceText>
-            Authentic
-            <Slider />
-          </PreferenceText>
-          <PreferenceText>
-            Cost
-            <Slider />
-          </PreferenceText>
-          <PreferenceText>
-            Service
-            <Slider />
-          </PreferenceText>
-          <PreferenceText>
-            Food
-            <Slider />
-          </PreferenceText>
+          <PreferenceContainer>
+            <PreferenceText>Cleaniness</PreferenceText>
+          </PreferenceContainer>
+          <PreferenceContainer>
+            <PreferenceText>Authentic</PreferenceText>
+          </PreferenceContainer>
+          <PreferenceContainer>
+            <PreferenceText>Cost</PreferenceText>
+          </PreferenceContainer>
+          <PreferenceContainer>
+            <PreferenceText>Service</PreferenceText>
+          </PreferenceContainer>
+          <PreferenceContainer>
+            <PreferenceText>Food</PreferenceText>
+          </PreferenceContainer>
         </AllPreferences>
+        <SliderPreferences>
+          <Slider />
+          <Slider />
+          <Slider />
+          <Slider />
+          <Slider />
+        </SliderPreferences>
+
         <Button>Save</Button>
       </Container>
     </>

@@ -36,3 +36,11 @@ export const SliderInput = styled.input`
     cursor: pointer;
   }
 `;
+
+export const SliderValueText = styled.p`
+  font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+  line-height: 2.5rem;
+  font-weight: 700;
+  color: rgb(74, 74, 74);
+  font-size: 1.2rem;
+`;
