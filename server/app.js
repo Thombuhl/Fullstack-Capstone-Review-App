@@ -1,32 +1,35 @@
-const express = require("express");
+const express = require('express');
 
+//Initialize express app.
 const app = express();
 
+//Handle incoming post/put request objects with middleware
 app.use(express.json());
 
-// auth and api routes
-app.use("/auth", require("./auth"));
-app.use("/api", require("./routes/api"));
-app.use("/routes/api/", require("./routes/api/ENTER FILE WITH ROUTES"));
+//Handle statics files.
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.get("/", (req, res) =>
-  res.sendFile(path.join(__dirname, "..", "public/index.html"))
-);
+//Webpack app loading.
+app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-app.use("/public", express.static("public")); // STATIC LINE
+//Express Router. Any route that is not state coming in with "api/routes" will
+//be sent to the "/api/routes" (folder/file) path.
+app.use('/api/routes', require('./api/routes'));
 
-// any remaining requests with an extension (.js, .css, etc.) send 404
-
-// sends index.html
-app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public/index.html"));
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'));
 });
+
+//Serve app out out index html file.
+app.get('/', (req, res) =>
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+);
 
 // error handling endware
 app.use((err, req, res, next) => {
-  console.error(err);
-  console.error(err.stack);
-  res.status(err.status || 500).send(err.message || "Internal server error.");
+    console.error(err);
+    console.error(err.stack);
+    res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
 
 module.exports = app;
