@@ -19,10 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         
     <div class="text-end">
-    <div class="row">
-      <div class="col-md-1"> <Link to="/login">Login</Link></div>
-    </div>
-      <div class="px-4 py-5 my-5 text-center">
+      <div class="px-4 py-5 my-5 text-center" >
       <img class="d-block mx-auto mb-4" src="logoCha.png" alt="" width="auto" height="70" />
         <h1 class="py-4 display-5 fw-bold">Finding the resturant you need</h1>
         <div class="col-lg-6 mx-auto">

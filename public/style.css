@@ -50,3 +50,10 @@ form div {
   background-color: #8C52FF !important; 
 }
 
+
+.carousel-item.active {
+          background-image: url('homebg.gif');
+          background-position: top center;
+          background-repeat: no-repeat;
+          height:100vh;
+        }

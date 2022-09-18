@@ -5,9 +5,9 @@ import Routes from './Routes'
 
 const App = () => {
   return (
-    <div>
+    <div class=" bg-image carousel-item active">
  
-    <Navbar />
+    <Navbar  />
     <Routes />
     </div>
   )
