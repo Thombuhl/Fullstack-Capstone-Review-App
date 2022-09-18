@@ -7,11 +7,12 @@ const TOKEN = 'token';
 const me = createAsyncThunk('auth/me', async () => {
     const token = window.localStorage.getItem(TOKEN);
     if (token) {
-        const response = await axios.get('/auth/me', {
+        const response = await axios.get('/api/auth/me', {
             headers: {
                 authorization: token,
             },
         });
+        console.log(response);
         return response.data;
     }
 });
@@ -19,7 +20,7 @@ const me = createAsyncThunk('auth/me', async () => {
 const authenticate = createAsyncThunk(
     'auth/authenticate',
     async (arg, { dispatch }) => {
-        const response = await axios.post(`/auth/${arg.formName}`, {
+        const response = await axios.post(`/api/auth/${arg.formName}`, {
             username: arg.username,
             password: arg.password,
         });
@@ -59,13 +60,11 @@ export default authSlice.reducer;
 
 // const SET_AUTH = 'SET_AUTH';
 
-
 /**
  * ACTION CREATORS
  */
 
 // const setAuth = (auth) => ({ type: SET_AUTH, auth });
-
 
 /**
  * THUNK CREATORS
@@ -105,7 +104,6 @@ export default authSlice.reducer;
 //         auth: {},
 //     };
 // };
-
 
 /**
  * REDUCER
