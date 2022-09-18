@@ -1,50 +1,57 @@
-import React from "react";
-import { connect } from "react-redux";
-import Slider from "./Slider";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Slider from './Slider';
 import {
-  Container,
-  Text,
-  Button,
-  PreferenceText,
-  AllPreferences,
-  PreferenceContainer,
-  SliderPreferences,
-} from "../styledComponents/PreferenceStyle";
+    Container,
+    Text,
+    Button,
+    PreferenceText,
+    AllPreferences,
+    PreferenceContainer,
+    SliderPreferences,
+} from '../styledComponents/PreferenceStyle';
+
+import { addPreference, fetchPreferences } from '../store/preference';
 
 const Preference = () => {
-  return (
-    <>
-      <Text> Lets Setup your Preferences</Text>
-      <Container>
-        <AllPreferences>
-          <PreferenceContainer>
-            <PreferenceText>Cleaniness</PreferenceText>
-          </PreferenceContainer>
-          <PreferenceContainer>
-            <PreferenceText>Authentic</PreferenceText>
-          </PreferenceContainer>
-          <PreferenceContainer>
-            <PreferenceText>Cost</PreferenceText>
-          </PreferenceContainer>
-          <PreferenceContainer>
-            <PreferenceText>Service</PreferenceText>
-          </PreferenceContainer>
-          <PreferenceContainer>
-            <PreferenceText>Food</PreferenceText>
-          </PreferenceContainer>
-        </AllPreferences>
-        <SliderPreferences>
-          <Slider />
-          <Slider />
-          <Slider />
-          <Slider />
-          <Slider />
-        </SliderPreferences>
+    const dispatch = useDispatch();
 
-        <Button>Save</Button>
-      </Container>
-    </>
-  );
+    const [preferences, setPreferences] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await dispatch(fetchPreferences());
+            setPreferences(data.payload);
+
+            dispatch(addPreference(data.payload));
+        };
+        fetchData();
+    }, []);
+
+    return (
+        <>
+            <Text> Lets Setup your Preferences</Text>
+            <Container>
+                <AllPreferences>
+                    {preferences
+                        ? preferences.map((preference) => {
+                              return (
+                                  <PreferenceContainer>
+                                      <PreferenceText>
+                                          {preference.name}
+                                      </PreferenceText>
+                                      <SliderPreferences>
+                                          <Slider />
+                                      </SliderPreferences>
+                                  </PreferenceContainer>
+                              );
+                          })
+                        : null}
+                </AllPreferences>
+                <Button>Save</Button>
+            </Container>
+        </>
+    );
 };
 
-export default connect()(Preference);
+export default Preference;
