@@ -2,15 +2,22 @@
 
 const {
   db,
-  models: { User },
+  models: {
+    User,
+    Restaurant,
+    Preference,
+    Rating,
+    UserPreference,
+    PreferenceLabel,
+  },
 } = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
-const UserPreference = require("../server/db/models/UserPreference");
-const PreferenceLabel = require("../server/db/models/PreferenceLabel");
+// const UserPreference = require("../server/db/models/UserPreference");
+// const PreferenceLabel = require("../server/db/models/PreferenceLabel");
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
@@ -28,6 +35,90 @@ async function seed() {
     User.create({ username: "will", password: "123" }),
     User.create({ username: "eliazbeth", password: "123" }),
     User.create({ username: "dave", password: "123" }),
+  ]);
+
+  const [cleaniness, service, authenticity, cost, overall] = await Promise.all([
+    Preference.create({ name: "Cleaniness" }),
+    Preference.create({ name: "Service" }),
+    Preference.create({ name: "Authenticity" }),
+    Preference.create({ name: "Cost" }),
+    Preference.create({ name: "Overall" }),
+  ]);
+
+  const [one, two, three, four, five] = await Promise.all([
+    Rating.create({
+      score: Math.round((Math.random() * 5 * 10) / 10),
+      comment: "This place sucks.",
+    }),
+    Rating.create({
+      score: Math.round((Math.random() * 5 * 10) / 10),
+      comment:
+        "Food here is awesome.. Even the drinks are pretty good and not watered down.. There is no question about the quality, since everyone in our group absolutely loved what they ordered.",
+    }),
+    Rating.create({
+      score: Math.round((Math.random() * 5 * 10) / 10),
+      comment:
+        "Literally my favorite place. No wait! Gorgeous interior! Incredible food!!! ",
+    }),
+    Rating.create({
+      score: Math.round((Math.random() * 5 * 10) / 10),
+      comment:
+        "We were seated outside and left for about 15/20 minutes before someone came to take our order. The wait staff was very unorganized.",
+    }),
+    Rating.create({
+      score: Math.round((Math.random() * 5 * 10) / 10),
+      comment:
+        "I like everything about this place! Yummy brunch offerings- had the lemon ricotta pancakes and they were amazing! ",
+    }),
+  ]);
+
+  // Creating 5 Restaruants
+  const [tupelo, carmine, wanton, grande, porta] = await Promise.all([
+    Restaurant.create({
+      name: "Tupelo Honey",
+      description:
+        "Cuban joint with hearty classics, nonalcoholic sangrias, a BYO-alcohol policy & an island vibe.",
+      address: "428 Bloomfield Ave",
+      city: "Montclair",
+      state: "NJ",
+      zipcode: "07042",
+    }),
+    Restaurant.create({
+      name: "Carmine's Italian Restaurant - Times Square",
+      description:
+        "Low-key eatery offering a big menu of pizza & Italian classics, plus a full bar.",
+      address: "200 W 44th St",
+      city: "New York",
+      state: "NY",
+      zipcode: "10036",
+    }),
+    Restaurant.create({
+      name: "Wonton Noodle Garden",
+      description:
+        "Small, simple joint serving fried rice, dumplings & other everyday Chinese eats, plus imported beer.",
+      address: "56 Mott St",
+      city: "New York",
+      state: "NY",
+      zipcode: "10013",
+    }),
+    Restaurant.create({
+      name: "La Grande Boucherie",
+      description:
+        "Polished French restaurant in an expansive art nouveau-style space with an elegant heated atrium.",
+      address: "145 W 53rd St",
+      city: "New York",
+      state: "NY",
+      zipcode: "10019",
+    }),
+    Restaurant.create({
+      name: "Porta",
+      description:
+        "Spacious & vibrant pizzeria serving Neapolitan pies, pastas, salads, cocktails & craft beer.",
+      address: "135 Newark Ave",
+      city: "Jersey City",
+      state: "NJ",
+      zipcode: "07302",
+    }),
   ]);
 
   // Generates Junction "UserPreference" table where there are 10 users each with 5 preferenceIds and preferencelabelIds. Row sum equlas 50
@@ -68,6 +159,33 @@ async function seed() {
       userId: 6,
     }),
   ]);
+
+  one.restaurantId = tupelo.id;
+  one.userId = 1;
+  one.preferenceId = cleaniness.id;
+  await one.save();
+
+  two.restaurantId = carmine.id;
+  two.userId = 2;
+  two.preferenceId = service.id;
+  await two.save();
+
+  three.restaurantId = wanton.id;
+  three.userId = 3;
+  three.preferenceId = authenticity.id;
+  await three.save();
+
+  four.restaurantId = grande.id;
+  four.userId = 4;
+  four.preferenceId = cost.id;
+  await four.save();
+
+  five.restaurantId = porta.id;
+  five.userId = 5;
+  five.preferenceId = overall.id;
+  await five.save();
+
+  // date, quick, hungry, lazy, budget
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
