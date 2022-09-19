@@ -15,8 +15,8 @@ router.put('/preferences', isLoggedIn, async (req, res, next) => {
                 preferenceId: prefId,
             },
         });
-
-        await userpref.update({ score: pref_score });
+        userpref.score = pref_score;
+        await userpref.save();
         res.send('updated');
     } catch (err) {
         next(err);

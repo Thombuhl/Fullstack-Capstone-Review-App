@@ -7,7 +7,7 @@ const TOKEN = 'token';
 const me = createAsyncThunk('auth/me', async () => {
     const token = window.localStorage.getItem(TOKEN);
     if (token) {
-        const response = await axios.get('/api/routes/auth/me', {
+        const response = await axios.get('/api/auth/me', {
             headers: {
                 authorization: token,
             },
@@ -19,7 +19,7 @@ const me = createAsyncThunk('auth/me', async () => {
 const authenticate = createAsyncThunk(
     'auth/authenticate',
     async (arg, { dispatch }) => {
-        const response = await axios.post(`/api/routes/auth/${arg.formName}`, {
+        const response = await axios.post(`/api/auth/${arg.formName}`, {
             username: arg.username,
             password: arg.password,
         });

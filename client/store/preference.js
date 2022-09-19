@@ -5,7 +5,7 @@ const updatePreferenceValue = createAsyncThunk(
     'user/preferences',
     async (payload) => {
         const response = await axios.put(
-            '/api/routes/userpref/preferences',
+            '/api/userpref/preferences',
             { payload },
             {
                 headers: {
@@ -20,7 +20,7 @@ const updatePreferenceValue = createAsyncThunk(
 const fetchPreferences = createAsyncThunk(
     'fetch/preferences_from_db',
     async () => {
-        const response = await axios.get('/api/routes/preference', {
+        const response = await axios.get('/api/preference', {
             headers: {
                 authorization: window.localStorage.getItem('token'),
             },
@@ -32,7 +32,7 @@ const fetchPreferences = createAsyncThunk(
 const fetchUserPreferences = createAsyncThunk(
     'fetch/userpreferences_from_db',
     async () => {
-        const response = await axios.get('/api/routes/userpref/preferences', {
+        const response = await axios.get('/api/userpref/preferences', {
             headers: {
                 authorization: window.localStorage.getItem('token'),
             },

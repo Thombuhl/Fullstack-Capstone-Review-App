@@ -1,5 +1,5 @@
 const express = require('express');
-const path= require('path')
+const path = require('path');
 
 //Initialize express app.
 const app = express();
@@ -15,7 +15,7 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 //Express Router. Any route that is not state coming in with "api/routes" will
 //be sent to the "/api/routes" (folder/file) path.
-app.use('/api/routes', require('./api/routes'));
+app.use('/api', require('./api/routes'));
 
 app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'));
