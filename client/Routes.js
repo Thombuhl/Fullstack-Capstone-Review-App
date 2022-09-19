@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
+import Home from './pages/Home';
 import Preference from './components/Preference';
 import { me, fetchRatings, fetchRestaurants } from './store';
 
@@ -18,7 +18,7 @@ class Routes extends Component {
         const { isLoggedIn } = this.props;
 
         return (
-            <div>
+            <>
                 {isLoggedIn ? (
                     <Switch>
                         <Route path="/home" exact component={Home} />
@@ -33,7 +33,7 @@ class Routes extends Component {
                         <Route path="/preference" component={Preference} />
                     </Switch>
                 )}
-            </div>
+            </>
         );
     }
 }

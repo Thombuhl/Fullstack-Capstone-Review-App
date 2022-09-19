@@ -12,6 +12,7 @@ const me = createAsyncThunk('auth/me', async () => {
                 authorization: token,
             },
         });
+        console.log(response);
         return response.data;
     }
 });
