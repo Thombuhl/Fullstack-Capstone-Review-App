@@ -17,7 +17,7 @@ const Restaurant = db.define('restaurant', {
     state: {
         type: Sequelize.STRING,
     },
-    zipcode: {
+    zipCode: {
         type: Sequelize.STRING,
     },
     imgUrl: {
@@ -26,7 +26,7 @@ const Restaurant = db.define('restaurant', {
     fullAddress: {
         type: Sequelize.VIRTUAL,
         get: function () {
-            return `${this.address}, ${this.city}, ${this.state} ${this.zipcode}`;
+            return `${this.address}, ${this.city}, ${this.state} ${this.zipCode}`;
         },
     },
 });
