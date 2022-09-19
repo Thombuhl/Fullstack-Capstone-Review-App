@@ -11,13 +11,14 @@ import { setPreferenceValue, updatePreferenceValue } from '../store/preference';
 
 const Slider = (props) => {
     const dispatch = useDispatch();
+    const userPrefs = useSelector((state) => state.preferences.userPref);
 
     const [value, setValue] = useState(3);
 
     const handleOnChange = (evt) => {
         evt.preventDefault();
-
         const newValue = evt.target.value;
+
         setValue(newValue);
         dispatch(
             updatePreferenceValue({
