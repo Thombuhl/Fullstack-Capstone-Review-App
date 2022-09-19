@@ -8,10 +8,14 @@ import {
     PreferenceText,
     AllPreferences,
     PreferenceContainer,
-    SliderPreferences,
 } from '../styledComponents/PreferenceStyle';
 
-import { addPreference, fetchPreferences } from '../store/preference';
+import {
+    addPreference,
+    setUserPreference,
+    fetchPreferences,
+    fetchUserPreferences,
+} from '../store/preference';
 
 const Preference = () => {
     const dispatch = useDispatch();
@@ -20,10 +24,13 @@ const Preference = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await dispatch(fetchPreferences());
-            setPreferences(data.payload);
+            const prefData = await dispatch(fetchPreferences());
+            setPreferences(prefData.payload);
 
-            dispatch(addPreference(data.payload));
+            const userPrefData = await dispatch(fetchUserPreferences());
+
+            dispatch(addPreference(prefData.payload));
+            dispatch(setUserPreference(userPrefData.payload));
         };
         fetchData();
     }, []);
@@ -40,9 +47,7 @@ const Preference = () => {
                                       <PreferenceText>
                                           {preference.name}
                                       </PreferenceText>
-                                      <SliderPreferences>
-                                          <Slider />
-                                      </SliderPreferences>
+                                      <Slider pref_id={preference.id} />
                                   </PreferenceContainer>
                               );
                           })

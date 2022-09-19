@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
     const { username } = props;
-
+    <Link to="/preference">Preference</Link>;
     return (
         <div>
             <h3>Welcome, {username}</h3>
