@@ -70,7 +70,6 @@ const AuthForm = (props) => {
                             type="submit"
                         >
                             {displayName}
-                
                         </button>
 
                         {error && error.response && (

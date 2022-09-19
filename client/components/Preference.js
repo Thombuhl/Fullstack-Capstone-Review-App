@@ -43,12 +43,14 @@ const Preference = () => {
                     {preferences
                         ? preferences.map((preference) => {
                               return (
-                                  <PreferenceContainer>
-                                      <PreferenceText>
-                                          {preference.name}
-                                      </PreferenceText>
+                                  <>
+                                      <PreferenceContainer>
+                                          <PreferenceText>
+                                              {preference.name}
+                                          </PreferenceText>
+                                      </PreferenceContainer>
                                       <Slider pref_id={preference.id} />
-                                  </PreferenceContainer>
+                                  </>
                               );
                           })
                         : null}

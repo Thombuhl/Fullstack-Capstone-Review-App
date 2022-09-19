@@ -20,7 +20,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 </div>
             ) : (
                 <div class="text-end">
-                    <Link to="/preference">Preference</Link>
                     <div class="row">
                         <div class="col-md-1">
                             {' '}
