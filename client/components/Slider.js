@@ -1,24 +1,49 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { SliderContainer, SliderInput } from "../styledComponents/SliderStyle";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const handleOnChange = (evt) => {};
+import {
+    SliderContainer,
+    SliderInput,
+    SliderValueText,
+} from '../styledComponents/SliderStyle';
 
-const Slider = () => {
-  return (
-    <>
-      <SliderContainer>
-        <SliderInput
-          type="range"
-          min={1}
-          max={5}
-          value={0}
-          className="slider"
-          onChange={handleOnChange}
-        ></SliderInput>
-      </SliderContainer>
-    </>
-  );
+import { setPreferenceValue, updatePreferenceValue } from '../store/preference';
+
+const Slider = (props) => {
+    const dispatch = useDispatch();
+    const userPrefs = useSelector((state) => state.preferences.userPref);
+
+    const [value, setValue] = useState(3);
+
+    const handleOnChange = (evt) => {
+        evt.preventDefault();
+        const newValue = evt.target.value;
+
+        setValue(newValue);
+        dispatch(
+            updatePreferenceValue({
+                prefVale: parseInt(newValue),
+                prefId: props.pref_id,
+            })
+        );
+        dispatch(setPreferenceValue({ score: newValue, id: props.pref_id }));
+    };
+
+    return (
+        <>
+            <SliderContainer>
+                <SliderValueText>{value}</SliderValueText>
+                <SliderInput
+                    type="range"
+                    min={0}
+                    max={5}
+                    value={value}
+                    className="slider"
+                    onChange={handleOnChange}
+                ></SliderInput>
+            </SliderContainer>
+        </>
+    );
 };
 
-export default connect()(Slider);
+export default Slider;
