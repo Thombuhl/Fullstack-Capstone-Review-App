@@ -37,8 +37,8 @@ const Preference = () => {
 
     return (
         <>
-            <Text> Lets Setup your Preferences</Text>
             <Container>
+                <Text> Lets Setup your Preferences</Text>
                 <AllPreferences>
                     {preferences
                         ? preferences.map((preference) => {
@@ -55,7 +55,6 @@ const Preference = () => {
                           })
                         : null}
                 </AllPreferences>
-                <Button>Save</Button>
             </Container>
         </>
     );

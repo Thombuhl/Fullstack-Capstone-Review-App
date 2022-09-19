@@ -2,22 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
+import { LinksContainer, NavContainer } from '../styledComponents/NavBarStyle';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
     <div>
-        <nav>
+        <NavContainer>
             {isLoggedIn ? (
-                <div>
-                    {/* The navbar will show these links after you log in */}
+                <LinksContainer>
                     <Link to="/home">Home</Link>
-                    <a href="#" onClick={handleClick}>
+                    <Link to="/preference">Preference</Link>
+                    <Link to="/home" onClick={handleClick}>
                         Logout
-                    </a>
-                    <div>
-                        {' '}
-                        <Link to="/preference">Preference</Link>
-                    </div>
-                </div>
+                    </Link>
+                </LinksContainer>
             ) : (
                 <div class="text-end">
                     <div class="row">
@@ -51,7 +48,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                     </div>
                 </div>
             )}
-        </nav>
+        </NavContainer>
     </div>
 );
 

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const SliderContainer = styled.div`
+    display: flex;
+    flex-direction: row-reversed;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 `;
 
@@ -37,10 +41,10 @@ export const SliderInput = styled.input`
     }
 `;
 
-export const SliderValueText = styled.p`
+export const SliderValueText = styled.div`
     font-family: Lato, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 700;
     color: rgb(74, 74, 74);
     font-size: 1.2rem;
-    margin: none;
+    margin-right: 2rem;
 `;

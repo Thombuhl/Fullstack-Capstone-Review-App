@@ -31,8 +31,8 @@ const Slider = (props) => {
 
     return (
         <>
-            <SliderValueText>{value}</SliderValueText>
             <SliderContainer>
+                <SliderValueText>{value}</SliderValueText>
                 <SliderInput
                     type="range"
                     min={0}
