@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
-    <div>
+    <>
         <nav>
             {isLoggedIn ? (
-                <div>
+                <div style={{ textAlign: 'center' }}>
                     {/* The navbar will show these links after you log in */}
                     <Link to="/home">Home</Link>
                     <a href="#" onClick={handleClick}>
@@ -19,26 +19,26 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                     </div>
                 </div>
             ) : (
-                <div class="text-end">
-                    <div class="row">
-                        <div class="col-md-1">
+                <div className="text-end" style={{ textAlign: 'center' }}>
+                    <div className="row">
+                        <div className="col-md-1">
                             {' '}
                             <Link to="/login">Login</Link>
                         </div>
                     </div>
-                    <div class="px-4 py-5 my-5 text-center">
+                    <div className="px-4 py-5 my-5 text-center">
                         <img
-                            class="d-block mx-auto mb-4"
+                            className="d-block mx-auto mb-4"
                             src="logoCha.png"
                             alt=""
                             width="auto"
                             height="70"
                         />
-                        <h1 class="py-4 display-5 fw-bold">
+                        <h1 className="py-4 display-5 fw-bold">
                             Finding the resturant you need
                         </h1>
-                        <div class="col-lg-6 mx-auto">
-                            <p class="lead mb-4">
+                        <div className="col-lg-6 mx-auto">
+                            <p className="lead mb-4">
                                 Quickly design and customize responsive
                                 mobile-first sites with Bootstrap, the world’s
                                 most popular front-end open source toolkit,
@@ -52,7 +52,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 </div>
             )}
         </nav>
-    </div>
+    </>
 );
 
 /**
