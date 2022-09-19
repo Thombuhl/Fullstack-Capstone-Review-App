@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import Navbar from './components/Navbar'
-import Routes from './Routes'
+import Navbar from './components/Navbar';
+import Routes from './Routes';
+import './styles/App.css';
 
 const App = () => {
+
   return (
     <div class=" bg-image carousel-item active">
  
@@ -13,4 +15,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

@@ -34,7 +34,11 @@ const AuthForm = (props) => {
                     <Modal.Title></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form onSubmit={handleSubmit} name={name}>
+                    <form
+                        onSubmit={handleSubmit}
+                        name={name}
+                        style={{ textAlign: 'center' }}
+                    >
                         <img
                             className="mb-4"
                             src="logo.png"
@@ -70,7 +74,6 @@ const AuthForm = (props) => {
                             type="submit"
                         >
                             {displayName}
-                
                         </button>
 
                         {error && error.response && (
