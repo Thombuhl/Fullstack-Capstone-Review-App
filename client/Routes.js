@@ -23,7 +23,6 @@ class Routes extends Component {
                 {isLoggedIn ? (
                     <Switch>
                         <Route path="/home" component={Home} />
-                        {/* <Route path="/restaurants" component={Restaurants} /> */}
                         <Route path="/restaurants/:id" component={Restaurant} />
                         <Route path="/preference" component={Preference} />
                         <Redirect to="/home" />

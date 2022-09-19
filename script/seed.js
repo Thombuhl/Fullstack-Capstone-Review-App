@@ -140,23 +140,23 @@ async function seed() {
 
     await Promise.all([
         PreferenceLabel.create({
-            name: 'Cleaniness',
+            name: 'Work From Home',
             userId: 3,
         }),
         PreferenceLabel.create({
-            name: 'Authentic',
+            name: 'In a rush',
             userId: 2,
         }),
         PreferenceLabel.create({
-            name: 'Cost',
+            name: 'Have time',
             userId: 5,
         }),
         PreferenceLabel.create({
-            name: 'Service',
+            name: 'Late night',
             userId: 4,
         }),
         PreferenceLabel.create({
-            name: 'Food',
+            name: 'Early Morning',
             userId: 6,
         }),
     ]);

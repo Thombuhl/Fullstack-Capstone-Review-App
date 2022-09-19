@@ -1,19 +1,14 @@
-const router = require("express").Router();
-const {
-  models: { Restaurant, Rating, User, Preference },
-} = require("../db");
-module.exports = router;
+const express = require('express');
+const router = express.Router();
+const Preference = require('../db/models/Preference');
 
-router.get("/", async (req, res, next) => {
-  try {
-    const preferences = await Preference.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      //   attributes: ["id", "username"],
-    });
-    res.json(preferences);
-  } catch (err) {
-    next(err);
-  }
+router.get('/', async (req, res, next) => {
+    try {
+        const allpreferences = await Preference.findAll();
+        res.send(allpreferences);
+    } catch (er) {
+        next(er);
+    }
 });
+
+module.exports = router;
