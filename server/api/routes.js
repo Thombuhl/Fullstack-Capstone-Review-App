@@ -4,11 +4,12 @@ const express = require('express');
 //Express Router
 const router = express.Router();
 
-//Send incoming routes to specified files/
+//Send incoming routes to specified files
 router.use('/users', require('./users'));
 router.use('/restaurants', require('./restaurants'));
 router.use('/ratings', require('./ratings'));
 router.use('/auth', require('./auth'));
+router.use('/yelp', require('./yelp'));
 router.use('/userpref', require('./userpref'));
 router.use('/preference', require('./preferences'));
 router.use('/preferenceLabel', require('./preflabel'));
