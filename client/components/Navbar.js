@@ -11,13 +11,12 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 <LinksContainer>
                     <Link to="/home">Home</Link>
                     <Link to="/preference">Preference</Link>
-                    <Link to="/home" onClick={handleClick}>
+                    <Link to="/" onClick={handleClick}>
                         Logout
                     </Link>
                 </LinksContainer>
             ) : (
                 <div class="text-end ">
-
                     <div class="px-4 py-5 my-5 text-center ">
                         <img
                             class="d-block mx-auto mb-4"

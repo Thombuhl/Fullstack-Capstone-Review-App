@@ -1,12 +1,17 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const { faker } = require('@faker-js/faker');
 
 const Restaurant = db.define('restaurant', {
     name: {
         type: Sequelize.STRING,
     },
-    description: {
+    alias: {
         type: Sequelize.STRING,
+    },
+    description: {
+        type: Sequelize.TEXT,
+        defaultValue: faker.lorem.paragraph(),
     },
     address: {
         type: Sequelize.STRING,
@@ -28,6 +33,18 @@ const Restaurant = db.define('restaurant', {
         get: function () {
             return `${this.address}, ${this.city}, ${this.state} ${this.zipCode}`;
         },
+    },
+    price: {
+        type: Sequelize.STRING,
+    },
+    category: {
+        type: Sequelize.STRING,
+    },
+    overnight: {
+        type: Sequelize.BOOLEAN,
+    },
+    reviewCount: {
+        type: Sequelize.INTEGER,
     },
 });
 
