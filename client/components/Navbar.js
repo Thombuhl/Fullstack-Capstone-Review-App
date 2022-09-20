@@ -16,14 +16,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                     </Link>
                 </LinksContainer>
             ) : (
-                <div class="text-end">
-                    <div class="row">
-                        <div class="col-md-1">
-                            {' '}
-                            <Link to="/login">Login</Link>
-                        </div>
-                    </div>
-                    <div class="px-4 py-5 my-5 text-center">
+                <div class="text-end ">
+
+                    <div class="px-4 py-5 my-5 text-center ">
                         <img
                             class="d-block mx-auto mb-4"
                             src="logoCha.png"

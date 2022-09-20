@@ -5,12 +5,14 @@ import Routes from './Routes';
 import './styles/App.css';
 
 const App = () => {
-    return (
-        <div className="App">
-            <Navbar />
-            <Routes />
-        </div>
-    );
-};
+
+  return (
+    <div>
+ 
+    <Navbar  />
+    <Routes />
+    </div>
+  )
+}
 
 export default App;
