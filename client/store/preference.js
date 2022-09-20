@@ -41,6 +41,18 @@ const fetchUserPreferences = createAsyncThunk(
     }
 );
 
+const fetchPrefLabel = createAsyncThunk(
+    '/preferenceLabel/allLabels',
+    async (payload) => {
+        const response = await axios.get('/api/preferenceLabel/allLabels', {
+            headers: {
+                authorization: window.localStorage.getItem('token'),
+            },
+        });
+        return response.data;
+    }
+);
+
 const prefrenceSlice = createSlice({
     name: 'preference',
     initialState: {},
@@ -66,10 +78,24 @@ const prefrenceSlice = createSlice({
             const { payload } = action;
             state.userPref = payload;
         },
+        setPreferenceLabel(state, action) {
+            console.log(action);
+            const { payload } = action;
+            state.prefLabel = payload;
+        },
     },
 });
 
-export const { setPreferenceValue, addPreference, setUserPreference } =
-    prefrenceSlice.actions;
-export { updatePreferenceValue, fetchPreferences, fetchUserPreferences };
+export const {
+    setPreferenceValue,
+    addPreference,
+    setUserPreference,
+    setPreferenceLabel,
+} = prefrenceSlice.actions;
+export {
+    updatePreferenceValue,
+    fetchPreferences,
+    fetchUserPreferences,
+    fetchPrefLabel,
+};
 export default prefrenceSlice.reducer;

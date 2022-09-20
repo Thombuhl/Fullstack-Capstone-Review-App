@@ -11,6 +11,7 @@ router.use('/ratings', require('./ratings'));
 router.use('/auth', require('./auth'));
 router.use('/userpref', require('./userpref'));
 router.use('/preference', require('./preferences'));
+router.use('/preferenceLabel', require('./preflabel'));
 
 //Error handler
 router.use((req, res, next) => {
