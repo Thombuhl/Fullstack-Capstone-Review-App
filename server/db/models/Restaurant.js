@@ -29,6 +29,18 @@ const Restaurant = db.define('restaurant', {
             return `${this.address}, ${this.city}, ${this.state} ${this.zipCode}`;
         },
     },
+    price: {
+        type: Sequelize.STRING,
+    },
+    category: {
+        type: Sequelize.STRING,
+    },
+    overnight: {
+        type: Sequelize.BOOLEAN,
+    },
+    reviewCount: {
+        type: Sequelize.INTEGER,
+    },
 });
 
 module.exports = Restaurant;
