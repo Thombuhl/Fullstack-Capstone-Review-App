@@ -12,6 +12,16 @@ const {
     },
 } = require('../server/db');
 
+//Fetch Yelp API Data to Seed
+
+async function fetchCategories() {
+    let response = await fetch(`https://api.yelp.com/v3/categories/{alias}`, {
+        Authorization:
+            'Bearer Op-Df4Amy-Y9FlUy0ELcRLDqCAkQ0NF5t2s-4SPIvNDG1-Jnjh_j4pRGoB07upa_SN5cl7PxV2cfCx99YXJpIJT0O4-lWbLeIqrytRqAEpu4H1GRIpF6enAtTe0oY3Yx',
+    });
+    console.log(response);
+}
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
