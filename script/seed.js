@@ -48,10 +48,19 @@ const setDataforDB = async () => {
             categories,
             price,
             rating,
+            transactions,
             review_count,
             location,
             display_phone,
         } = business;
+
+        const hasDelivery = transactions.includes('delivery') ? true : false;
+
+        const hasReservation = transactions.includes('reservation')
+            ? true
+            : false;
+
+        const hasPickup = transactions.includes('pickup') ? true : false;
 
         return {
             name,
@@ -61,6 +70,9 @@ const setDataforDB = async () => {
             categoryAlias: categories.map((ele) => ele.alias)[0],
             price: price ? price : null,
             rating,
+            hasDelivery,
+            hasReservation,
+            hasPickup,
             review_count,
             address: location.address1,
             city: location.city,
@@ -147,6 +159,9 @@ async function seed() {
                     state: restaurant.state,
                     zipCode: restaurant.zipCode,
                     display_phone: restaurant.display_phone,
+                    hasDelivery: restaurant.hasDelivery,
+                    hasReservation: restaurant.hasReservation,
+                    hasPickup: restaurant.hasPickup,
                 });
             }
         };
