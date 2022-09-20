@@ -1,4 +1,5 @@
 'use strict';
+const businessForDB = require('./test');
 
 const {
     db,
@@ -121,6 +122,10 @@ async function seed() {
             zipCode: '07302',
         }),
     ]);
+
+    await Promise.all(
+        businessForDB.map((restaurant) => Restaurant.create(restaurant))
+    );
 
     // Generates Junction "UserPreference" table where there are 10 users each with 5 preferenceIds and preferencelabelIds. Row sum equlas 50
     users.forEach(async (user) => {
