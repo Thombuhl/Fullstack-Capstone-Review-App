@@ -7,7 +7,7 @@ import './styles/App.css';
 const App = () => {
 
   return (
-    <div class=" bg-image carousel-item active">
+    <div>
  
     <Navbar  />
     <Routes />
