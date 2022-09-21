@@ -1,3 +1,8 @@
 .RestaurantsList {
     width: 70%;
+    height: 100%;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
