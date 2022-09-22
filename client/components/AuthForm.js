@@ -83,7 +83,7 @@ const AuthForm = (props) => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <p class=" text-muted">&copy; 2017–2022</p>
+                    <p className=" text-muted">&copy; 2017–2022</p>
                 </Modal.Footer>
             </Modal>
         </div>
