@@ -257,30 +257,30 @@ async function seed() {
         }),
     ]);
 
-    one.restaurantId = tupelo.id;
-    one.userId = 1;
-    one.preferenceId = cleaniness.id;
-    await one.save();
+    // one.restaurantId = tupelo.id;
+    // one.userId = 1;
+    // one.preferenceId = cleaniness.id;
+    // await one.save();
 
-    two.restaurantId = carmine.id;
-    two.userId = 2;
-    two.preferenceId = service.id;
-    await two.save();
+    // two.restaurantId = carmine.id;
+    // two.userId = 2;
+    // two.preferenceId = service.id;
+    // await two.save();
 
-    three.restaurantId = wanton.id;
-    three.userId = 3;
-    three.preferenceId = authenticity.id;
-    await three.save();
+    // three.restaurantId = wanton.id;
+    // three.userId = 3;
+    // three.preferenceId = authenticity.id;
+    // await three.save();
 
-    four.restaurantId = grande.id;
-    four.userId = 4;
-    four.preferenceId = cost.id;
-    await four.save();
+    // four.restaurantId = grande.id;
+    // four.userId = 4;
+    // four.preferenceId = cost.id;
+    // await four.save();
 
-    five.restaurantId = porta.id;
-    five.userId = 5;
-    five.preferenceId = overall.id;
-    await five.save();
+    // five.restaurantId = porta.id;
+    // five.userId = 5;
+    // five.preferenceId = overall.id;
+    // await five.save();
 
     // date, quick, hungry, lazy, budget
 

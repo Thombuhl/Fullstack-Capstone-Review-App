@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RestaurantsList from '../components/RestaurantsList';
-import PreferenceLabel from '../components/PreferenceLabel';
+import Search from '../components/Search';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
 
@@ -24,7 +24,7 @@ export const Home = () => {
         <div className="Home">
             <h3>Welcome, {auth.username}</h3>
             <RestaurantsList />
-            <PreferenceLabel />
+            <Search />
         </div>
     );
 };

@@ -5,6 +5,7 @@ const { faker } = require('@faker-js/faker');
 const Restaurant = db.define('restaurant', {
     name: {
         type: Sequelize.STRING,
+        allowNull: false,
     },
     alias: {
         type: Sequelize.STRING,
@@ -12,9 +13,13 @@ const Restaurant = db.define('restaurant', {
     description: {
         type: Sequelize.TEXT,
         defaultValue: faker.lorem.paragraph(),
+        allowNull: true,
     },
     address: {
         type: Sequelize.STRING,
+    },
+    rating: {
+        type: Sequelize.FLOAT,
     },
     city: {
         type: Sequelize.STRING,
@@ -40,11 +45,23 @@ const Restaurant = db.define('restaurant', {
     category: {
         type: Sequelize.STRING,
     },
-    overnight: {
+    categoryAlias: {
+        type: Sequelize.STRING,
+    },
+    review_count: {
+        type: Sequelize.INTEGER,
+    },
+    display_phone: {
+        type: Sequelize.STRING,
+    },
+    hasDelivery: {
         type: Sequelize.BOOLEAN,
     },
-    reviewCount: {
-        type: Sequelize.INTEGER,
+    hasReservation: {
+        type: Sequelize.BOOLEAN,
+    },
+    hasPickup: {
+        type: Sequelize.BOOLEAN,
     },
 });
 
