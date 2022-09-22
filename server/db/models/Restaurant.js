@@ -13,6 +13,15 @@ const Restaurant = db.define('restaurant', {
         type: Sequelize.TEXT,
         defaultValue: faker.lorem.paragraph(),
     },
+    imgUrl: {
+        type: Sequelize.TEXT,
+    },
+    latitude: {
+        type: Sequelize.STRING,
+    },
+    longitude: {
+        type: Sequelize.STRING,
+    },
     address: {
         type: Sequelize.STRING,
     },
@@ -25,9 +34,7 @@ const Restaurant = db.define('restaurant', {
     zipCode: {
         type: Sequelize.STRING,
     },
-    imgUrl: {
-        type: Sequelize.TEXT,
-    },
+
     fullAddress: {
         type: Sequelize.VIRTUAL,
         get: function () {
