@@ -39,7 +39,7 @@ const RestaurantsList = () => {
         <>
             <div className="RestaurantsList">
                 {restaurants.map((res) => (
-                    <RestaurantItem restaurant={res} />
+                    <RestaurantItem restaurant={res} key={res.id} />
                 ))}
             </div>
             <select name="hasDelivery" onChange={handleFilters}>

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import GoogleMap from '../components/GoogleMap';
 import RestaurantsList from '../components/RestaurantsList';
 import Search from '../components/Search';
 import '../styles/Home.css';
@@ -22,8 +23,9 @@ export const Home = () => {
 
     return (
         <div className="Home">
-            <h3>Welcome, {auth.username}</h3>
+            {/* <h3>Welcome, {auth.username}</h3> */}
             <RestaurantsList />
+            <GoogleMap />
             <Search />
         </div>
     );
