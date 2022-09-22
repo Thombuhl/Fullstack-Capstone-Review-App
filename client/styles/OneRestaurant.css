@@ -1,21 +1,14 @@
-.RestaurantItem {
+.one-restaurant {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
     border: 1px solid red;
-    width: 80%;
 }
 
-.RestaurantItem-content {
+.one-restaurant-content {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
-}
-
-.RestaurantItem > img {
-    border-radius: 4px;
-    height: 10rem;
-    width: 10rem;
 }

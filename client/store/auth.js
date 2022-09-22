@@ -41,7 +41,7 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(me.fulfilled, (state, action) => {
-            state.auth = action.payload;
+            state.auth = { ...action.payload };
         });
         builder.addCase(authenticate.rejected, (state, action) => {
             state.auth = { error: action.payload };
