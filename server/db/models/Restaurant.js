@@ -17,10 +17,10 @@ const Restaurant = db.define('restaurant', {
         type: Sequelize.TEXT,
     },
     latitude: {
-        type: Sequelize.STRING,
+        type: Sequelize.DECIMAL,
     },
     longitude: {
-        type: Sequelize.STRING,
+        type: Sequelize.DECIMAL,
     },
     address: {
         type: Sequelize.STRING,
