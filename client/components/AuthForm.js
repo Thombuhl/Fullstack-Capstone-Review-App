@@ -3,31 +3,19 @@ import { connect } from 'react-redux';
 import { authenticate } from '../store';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import { Link } from 'react-router-dom';
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
     const { name, displayName, handleSubmit, error } = props;
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     return (
         <div>
-            <div className="py-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <Button className="btn btn-primary btn-outline-light btn-lg px-4 gap-3">
-                    Create Account
-                </Button>
-                <Button
-                    onClick={handleShow}
-                    className="btn btn-outline-light btn-lg px-4"
-                    variant="primary"
-                >
-                    Log In
-                </Button>
-            </div>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -46,7 +34,8 @@ const AuthForm = (props) => {
                             width="auto"
                             height="57"
                         />
-                        <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+                    
+                {name=='login'?(<h1 className="h3 mb-3 fw-normal">Please sign in</h1>):(<h1 className="h3 mb-3 fw-normal">Create Account</h1>)}
 
                         <div className="form-floating">
                             <input

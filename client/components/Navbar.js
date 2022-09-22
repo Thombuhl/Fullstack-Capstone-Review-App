@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import { logout } from '../store';
 import { LinksContainer, NavContainer } from '../styledComponents/NavBarStyle';
 
@@ -11,7 +12,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 <LinksContainer>
                     <Link to="/home">Home</Link>
                     <Link to="/preference">Preference</Link>
-                    <Link to="/home" onClick={handleClick}>
+                    <Link to="/" onClick={handleClick}>
                         Logout
                     </Link>
                 </LinksContainer>
@@ -41,6 +42,18 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                         </div>
                         {/* The navbar will show these links before you log in */}
                     </div>
+                                <div className="py-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
+               <Link to='/signup'> <Button className="btn btn-primary btn-outline-light btn-lg px-4 gap-3">
+                    Create Account
+                </Button></Link>
+               <Link to='/login'> <Button
+ 
+                    className="btn btn-outline-light btn-lg px-4"
+                    variant="primary"
+                >
+                    Log In
+                </Button></Link>
+            </div>
                 </div>
             )}
         </NavContainer>
