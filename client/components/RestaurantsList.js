@@ -16,15 +16,40 @@ const RestaurantsList = () => {
     const { restaurants } = useSelector((state) => state);
 
     //Store the user's filter selection.
-    const [filter, setFilter] = useState({});
+    const [filterBox, setFilterBox] = useState({});
 
     //Display the restaurants that have properties matching the filter.
-    const [filteredRestaurants, setfilteredRestaurants] = useState({});
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
+    //On component render, check and see if filter exists, then set the filteredRestaurants state with all matching restaurants.
+    useEffect(() => {
+        if (filterBox) {
+            setFilteredRestaurants(
+                restaurants.filter((restaurant) =>
+                    //Turn state "filter" obj to array.
+                    Object.entries(filterBox).every(([key, value]) => {
+                        // console.log('key:', product[key], 'value:', value);
+                        return restaurant[key].includes(value);
+                    })
+                )
+            );
+        } else if (filterBox === 'Categories')
+            restaurants.map((restaurant) => {
+                return (
+                    <RestaurantItem
+                        key={restaurant.id}
+                        restaurant={restaurant}
+                    />
+                );
+            });
+    }, [filterBox, restaurants]);
+
+    console.log(filteredRestaurants);
+    //Replaces match.params from ownProps, set filter object with attribute name and val.
     const stashFilteredAttributes = (evt) => {
         const value = evt.target.value;
-        setFilter({
-            ...filter,
+        setFilterBox({
+            ...filterBox,
             [evt.target.name]: value,
         });
     };
@@ -46,6 +71,7 @@ const RestaurantsList = () => {
     }, {});
     const categoryNames = Object.values(categoriess);
 
+    //Prices
     const prices = restaurantsArr.reduce((acc, restaurant) => {
         const price = restaurant.price;
         acc[price] = acc[price] || {
@@ -58,6 +84,7 @@ const RestaurantsList = () => {
     }, {});
     const bougie = Object.values(prices);
 
+    //Ratings
     const ratings = restaurantsArr.reduce((acc, restaurant) => {
         const rating = restaurant.rating;
         acc[rating] = acc[rating] || {
@@ -96,6 +123,7 @@ const RestaurantsList = () => {
     }, {});
     const pickupBool = Object.values(pickups);
 
+    //Reservation Options
     const reservations = restaurantsArr.reduce((acc, restaurant) => {
         const reservation = restaurant.hasReservation;
         acc[reservation] = acc[reservation] || {
@@ -108,6 +136,7 @@ const RestaurantsList = () => {
     }, {});
     const reservationBool = Object.values(reservations);
 
+    // Styled components.
     return (
         <ResturantsContainer>
             <ResturantFilter>
@@ -171,11 +200,22 @@ const RestaurantsList = () => {
                 </Select>
             </ResturantFilter>
 
-            <div className="RestaurantsList">
+            <div>
+                {filteredRestaurants.map((restaurant) => {
+                    return (
+                        <RestaurantItem
+                            key={restaurant.id}
+                            restaurant={restaurant}
+                        />
+                    );
+                })}
+            </div>
+
+            {/* <div className="RestaurantsList">
                 {restaurants.map((res) => (
                     <RestaurantItem restaurant={res} />
                 ))}
-            </div>
+            </div> */}
         </ResturantsContainer>
     );
 };
