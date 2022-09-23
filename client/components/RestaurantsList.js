@@ -20,19 +20,34 @@ const RestaurantsList = () => {
 
     //Display the restaurants that have properties matching the filter.
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
     //On component render, check and see if filter exists, then set the filteredRestaurants state with all matching restaurants.
+
+    console.log('filter', filterBox);
+    ß;
     useEffect(() => {
         if (filterBox) {
             setFilteredRestaurants(
-                restaurants.filter((restaurant) =>
+                restaurants.filter((restaurant) => {
                     //Turn state "filter" obj to array.
-                    Object.entries(filterBox).every(([key, value]) => {
-                        // console.log('key:', product[key], 'value:', value);
-                        return restaurant[key].includes(value);
-                    })
-                )
+                    const objEntry = Object.entries(filterBox);
+                    console.log('Object entries', objEntry);
+
+                    const attributes = objEntry.map(([key, value]) => {
+                        if (restaurant[key] === undefined) {
+                            throw new Error('check key name');
+                        } else {
+                            return restaurant[key] === value;
+                        }
+                    });
+
+                    // console.log('attributes', attributes);
+                    return (
+                        attributes.filter((attribute) => attribute).length ===
+                        objEntry.length
+                    );
+                })
             );
+            // console.log(filteredRestaurants);
         } else if (filterBox === 'Categories')
             restaurants.map((restaurant) => {
                 return (
@@ -44,8 +59,12 @@ const RestaurantsList = () => {
             });
     }, [filterBox, restaurants]);
 
-    console.log(filteredRestaurants);
+    // console.log(filteredRestaurants);
+
+    // console.log(filteredRestaurants);
     //Replaces match.params from ownProps, set filter object with attribute name and val.
+
+    //Handle String Events
     const stashFilteredAttributes = (evt) => {
         const value = evt.target.value;
         setFilterBox({
@@ -54,6 +73,30 @@ const RestaurantsList = () => {
         });
     };
 
+    //Handle Numbered Events
+    const stashFilteredNumbers = (evt) => {
+        let value = evt.target.value;
+        setFilterBox({
+            ...filterBox,
+            [evt.target.name]: (value = Number(value)),
+        });
+    };
+
+    //Handle Boolean Events
+    const stashFilteredBooleans = (evt) => {
+        let value = evt.target.value;
+        if (value === 'FALSE') {
+            setFilterBox({
+                ...filterBox,
+                [evt.target.name]: (value = false),
+            });
+        } else {
+            setFilterBox({
+                ...filterBox,
+                [evt.target.name]: (value = true),
+            });
+        }
+    };
     // Array of 100 restaurants
     const restaurantsArr = restaurants;
     // console.log(restaurants);
@@ -150,13 +193,13 @@ const RestaurantsList = () => {
                         );
                     })}
                 </Select>
-                <Select name="ratings" onChange={stashFilteredAttributes}>
+                <Select name="rating" onChange={stashFilteredNumbers}>
                     <Option>Rating</Option>
                     {reviews.map((rate) => {
                         return <Option key={rate.id}>{rate.rating}</Option>;
                     })}
                 </Select>
-                <Select name="prices" onChange={stashFilteredAttributes}>
+                <Select name="price" onChange={stashFilteredAttributes}>
                     <Option>Price</Option>
                     {bougie.map((price) => {
                         if (!price.price) {
@@ -168,7 +211,7 @@ const RestaurantsList = () => {
                         }
                     })}
                 </Select>
-                <Select name="delivery" onChange={stashFilteredAttributes}>
+                <Select name="hasDelivery" onChange={stashFilteredBooleans}>
                     <Option>Delivery</Option>
                     {deliveryBool.map((element) => {
                         return (
@@ -178,7 +221,7 @@ const RestaurantsList = () => {
                         );
                     })}
                 </Select>
-                <Select name="pickup" onChange={stashFilteredAttributes}>
+                <Select name="hasPickup" onChange={stashFilteredBooleans}>
                     <Option>Pickup</Option>
                     {pickupBool.map((element) => {
                         return (
@@ -188,7 +231,7 @@ const RestaurantsList = () => {
                         );
                     })}
                 </Select>
-                <Select name="reservation" onChange={stashFilteredAttributes}>
+                <Select name="hasReservation" onChange={stashFilteredBooleans}>
                     <Option>Reservations</Option>
                     {reservationBool.map((element) => {
                         return (
