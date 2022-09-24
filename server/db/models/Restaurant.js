@@ -5,6 +5,7 @@ const { faker } = require('@faker-js/faker');
 const Restaurant = db.define('restaurant', {
     name: {
         type: Sequelize.STRING,
+        allowNull: false,
     },
     alias: {
         type: Sequelize.STRING,
@@ -12,6 +13,7 @@ const Restaurant = db.define('restaurant', {
     description: {
         type: Sequelize.TEXT,
         defaultValue: faker.lorem.paragraph(),
+        allowNull: true,
     },
     imgUrl: {
         type: Sequelize.TEXT,
@@ -24,6 +26,9 @@ const Restaurant = db.define('restaurant', {
     },
     address: {
         type: Sequelize.STRING,
+    },
+    rating: {
+        type: Sequelize.FLOAT,
     },
     city: {
         type: Sequelize.STRING,
@@ -40,6 +45,30 @@ const Restaurant = db.define('restaurant', {
         get: function () {
             return `${this.address}, ${this.city}, ${this.state} ${this.zipCode}`;
         },
+    },
+    price: {
+        type: Sequelize.STRING,
+    },
+    category: {
+        type: Sequelize.STRING,
+    },
+    categoryAlias: {
+        type: Sequelize.STRING,
+    },
+    review_count: {
+        type: Sequelize.INTEGER,
+    },
+    display_phone: {
+        type: Sequelize.STRING,
+    },
+    hasDelivery: {
+        type: Sequelize.BOOLEAN,
+    },
+    hasReservation: {
+        type: Sequelize.BOOLEAN,
+    },
+    hasPickup: {
+        type: Sequelize.BOOLEAN,
     },
 });
 

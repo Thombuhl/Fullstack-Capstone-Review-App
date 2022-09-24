@@ -62,6 +62,11 @@ form div {
 
 
 #map {
-    height: 50vh;
-    width: 50vh;
+    height: 78vh;
+    width: 55vh;
+    position: absolute;
+    right: 50px;
+    top: 160px;
+
 }
+
