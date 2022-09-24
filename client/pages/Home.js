@@ -5,6 +5,7 @@ import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
 import SearchBar from '../components/Search';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 /**
  * COMPONENT
@@ -25,7 +26,7 @@ export const Home = () => {
         <div className="Home">
             {/* <h3>Welcome, {auth.username}</h3> */}
             <RestaurantsList />
-            <SearchBar />
+            <Route exact component={SearchBar} />
             <GoogleMap />
         </div>
     );

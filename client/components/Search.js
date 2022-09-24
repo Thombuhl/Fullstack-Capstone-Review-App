@@ -7,7 +7,7 @@ import {
     ResturantFilter,
 } from '../styledComponents/SearchBoxStyle';
 
-const SearchBar = () => {
+const SearchBar = ({ history }) => {
     //Hook to grab resturant state from redux store and use for filtering
     const { restaurants } = useSelector((state) => state);
 
@@ -15,12 +15,17 @@ const SearchBar = () => {
     const [searchBox, setSearchBox] = useState('');
 
     return (
-        <SearchInputContainer>
-            <SearchInput
-                placeholder="Search"
-                onChange={(event) => setSearchBox(event.target.value)}
-            />
-        </SearchInputContainer>
+        <>
+            <SearchInputContainer>
+                <SearchInput
+                    placeholder="Search"
+                    onChange={(event) =>
+                        history.push(`/search/${event.target.value}`)
+                    }
+                />
+            </SearchInputContainer>
+            <div>{}</div>
+        </>
     );
 };
 
