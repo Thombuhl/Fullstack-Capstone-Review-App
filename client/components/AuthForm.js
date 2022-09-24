@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { authenticate } from '../store';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Link } from 'react-router-dom';
+import { Link, useHistory  } from 'react-router-dom';
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
     const { name, displayName, handleSubmit, error } = props;
     const [show, setShow] = useState(true);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const history = useHistory();
+   const handleClose = () => {setShow(false);console.log("Hello");history.goBack();};
+  const handleShow = () => setShow(true);
 
     return (
         <div>
