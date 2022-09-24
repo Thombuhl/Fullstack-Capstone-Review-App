@@ -10,6 +10,20 @@ const fetchRatings = createAsyncThunk('ratings/fetchRatings', async () => {
     return response.data;
 });
 
+const createRating = createAsyncThunk(
+    'ratings/createRating',
+    async (rating) => {
+        const response = (
+            await axios.post('/api/ratings/', rating, {
+                headers: {
+                    authorization: window.localStorage.getItem('token'),
+                },
+            })
+        ).data;
+        return response;
+    }
+);
+
 const ratingsSlice = createSlice({
     name: 'ratings',
     initialState: [],
@@ -22,9 +36,12 @@ const ratingsSlice = createSlice({
         builder.addCase(fetchRatings.fulfilled, (state, action) => {
             state.push(...action.payload);
         });
+        builder.addCase(createRating.fulfilled, (state, action) => {
+            return [...state, action.payload];
+        });
     },
 });
 
 export const { addRating } = ratingsSlice.actions;
-export { fetchRatings };
+export { fetchRatings, createRating };
 export default ratingsSlice.reducer;

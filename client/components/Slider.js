@@ -8,12 +8,12 @@ import {
 } from '../styledComponents/SliderStyle';
 
 import { setPreferenceValue, updatePreferenceValue } from '../store/preference';
+import { useRouteMatch } from 'react-router-dom';
 
 const Slider = (props) => {
     const dispatch = useDispatch();
-    const userPrefs = useSelector((state) => state.preferences.userPref);
 
-    const [value, setValue] = useState(3);
+    const [value, setValue] = useState(score);
 
     const handleOnChange = (evt) => {
         evt.preventDefault();
