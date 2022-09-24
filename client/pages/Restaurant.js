@@ -1,4 +1,3 @@
-
 import React, { useReducer, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RestaurantsList from '../components/RestaurantsList';
@@ -18,13 +17,13 @@ import { fetchRatings, fetchRestaurants } from '../store';
  * COMPONENT
  */
 const Restaurant = (props) => {
-    // const { restaurants } = useSelector((state) => state);
+    const allRatings = useSelector((state) => state.ratings);
     const restaurantId = props.match.params.id || {};
     console.log(props);
     const dispatch = useDispatch();
 
     const [restaurants, setRestaurants] = useState([]);
-    const [ratings, setRatings] = useState([]);
+    const [ratings, setRatings] = useState(allRatings);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +34,6 @@ const Restaurant = (props) => {
         };
         fetchData();
     }, []);
-    console.log(restaurants);
     const restaurant =
         restaurants?.find((restaurant) => restaurantId * 1 === restaurant.id) ||
         {};
