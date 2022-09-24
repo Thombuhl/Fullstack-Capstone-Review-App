@@ -3,6 +3,13 @@ import { useSelector } from 'react-redux';
 import RestaurantsList from '../components/RestaurantsList';
 import '../styles/OneRestaurant.css';
 import { Link } from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
+import {
+    SingleRestContainer,
+    // SingleRestContainer,
+    // SliderValueText,
+} from '../styledComponents/SingleRestaurant';
+import CreateRatingForm from '../components/CreateRatingForm';
 
 /**
  * COMPONENT
@@ -16,8 +23,9 @@ const Restaurant = (props) => {
         restaurants.find((restaurant) => restaurantId * 1 === restaurant.id) ||
         {};
     return (
-        <div className="one-restaurant">
+        <div className="one-restaurant container">
             <Link to="/home">Go Back</Link>
+            {/* <img className="img-thumbnail" src={restaurant.imgUrl} /> */}
             <h1>{restaurant.name}</h1>
             <p>{restaurant.description}</p>
             <p>{restaurant.fullAddress}</p>
@@ -26,6 +34,7 @@ const Restaurant = (props) => {
                     <li key={rating.id}>{rating.comment}</li>
                 ))}
             </ul>
+            <CreateRatingForm />
         </div>
     );
 };
