@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GoogleMap from '../components/GoogleMap';
 import RestaurantsList from '../components/RestaurantsList';
-import Search from '../components/Search';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
+import SearchBar from '../components/Search';
 
 /**
  * COMPONENT
@@ -25,8 +25,8 @@ export const Home = () => {
         <div className="Home">
             {/* <h3>Welcome, {auth.username}</h3> */}
             <RestaurantsList />
+            <SearchBar />
             <GoogleMap />
-            <Search />
         </div>
     );
 };

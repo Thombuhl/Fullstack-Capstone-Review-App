@@ -7,6 +7,8 @@ import {
     ResturantFilter,
     Select,
     Option,
+    UIContainer,
+    Text,
 } from '../styledComponents/RestaurantList';
 
 import '../styles/RestaurantsList.css';
@@ -23,15 +25,16 @@ const RestaurantsList = () => {
     //On component render, check and see if filter exists, then set the filteredRestaurants state with all matching restaurants.
 
     console.log('filter', filterBox);
-    ß;
+
     useEffect(() => {
         if (filterBox) {
             setFilteredRestaurants(
                 restaurants.filter((restaurant) => {
+                    //storing filter selection in variable that can be reused throughout restaurant filter.
                     //Turn state "filter" obj to array.
                     const objEntry = Object.entries(filterBox);
-                    console.log('Object entries', objEntry);
 
+                    //create array of bools for filtering
                     const attributes = objEntry.map(([key, value]) => {
                         if (restaurant[key] === undefined) {
                             throw new Error('check key name');
@@ -39,15 +42,13 @@ const RestaurantsList = () => {
                             return restaurant[key] === value;
                         }
                     });
-
-                    // console.log('attributes', attributes);
                     return (
+                        //check for truthy bools in attribute array and compare to object entires.
                         attributes.filter((attribute) => attribute).length ===
                         objEntry.length
                     );
                 })
             );
-            // console.log(filteredRestaurants);
         } else if (filterBox === 'Categories')
             restaurants.map((restaurant) => {
                 return (
@@ -243,7 +244,7 @@ const RestaurantsList = () => {
                 </Select>
             </ResturantFilter>
 
-            <div>
+            <UIContainer>
                 {filteredRestaurants.map((restaurant) => {
                     return (
                         <RestaurantItem
@@ -252,13 +253,7 @@ const RestaurantsList = () => {
                         />
                     );
                 })}
-            </div>
-
-            {/* <div className="RestaurantsList">
-                {restaurants.map((res) => (
-                    <RestaurantItem restaurant={res} />
-                ))}
-            </div> */}
+            </UIContainer>
         </ResturantsContainer>
     );
 };

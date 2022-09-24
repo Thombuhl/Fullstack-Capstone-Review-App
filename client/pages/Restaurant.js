@@ -1,6 +1,5 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import RestaurantsList from '../components/RestaurantsList';
 import '../styles/OneRestaurant.css';
 import { Link } from 'react-router-dom';
 
