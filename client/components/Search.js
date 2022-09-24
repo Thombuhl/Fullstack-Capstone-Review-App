@@ -6,7 +6,6 @@ import {
     SearchInputContainer,
     ResturantFilter,
 } from '../styledComponents/SearchBoxStyle';
-import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
     //Hook to grab resturant state from redux store and use for filtering
