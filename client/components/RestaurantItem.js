@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 const RestaurantsItem = ({ restaurant }) => {
     useEffect(() => {
-        const marker = new google.maps.Marker({
-            position: {
-                lat: restaurant.latitude,
-                lng: restaurant.longitude,
-            },
-            title: restaurant.name,
-            animation: google.maps.Animation.DROP,
-        });
-        marker.setMap(googleMap);
+        // const marker = new google.maps.Marker({
+        //     position: {
+        //         lat: restaurant.latitude,
+        //         lng: restaurant.longitude,
+        //     },
+        //     title: restaurant.name,
+        //     animation: google.maps.Animation.DROP,
+        // });
+        // marker.setMap(googleMap);
     }, []);
     return (
         <div className="RestaurantItem">

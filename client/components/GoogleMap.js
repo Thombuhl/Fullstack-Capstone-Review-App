@@ -1,26 +1,38 @@
-import React, { useEffect } from 'react';
+import React, {
+    useEffect,
+    useRef,
+    useState,
+    isValidElement,
+    cloneElement,
+    Children,
+} from 'react';
 
-const GoogleMap = () => {
+const GoogleMap = ({ children }) => {
+    const ref = useRef();
+    const [map, setMap] = useState();
+
     useEffect(() => {
-        var script = document.createElement('script');
-        script.src =
-            'https://maps.googleapis.com/maps/api/js?key=AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM&callback=initMap';
-        script.async = true;
-
-        window.initMap = function () {
-            var googleMap = new google.maps.Map(
-                document.getElementById('map'),
-                {
+        if (ref.current && !map) {
+            setMap(
+                new window.google.maps.Map(ref.current, {
                     center: { lat: 40.75323476064019, lng: -73.98270684615821 },
                     zoom: 14,
                     mapId: 'bb7aca8ebbd95d8e',
-                }
+                })
             );
-        };
+        }
+    }, [ref, map]);
 
-        document.head.appendChild(script);
-    }, []);
-    return <div id="map"></div>;
+    return (
+        <div ref={ref} id="map">
+            {' '}
+            {Children.map(children, (child) => {
+                if (isValidElement(child)) {
+                    return cloneElement(child, { map });
+                }
+            })}
+        </div>
+    );
 };
 
 export default GoogleMap;
