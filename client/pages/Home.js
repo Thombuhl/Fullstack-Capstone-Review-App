@@ -39,16 +39,11 @@ export const Home = () => {
             >
                 <GoogleMap>
                     {restaurants.map((res) => {
-                        console.log(res);
-                        return (
-                            <Marker
-                                position={{
-                                    lat: res.latitude,
-                                    lng: res.longitude,
-                                }}
-                                key={res.id}
-                            />
-                        );
+                        const position = {
+                            lat: Number.parseFloat(res.latitude),
+                            lng: Number.parseFloat(res.longitude),
+                        };
+                        return <Marker position={position} key={res.id} />;
                     })}
                 </GoogleMap>
             </Wrapper>
