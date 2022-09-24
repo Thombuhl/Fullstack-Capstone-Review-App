@@ -15,8 +15,8 @@ import CreateRatingForm from '../components/CreateRatingForm';
  * COMPONENT
  */
 const Restaurant = (props) => {
-    const { restaurants, ratings } = useSelector((state) => state);
-    const restaurantId = props.match.params.id;
+    const { restaurants } = useSelector((state) => state);
+    const restaurantId = props.match.params.id || {};
 
     console.log(restaurants);
     const restaurant =
@@ -31,10 +31,14 @@ const Restaurant = (props) => {
             <p>{restaurant.fullAddress}</p>
             <ul>
                 {restaurant.ratings?.map((rating) => (
-                    <li key={rating.id}>{rating.comment}</li>
+                    <li key={rating.id}>
+                        {rating.user?.username || 'Unknown'}
+                        {rating.score}
+                        {rating.comment}
+                    </li>
                 ))}
             </ul>
-            <CreateRatingForm />
+            <CreateRatingForm restaurantId={restaurantId} />
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { createRating } from '../store';
+import { createRating } from '../store';
 
 class CreateRatingForm extends Component {
     constructor() {
@@ -21,8 +21,13 @@ class CreateRatingForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const { createRating, auth, restaurantId, ratings } = this.props;
         console.log(this.state);
-
+        this.props.createRating({
+            ...this.state,
+            userId: auth.id,
+            restaurantId: restaurantId,
+        });
         this.setState({
             score: '',
             comment: '',
@@ -32,8 +37,6 @@ class CreateRatingForm extends Component {
     render() {
         const { score, comment } = this.state;
         const { handleSubmit, onChange } = this;
-        //  const { } =
-        //       this.props;
 
         return (
             <form onSubmit={handleSubmit} className="text-center">
@@ -65,7 +68,9 @@ class CreateRatingForm extends Component {
 }
 const mapState = (state) => {
     console.log(state);
-    return {};
+    return {
+        auth: state.auth.auth || {},
+    };
 };
 const mapDispatch = (dispatch) => {
     return {
@@ -74,4 +79,4 @@ const mapDispatch = (dispatch) => {
         },
     };
 };
-export default connect(mapState, null)(CreateRatingForm);
+export default connect(mapState, mapDispatch)(CreateRatingForm);
