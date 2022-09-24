@@ -14,15 +14,15 @@ class CreateRatingForm extends Component {
     }
 
     onChange(e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const { createRating, auth, restaurantId, ratings } = this.props;
-        console.log(this.state);
+        // console.log(this.state);
         this.props.createRating({
             ...this.state,
             userId: auth.id,
@@ -61,13 +61,13 @@ class CreateRatingForm extends Component {
                     />
                 </div>
                 <br />
-                <button>Create</button>
+                <button disabled={!score || !comment}>Create</button>
             </form>
         );
     }
 }
 const mapState = (state) => {
-    console.log(state);
+    // console.log(state);
     return {
         auth: state.auth.auth || {},
     };

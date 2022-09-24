@@ -20,7 +20,6 @@ const createRating = createAsyncThunk(
                 },
             })
         ).data;
-        //   dispatch({ type: "CREATE_TASK", task });
         return response;
     }
 );
