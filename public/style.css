@@ -53,13 +53,20 @@ form div {
 }
 
 .carousel-item.active {
+
     background-image: url('homebg.gif');
     background-position: top center;
     background-repeat: no-repeat;
     height: 100vh;
 }
 
+
 #map {
-    height: 50vh;
-    width: 50vh;
+    height: 78vh;
+    width: 55vh;
+    position: absolute;
+    right: 50px;
+    top: 160px;
+
 }
+

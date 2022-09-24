@@ -1,6 +1,8 @@
+
 import React, { useReducer, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RestaurantsList from '../components/RestaurantsList';
+
 import '../styles/OneRestaurant.css';
 import { Link } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
