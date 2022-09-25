@@ -37,7 +37,7 @@ const ratingsSlice = createSlice({
             state.push(...action.payload);
         });
         builder.addCase(createRating.fulfilled, (state, action) => {
-            return [...state, action.payload];
+            state.push(action.payload);
         });
     },
 });
