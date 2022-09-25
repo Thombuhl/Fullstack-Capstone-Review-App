@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Wrapper } from '@googlemaps/react-wrapper';
 import GoogleMap from '../components/GoogleMap';
 import Marker from '../components/Marker';
+import Pagination from '../components/Pagination';
 import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
@@ -31,8 +32,8 @@ export const Home = () => {
     return (
         <div className="Home">
             {/* <h3>Welcome, {auth.username}</h3> */}
-            <RestaurantsList />
             <SearchBar />
+            <RestaurantsList itemPerPage={10} />
             <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}
@@ -47,6 +48,7 @@ export const Home = () => {
                     })}
                 </GoogleMap>
             </Wrapper>
+            <Pagination itemPerPage={10} />
         </div>
     );
 };
