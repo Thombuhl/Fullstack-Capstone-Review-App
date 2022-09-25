@@ -32,8 +32,8 @@ export const Home = () => {
     return (
         <div className="Home">
             {/* <h3>Welcome, {auth.username}</h3> */}
-            <RestaurantsList />
             <SearchBar />
+            <RestaurantsList itemPerPage={10} />
             <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '../styles/Pagination.css';
 
 function Pagination(props) {
@@ -14,16 +14,16 @@ function Pagination(props) {
         let content = [];
         for (let i = 1; i <= totalPage; i++) {
             content.push(
-                <NavLink
-                    onClick={handleClick}
+                <Link
+                    // onClick={handleClick}
                     className={({ isActive }) =>
                         isActive ? 'selected' : undefined
                     }
-                    to={`${location.pathname}${i}`}
+                    to={`/home/${i}`}
                     key={i}
                 >
                     {i}
-                </NavLink>
+                </Link>
             );
         }
         return content;
