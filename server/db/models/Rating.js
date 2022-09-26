@@ -11,6 +11,14 @@ const Rating = db.define('rating', {
     },
 });
 
+Rating.fetchAll = async function () {
+    const ratings = await Rating.findAll({
+        include: [User],
+    });
+
+    return ratings;
+};
+
 Rating.updateRating = async function (ratingUpdate, id) {
     let rating = await this.findByPk(id * 1);
     rating = await rating.update(ratingUpdate);

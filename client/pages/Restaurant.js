@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../styles/OneRestaurant.css';
 import { Link } from 'react-router-dom';
 import CreateRatingForm from '../components/CreateRatingForm';
+import { deleteRating } from '../store';
 
 /**
  * COMPONENT
@@ -11,6 +12,8 @@ import CreateRatingForm from '../components/CreateRatingForm';
 const Restaurant = (props) => {
     const { ratings } = useSelector((state) => state);
     const { restaurants } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
     const restaurantId = props.match.params.id || {};
 
     const restaurant =
@@ -33,6 +36,13 @@ const Restaurant = (props) => {
                         {rating.user?.username || 'Unknown'}
                         {rating.score}
                         {rating.comment}
+                        <button
+                            onClick={() => {
+                                dispatch(deleteRating(rating));
+                            }}
+                        >
+                            x
+                        </button>
                     </li>
                 ))}
             </ul>
