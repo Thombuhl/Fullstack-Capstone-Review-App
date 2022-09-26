@@ -13,12 +13,12 @@ const LandingPage = () => {
     };
     return (
 
-                    <div className="text-end ">
+                    <div className="carousel-item active">
                         <div className="px-4 py-5 my-5 text-center ">
                             <img
-                                className="d-block mx-auto mb-4"
+                            
                                 src="logoCha.png"
-                                alt=""
+                                alt="Logo"
                                 width="auto"
                                 height="70"
                             />
