@@ -6,6 +6,7 @@ export const LinksContainer = styled.div`
     background: #78909c;
     a {
         color: black;
+        text-decoration: none;
     }
 `;
 
