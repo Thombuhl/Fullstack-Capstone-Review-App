@@ -1,41 +1,20 @@
-
 import React, { useReducer, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import RestaurantsList from '../components/RestaurantsList';
 
 import '../styles/OneRestaurant.css';
 import { Link } from 'react-router-dom';
-import Image from 'react-bootstrap/Image';
-import {
-    SingleRestContainer,
-    // SingleRestContainer,
-    // SliderValueText,
-} from '../styledComponents/SingleRestaurant';
 import CreateRatingForm from '../components/CreateRatingForm';
-import { fetchRatings, fetchRestaurants } from '../store';
+import { deleteRating } from '../store';
 
 /**
  * COMPONENT
  */
 const Restaurant = (props) => {
-    // const { restaurants } = useSelector((state) => state);
-    const restaurantId = props.match.params.id || {};
-    console.log(props);
+    const { ratings, restaurants, auth } = useSelector((state) => state);
     const dispatch = useDispatch();
 
-    const [restaurants, setRestaurants] = useState([]);
-    const [ratings, setRatings] = useState([]);
+    const restaurantId = props.match.params.id || {};
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const restaurants = (await dispatch(fetchRestaurants())).payload;
-            setRestaurants(restaurants);
-            const ratings = (await dispatch(fetchRatings())).payload;
-            setRatings(ratings);
-        };
-        fetchData();
-    }, []);
-    console.log(restaurants);
     const restaurant =
         restaurants?.find((restaurant) => restaurantId * 1 === restaurant.id) ||
         {};
@@ -46,7 +25,7 @@ const Restaurant = (props) => {
     return (
         <div className="one-restaurant container">
             <Link to="/home">Go Back</Link>
-            {/* <img className="img-thumbnail" src={restaurant.imgUrl} /> */}
+            <img className="img-thumbnail" src={restaurant.imgUrl} />
             <h1>{restaurant.name}</h1>
             <p>{restaurant.description}</p>
             <p>{restaurant.fullAddress}</p>
@@ -56,6 +35,15 @@ const Restaurant = (props) => {
                         {rating.user?.username || 'Unknown'}
                         {rating.score}
                         {rating.comment}
+                        {auth.auth?.id === rating.userId && (
+                            <button
+                                onClick={() => {
+                                    dispatch(deleteRating(rating));
+                                }}
+                            >
+                                x
+                            </button>
+                        )}
                     </li>
                 ))}
             </ul>

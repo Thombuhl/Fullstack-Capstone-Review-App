@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import RestaurantItem from './RestaurantItem';
 import {
@@ -13,9 +14,18 @@ import {
 
 import '../styles/RestaurantsList.css';
 
-const RestaurantsList = () => {
+const RestaurantsList = (props) => {
+    const { page } = useParams();
+    const { itemPerPage } = props;
+
     //No "ownProps" with useSelector hook. Set filter object using React useState hook.
     const { restaurants } = useSelector((state) => state);
+
+    const currRes = restaurants.slice(
+        (page - 1) * itemPerPage,
+        page * itemPerPage
+    );
+    console.log(currRes);
 
     //Store the user's filter selection.
     const [filterBox, setFilterBox] = useState({});
@@ -29,7 +39,7 @@ const RestaurantsList = () => {
     useEffect(() => {
         if (filterBox) {
             setFilteredRestaurants(
-                restaurants.filter((restaurant) => {
+                currRes.filter((restaurant) => {
                     //storing filter selection in variable that can be reused throughout restaurant filter.
                     //Turn state "filter" obj to array.
                     const objEntry = Object.entries(filterBox);
@@ -50,7 +60,7 @@ const RestaurantsList = () => {
                 })
             );
         } else if (filterBox === 'Categories')
-            restaurants.map((restaurant) => {
+            currRes.map((restaurant) => {
                 return (
                     <RestaurantItem
                         key={restaurant.id}

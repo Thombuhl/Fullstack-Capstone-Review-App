@@ -52,6 +52,7 @@ const setDataforDB = async () => {
             review_count,
             location,
             display_phone,
+            coordinates,
         } = business;
 
         const hasDelivery = transactions.includes('delivery') ? true : false;
@@ -79,6 +80,8 @@ const setDataforDB = async () => {
             state: location.state,
             zipCode: location.zip_code,
             display_phone,
+            latitude: coordinates.latitude,
+            longitude: coordinates.longitude,
         };
     });
     return businessesForDB;
@@ -162,6 +165,8 @@ async function seed() {
                     hasDelivery: restaurant.hasDelivery,
                     hasReservation: restaurant.hasReservation,
                     hasPickup: restaurant.hasPickup,
+                    longitude: restaurant.longitude,
+                    latitude: restaurant.latitude,
                 });
             }
         };

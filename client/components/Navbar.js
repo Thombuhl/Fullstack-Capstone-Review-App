@@ -9,7 +9,6 @@ import LandingPage from './LandingPage';
 const Navbar = () => {
     const dispatch = useDispatch();
     const { auth } = useSelector((state) => state.auth);
-    console.log(auth);
     const isLoggedIn = !!auth.id;
     const handleClick = () => {
         dispatch(logout());
