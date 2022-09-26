@@ -26,7 +26,7 @@ export const Home = () => {
         <div className="Home">
             {/* <h3>Welcome, {auth.username}</h3> */}
             <RestaurantsList />
-            <Route exact component={SearchBar} />
+            <SearchBar />
             <GoogleMap />
         </div>
     );

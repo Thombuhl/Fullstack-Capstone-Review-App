@@ -6,6 +6,7 @@ import {
     SearchInputContainer,
     ResturantFilter,
 } from '../styledComponents/SearchBoxStyle';
+import SearchResult from './SearchResult';
 
 const SearchBar = ({ history }) => {
     //Hook to grab resturant state from redux store and use for filtering
@@ -24,7 +25,6 @@ const SearchBar = ({ history }) => {
                     }
                 />
             </SearchInputContainer>
-            <div>{}</div>
         </>
     );
 };
