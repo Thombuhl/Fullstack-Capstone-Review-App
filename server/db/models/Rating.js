@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const User = require('./User');
 
 const Rating = db.define('rating', {
     score: {
@@ -10,13 +11,20 @@ const Rating = db.define('rating', {
     },
 });
 
-Rating.updateRating = async function (ratingReq, id) {
+Rating.updateRating = async function (ratingUpdate, id) {
     let rating = await this.findByPk(id * 1);
-    rating = await rating.update(ratingReq);
+    rating = await rating.update(ratingUpdate);
+    rating = await this.findByPk(rating.id, {
+        include: [User],
+    });
     return rating;
 };
 Rating.createRating = async function (rating) {
-    return await Rating.create(rating);
+    let createdRating = await Rating.create(rating);
+    createdRating = await this.findByPk(createdRating.id, {
+        include: [User],
+    });
+    return createdRating;
 };
 
 Rating.deleteRating = async function (id) {

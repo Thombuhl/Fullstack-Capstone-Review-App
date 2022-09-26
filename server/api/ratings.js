@@ -17,8 +17,9 @@ router.get('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        let rating = await Rating.updateRating(req.body, req.params.id);
+        const rating = await Rating.updateRating(req.body, req.params.id);
         // rating = await Rating.findByPk(rating.id);
+        console.log(rating);
         res.json(rating);
     } catch (err) {
         next(err);
