@@ -10,8 +10,7 @@ import { deleteRating } from '../store';
  * COMPONENT
  */
 const Restaurant = (props) => {
-    const { ratings } = useSelector((state) => state);
-    const { restaurants } = useSelector((state) => state);
+    const { ratings, restaurants, auth } = useSelector((state) => state);
     const dispatch = useDispatch();
 
     const restaurantId = props.match.params.id || {};
@@ -26,7 +25,7 @@ const Restaurant = (props) => {
     return (
         <div className="one-restaurant container">
             <Link to="/home">Go Back</Link>
-            {/* <img className="img-thumbnail" src={restaurant.imgUrl} /> */}
+            <img className="img-thumbnail" src={restaurant.imgUrl} />
             <h1>{restaurant.name}</h1>
             <p>{restaurant.description}</p>
             <p>{restaurant.fullAddress}</p>
@@ -36,13 +35,15 @@ const Restaurant = (props) => {
                         {rating.user?.username || 'Unknown'}
                         {rating.score}
                         {rating.comment}
-                        <button
-                            onClick={() => {
-                                dispatch(deleteRating(rating));
-                            }}
-                        >
-                            x
-                        </button>
+                        {auth.auth?.id === rating.userId && (
+                            <button
+                                onClick={() => {
+                                    dispatch(deleteRating(rating));
+                                }}
+                            >
+                                x
+                            </button>
+                        )}
                     </li>
                 ))}
             </ul>
