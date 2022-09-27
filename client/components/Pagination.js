@@ -15,10 +15,10 @@ function Pagination(props) {
         for (let i = 1; i <= totalPage; i++) {
             content.push(
                 <Link
-                    // onClick={handleClick}
-                    className={({ isActive }) =>
-                        isActive ? 'selected' : undefined
-                    }
+                    onClick={handleClick}
+                    // className={({ isActive }) =>
+                    //     isActive ? 'selected' : undefined
+                    // }
                     to={`/home/${i}`}
                     key={i}
                 >
