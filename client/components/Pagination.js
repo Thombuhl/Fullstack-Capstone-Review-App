@@ -5,7 +5,7 @@ import '../styles/Pagination.css';
 
 function Pagination(props) {
     const location = useLocation();
-    const { restaurants } = useSelector((state) => state);
+    const { restaurants } = useSelector((state) => state.restaurants);
     const totalPage = Math.ceil(restaurants.length / props.itemPerPage);
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });

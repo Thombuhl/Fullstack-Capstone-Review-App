@@ -10,7 +10,8 @@ import { deleteRating } from '../store';
  * COMPONENT
  */
 const Restaurant = (props) => {
-    const { ratings, restaurants, auth } = useSelector((state) => state);
+    const { ratings, auth } = useSelector((state) => state);
+    const { restaurants } = useSelector((state) => state.restaurants);
     const dispatch = useDispatch();
 
     const restaurantId = props.match.params.id || {};
