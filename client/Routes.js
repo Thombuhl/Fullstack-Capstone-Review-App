@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import Preference from './components/Preference';
 import Restaurant from './pages/Restaurant';
 import { me, fetchRatings, fetchRestaurants } from './store';
-import SearchBar from './components/Search';
 
 /**
  * COMPONENT
@@ -27,6 +26,7 @@ class Routes extends Component {
                         <Route path="/home" component={Home} />
                         <Route path="/restaurants/:id" component={Restaurant} />
                         <Route path="/preference" component={Preference} />
+
                         {/* <Redirect to="/home" /> */}
                     </Switch>
                 ) : (

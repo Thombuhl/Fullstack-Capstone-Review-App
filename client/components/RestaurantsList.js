@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import SearchBar from './Search';
 
 import RestaurantItem from './RestaurantItem';
 import {
@@ -9,7 +10,6 @@ import {
     Select,
     Option,
     UIContainer,
-    Text,
 } from '../styledComponents/RestaurantList';
 
 import '../styles/RestaurantsList.css';
@@ -25,7 +25,6 @@ const RestaurantsList = (props) => {
         (page - 1) * itemPerPage,
         page * itemPerPage
     );
-    console.log(currRes);
 
     //Store the user's filter selection.
     const [filterBox, setFilterBox] = useState({});
@@ -33,8 +32,6 @@ const RestaurantsList = (props) => {
     //Display the restaurants that have properties matching the filter.
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     //On component render, check and see if filter exists, then set the filteredRestaurants state with all matching restaurants.
-
-    console.log('filter', filterBox);
 
     useEffect(() => {
         if (filterBox) {
@@ -194,6 +191,7 @@ const RestaurantsList = (props) => {
     return (
         <ResturantsContainer>
             <ResturantFilter>
+                <SearchBar />
                 <Select name="category" onChange={stashFilteredAttributes}>
                     <Option>Categories</Option>
                     {categoryNames.map((category) => {

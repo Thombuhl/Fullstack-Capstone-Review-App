@@ -1,18 +1,38 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import {
     SearchInput,
     SearchInputContainer,
-    ResturantFilter,
 } from '../styledComponents/SearchBoxStyle';
-import SearchResult from './SearchResult';
+import RestaurantsItem from './RestaurantItem';
 
-const SearchBar = ({ history }) => {
-    //Hook to grab resturant state from redux store and use for filtering
-    const { restaurants } = useSelector((state) => state);
+const SearchBar = () => {
+    //State for fetched Restaurants to be used in filter.
+    const [restaurants, setRestaurants] = useState([]);
 
-    //Hook to store users's search to be comppared to resturant state.
+    //Fetch Restaurants from API
+    async function fetchRestaurants() {
+        try {
+            const response = await axios.get(
+                'http://localhost:8080/api/restaurants',
+                {
+                    headers: {
+                        authorization: window.localStorage.getItem('token'),
+                    },
+                }
+            );
+            setRestaurants(response.data);
+        } catch (er) {
+            console.log(er);
+        }
+    }
+    //Set Component State on render.
+    useEffect(() => {
+        fetchRestaurants();
+    });
+
+    //Hook to store users's search to be comppared to fetched restaurants.
     const [searchBox, setSearchBox] = useState('');
 
     return (
@@ -20,11 +40,29 @@ const SearchBar = ({ history }) => {
             <SearchInputContainer>
                 <SearchInput
                     placeholder="Search"
-                    onChange={(event) =>
-                        history.push(`/search/${event.target.value}`)
-                    }
+                    onChange={(event) => setSearchBox(event.target.value)}
                 />
             </SearchInputContainer>
+            {searchBox.length !== 0 && (
+                <div>
+                    {restaurants
+                        .filter(
+                            (restaurant) =>
+                                restaurant.name.includes(searchBox) ||
+                                restaurant.alias.includes(searchBox) ||
+                                restaurant.address.includes(searchBox) ||
+                                restaurant.category.includes(searchBox)
+                        )
+                        .map((restaurant) => {
+                            return (
+                                <RestaurantsItem
+                                    key={restaurant.id}
+                                    restaurant={restaurant}
+                                />
+                            );
+                        })}
+                </div>
+            )}
         </>
     );
 };
