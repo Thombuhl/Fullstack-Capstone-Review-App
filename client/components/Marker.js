@@ -18,6 +18,9 @@ const Marker = (options) => {
     useEffect(() => {
         if (marker) {
             marker.setOptions(options);
+            marker.addListener('click', () => {
+                options.func();
+            });
         }
     }, [marker, options]);
     return null;

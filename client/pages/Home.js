@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Wrapper } from '@googlemaps/react-wrapper';
 import GoogleMap from '../components/GoogleMap';
 import Marker from '../components/Marker';
@@ -14,7 +15,8 @@ import SearchBar from '../components/Search';
  */
 export const Home = () => {
     const { auth } = useSelector((state) => state.auth);
-    const { restaurants } = useSelector((state) => state);
+    const history = useHistory();
+    const { restaurants } = useSelector((state) => state.restaurants);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -44,7 +46,16 @@ export const Home = () => {
                             lat: Number.parseFloat(res.latitude),
                             lng: Number.parseFloat(res.longitude),
                         };
-                        return <Marker position={position} key={res.id} />;
+                        return (
+                            <Marker
+                                position={position}
+                                key={res.id}
+                                animation={2}
+                                func={() =>
+                                    history.push(`/restaurants/${res.id}`)
+                                }
+                            />
+                        );
                     })}
                 </GoogleMap>
             </Wrapper>
