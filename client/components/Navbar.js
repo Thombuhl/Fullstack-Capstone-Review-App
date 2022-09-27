@@ -18,7 +18,7 @@ const Navbar = () => {
             <NavContainer>
                 {isLoggedIn ? (
                     <LinksContainer>
-                        <Link to="/home">Home</Link>
+                        <Link to="/home/1">Home</Link>
                         <Link to="/preference">Preference</Link>
                         <Link to="/" onClick={handleClick}>
                             Logout
