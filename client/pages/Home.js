@@ -8,7 +8,6 @@ import Pagination from '../components/Pagination';
 import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
-import SearchBar from '../components/Search';
 
 /**
  * COMPONENT
@@ -34,7 +33,6 @@ export const Home = () => {
     return (
         <div className="Home">
             {/* <h3>Welcome, {auth.username}</h3> */}
-            <SearchBar />
             <RestaurantsList itemPerPage={10} />
             <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
