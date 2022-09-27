@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import SearchBar from './Search';
 
 import RestaurantItem from './RestaurantItem';
 import {
@@ -9,7 +10,6 @@ import {
     Select,
     Option,
     UIContainer,
-    Text,
 } from '../styledComponents/RestaurantList';
 
 import '../styles/RestaurantsList.css';
@@ -191,6 +191,7 @@ const RestaurantsList = (props) => {
     return (
         <ResturantsContainer>
             <ResturantFilter>
+                <SearchBar />
                 <Select name="category" onChange={stashFilteredAttributes}>
                     <Option>Categories</Option>
                     {categoryNames.map((category) => {
