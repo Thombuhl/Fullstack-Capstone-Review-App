@@ -26,7 +26,11 @@ const Restaurant = (props) => {
     return (
         <div className="one-restaurant container">
             <Link to="/home">Go Back</Link>
-            <img className="img-thumbnail" src={restaurant.imgUrl} />
+            <img
+                style={{ height: '100px', width: '100px' }}
+                className="img-thumbnail"
+                src={restaurant.imgUrl}
+            />
             <h1>{restaurant.name}</h1>
             <p>{restaurant.description}</p>
             <p>{restaurant.fullAddress}</p>

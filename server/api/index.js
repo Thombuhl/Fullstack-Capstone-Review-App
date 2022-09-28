@@ -5,6 +5,7 @@ router.use('/users', require('./users'));
 router.use('/restaurants', require('./restaurants'));
 router.use('/ratings', require('./ratings'));
 router.use('/preferences', require('./preferences'));
+router.use('/userpreferences', require('./userpreferences'));
 router.use('/yelp', require('./yelp'));
 
 router.use((req, res, next) => {
