@@ -38,8 +38,8 @@ router.get('/preferences', isLoggedIn, async (req, res, next) => {
                 score: pref.score,
             });
         });
-
-        res.send(returnPayload);
+        res.send(userPreferences);
+        // res.send(returnPayload);
     } catch (err) {
         next(err);
     }

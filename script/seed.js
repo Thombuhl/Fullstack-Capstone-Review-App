@@ -142,37 +142,42 @@ async function seed() {
     ]);
 
     //Seed Resturants from Yelp
-    let count = 0;
-    while (count < 5) {
-        const seedRestaurantData = async () => {
-            const restaurants = await setDataforDB();
+    let restaurants = await setDataforDB();
+    restaurants = await Promise.all(
+        restaurants.map((restaurant) => Restaurant.create(restaurant))
+    );
+    // let count = 0;
+    // while (count < 5) {
+    //     const seedRestaurantData = async () => {
+    //         const restaurants = await setDataforDB();
+    //         console.log(restaurants.length);
 
-            for (const restaurant of restaurants) {
-                await Restaurant.create({
-                    name: restaurant.name,
-                    alias: restaurant.alias,
-                    imgUrl: restaurant.imgUrl,
-                    category: restaurant.category,
-                    categoryAlias: restaurant.categoryAlias,
-                    price: restaurant.price,
-                    rating: restaurant.rating,
-                    review_count: restaurant.review_count,
-                    address: restaurant.address,
-                    city: restaurant.city,
-                    state: restaurant.state,
-                    zipCode: restaurant.zipCode,
-                    display_phone: restaurant.display_phone,
-                    hasDelivery: restaurant.hasDelivery,
-                    hasReservation: restaurant.hasReservation,
-                    hasPickup: restaurant.hasPickup,
-                    longitude: restaurant.longitude,
-                    latitude: restaurant.latitude,
-                });
-            }
-        };
-        seedRestaurantData();
-        count++;
-    }
+    //         for (const restaurant of restaurants) {
+    //             await Restaurant.create({
+    //                 name: restaurant.name,
+    //                 alias: restaurant.alias,
+    //                 imgUrl: restaurant.imgUrl,
+    //                 category: restaurant.category,
+    //                 categoryAlias: restaurant.categoryAlias,
+    //                 price: restaurant.price,
+    //                 rating: restaurant.rating,
+    //                 review_count: restaurant.review_count,
+    //                 address: restaurant.address,
+    //                 city: restaurant.city,
+    //                 state: restaurant.state,
+    //                 zipCode: restaurant.zipCode,
+    //                 display_phone: restaurant.display_phone,
+    //                 hasDelivery: restaurant.hasDelivery,
+    //                 hasReservation: restaurant.hasReservation,
+    //                 hasPickup: restaurant.hasPickup,
+    //                 longitude: restaurant.longitude,
+    //                 latitude: restaurant.latitude,
+    //             });
+    //         }
+    //     };
+    //     seedRestaurantData();
+    //     count++;
+    // }
 
     // Creating 5 Restaruants
     // const [tupelo, carmine, wanton, grande, porta] = await Promise.all([
@@ -224,6 +229,8 @@ async function seed() {
     // ]);
 
     // Generates Junction "UserPreference" table where there are 10 users each with 5 preferenceIds and preferencelabelIds. Row sum equlas 50
+
+    let allRest;
     users.forEach(async (user) => {
         let i = 0;
         while (i < 5) {
@@ -262,30 +269,31 @@ async function seed() {
         }),
     ]);
 
-    // one.restaurantId = tupelo.id;
-    // one.userId = 1;
-    // one.preferenceId = cleaniness.id;
-    // await one.save();
+    //ratings
+    one.restaurantId = restaurants[0].id;
+    one.userId = 1;
+    one.preferenceId = cleaniness.id;
+    await one.save();
 
-    // two.restaurantId = carmine.id;
-    // two.userId = 2;
-    // two.preferenceId = service.id;
-    // await two.save();
+    two.restaurantId = restaurants[0].id;
+    two.userId = 2;
+    two.preferenceId = service.id;
+    await two.save();
 
-    // three.restaurantId = wanton.id;
-    // three.userId = 3;
-    // three.preferenceId = authenticity.id;
-    // await three.save();
+    three.restaurantId = restaurants[0].id;
+    three.userId = 6;
+    three.preferenceId = authenticity.id;
+    await three.save();
 
-    // four.restaurantId = grande.id;
-    // four.userId = 4;
-    // four.preferenceId = cost.id;
-    // await four.save();
+    four.restaurantId = restaurants[0].id;
+    four.userId = 8;
+    four.preferenceId = cost.id;
+    await four.save();
 
-    // five.restaurantId = porta.id;
-    // five.userId = 5;
-    // five.preferenceId = overall.id;
-    // await five.save();
+    five.restaurantId = restaurants[0].id;
+    five.userId = 5;
+    five.preferenceId = overall.id;
+    await five.save();
 
     // date, quick, hungry, lazy, budget
 

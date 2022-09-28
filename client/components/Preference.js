@@ -25,10 +25,11 @@ const Preference = () => {
     useEffect(() => {
         const fetchData = async () => {
             const prefData = await dispatch(fetchPreferences());
+            console.log(prefData.payload);
             setPreferences(prefData.payload);
 
             const userPrefData = await dispatch(fetchUserPreferences());
-
+            console.log(userPrefData.payload);
             dispatch(addPreference(prefData.payload));
             dispatch(setUserPreference(userPrefData.payload));
         };
