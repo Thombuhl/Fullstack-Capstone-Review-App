@@ -20,8 +20,10 @@ const ShowRatingsForRestaurant = ({ restaurantId }) => {
         ) || [];
 
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Header>Our ratings</Card.Header>
+        <Card style={{ width: '50%' }}>
+            <Card.Header>
+                {ratingsForRestaurant.length || 'No'} Reviews
+            </Card.Header>
             <ListGroup className="list-group-flush">
                 {ratingsForRestaurant?.map((rating) => (
                     <ListGroup.Item key={rating.id}>
@@ -35,7 +37,13 @@ const ShowRatingsForRestaurant = ({ restaurantId }) => {
                                 />
                             )}
                         </Card.Title>
-                        {rating.score}
+                        <Card.Text>Score: {rating.score} out of 5</Card.Text>
+                        {rating.preference && (
+                            <Card.Text>
+                                Standout Feature: {rating.preference?.name}
+                            </Card.Text>
+                        )}
+                        <hr />
                         <Card.Text>{rating.comment}</Card.Text>
                     </ListGroup.Item>
                 ))}

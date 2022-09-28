@@ -52,16 +52,18 @@ const Restaurant = (props) => {
                         <Link to="/home/1">Go Back</Link>
                     </Card.Header>
                     <Card.Title>{restaurant.name}</Card.Title>
-                    <Card.Title>
-                        Standard Score: {parseFloat(restaurantScore).toFixed(2)}{' '}
-                        out of 5
-                    </Card.Title>
+                    {(!isNaN(restaurantScore) || restaurantScore) && (
+                        <Card.Title>
+                            Standard Score:{' '}
+                            {parseFloat(restaurantScore).toFixed(2)} out of 5
+                        </Card.Title>
+                    )}
                     <Card.Text>{restaurant.description}</Card.Text>
                     <Card.Text>{restaurant.fullAddress}</Card.Text>
                 </Card.ImgOverlay>
             </Card>
-            <ShowRatingsForRestaurant restaurantId={restaurantId} />
             <CreateRatingForm restaurantId={restaurantId} />
+            <ShowRatingsForRestaurant restaurantId={restaurantId} />
         </div>
     );
 };
