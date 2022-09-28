@@ -4,6 +4,9 @@ import { createRating } from '../store';
 import { useSelector, useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import InputGroup from 'react-bootstrap/InputGroup';
 import { fetchPreferences } from '../store/preference';
 
 const CreateRatingForm = (props) => {
@@ -56,13 +59,11 @@ const CreateRatingForm = (props) => {
                 onChange={onChange}
             />
             <Form.Group
-                className="mb-3"
-                // controlId="exampleForm.ControlTextarea1"
+            // controlId="exampleForm.ControlTextarea1"
             >
                 <Form.Label>Your Review</Form.Label>
                 <Form.Control
                     as="textarea"
-                    rows={2}
                     value={comment}
                     name="comment"
                     onChange={onChange}
@@ -73,7 +74,7 @@ const CreateRatingForm = (props) => {
                 aria-label="Default select example"
                 onChange={onChange}
             >
-                <option>Open this select menu</option>
+                <option value="">Open this select menu</option>
                 {allPref?.map((preference) => (
                     <option key={preference.id} value={preference.id}>
                         {preference.name}
@@ -81,8 +82,8 @@ const CreateRatingForm = (props) => {
                 ))}
             </Form.Select>
             <Button
-                disabled={!score || !comment}
-                variant="primary"
+                disabled={!score || !comment || !preferenceId}
+                // variant="primary"
                 type="submit"
             >
                 Submit
