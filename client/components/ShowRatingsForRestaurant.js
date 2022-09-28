@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import { useSelector } from 'react-redux';
-import { connect } from 'react-redux';
-import { createRating } from '../store';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteRating } from '../store';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 const ShowRatingsForRestaurant = ({ restaurantId }) => {
     const {
         ratings,
         auth: { auth },
-        restaurants: { restaurants },
     } = useSelector((state) => state);
+
+    const dispatch = useDispatch();
 
     const ratingsForRestaurant =
         ratings?.filter(
@@ -19,24 +20,27 @@ const ShowRatingsForRestaurant = ({ restaurantId }) => {
         ) || [];
 
     return (
-        <ul>
-            {ratingsForRestaurant?.map((rating) => (
-                <li key={rating.id}>
-                    {rating.user?.username || 'Unknown'}
-                    {rating.score}
-                    {rating.comment}
-                    {auth?.id === rating.userId && (
-                        <button
-                            onClick={() => {
-                                dispatch(deleteRating(rating));
-                            }}
-                        >
-                            x
-                        </button>
-                    )}
-                </li>
-            ))}
-        </ul>
+        <Card style={{ width: '18rem' }}>
+            <Card.Header>Our ratings</Card.Header>
+            <ListGroup className="list-group-flush">
+                {ratingsForRestaurant?.map((rating) => (
+                    <ListGroup.Item key={rating.id}>
+                        <Card.Title>
+                            {rating.user?.username || 'Unknown'}
+                            {auth?.id === rating.userId && (
+                                <CloseButton
+                                    onClick={() => {
+                                        dispatch(deleteRating(rating));
+                                    }}
+                                />
+                            )}
+                        </Card.Title>
+                        {rating.score}
+                        <Card.Text>{rating.comment}</Card.Text>
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+        </Card>
     );
 };
 
