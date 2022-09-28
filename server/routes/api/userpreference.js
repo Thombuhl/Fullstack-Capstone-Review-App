@@ -15,3 +15,17 @@ router.get('/userpreference', isLoggedIn, async (req, res, next) => {
         next(err);
     }
 });
+
+router.get('/', async (req, res, next) => {
+    const id = req.user.id;
+    try {
+        const userpreference = await UserPreference.findAll({
+            // where: {
+            //     userId: id,
+            // },
+        });
+        res.send(userpreference);
+    } catch (err) {
+        next(err);
+    }
+});

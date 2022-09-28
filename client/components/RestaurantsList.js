@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
+import SearchBar from './Search';
 
 import RestaurantItem from './RestaurantItem';
 import FacetSearch from './FacetSearch';
@@ -28,6 +29,7 @@ const RestaurantsList = (props) => {
     return (
         <ResturantsContainer>
             <FacetSearch />
+
             <UIContainer>
                 {currRes.map((restaurant) => {
                     return (

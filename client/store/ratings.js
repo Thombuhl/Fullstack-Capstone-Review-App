@@ -13,7 +13,6 @@ const fetchRatings = createAsyncThunk('ratings/fetchRatings', async () => {
 const deleteRating = createAsyncThunk(
     'ratings/deleteRating',
     async (rating) => {
-        console.log('rating', rating);
         const response = await axios.delete(`/api/ratings/${rating.id}`, {
             headers: {
                 authorization: window.localStorage.getItem('token'),
@@ -47,9 +46,7 @@ const ratingsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchRatings.fulfilled, (state, action) => {
-            console.log(state);
             state.push(...action.payload);
-            console.log(state);
         });
         builder.addCase(createRating.fulfilled, (state, action) => {
             state.push(action.payload);
