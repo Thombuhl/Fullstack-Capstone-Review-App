@@ -32,7 +32,7 @@ const Restaurant = (props) => {
     });
 
     const restaurantScore = addRestaurantScore / ratingsForRestaurant.length;
-    console.log(restaurantScore);
+    // console.log(restaurantScore);
 
     return (
         <div className="one-restaurant container">
@@ -52,7 +52,7 @@ const Restaurant = (props) => {
                         <Link to="/home/1">Go Back</Link>
                     </Card.Header>
                     <Card.Title>{restaurant.name}</Card.Title>
-                    {(!isNaN(restaurantScore) || restaurantScore) && (
+                    {!isNaN(restaurantScore) && (
                         <Card.Title>
                             Standard Score:{' '}
                             {parseFloat(restaurantScore).toFixed(2)} out of 5
