@@ -6,22 +6,33 @@ import React, {
     cloneElement,
     Children,
 } from 'react';
+import { useSelector } from 'react-redux';
 
 const GoogleMap = ({ children }) => {
     const ref = useRef();
     const [map, setMap] = useState();
+    const { mapPosition } = useSelector((state) => state.maps);
 
     useEffect(() => {
         if (ref.current && !map) {
             setMap(
                 new window.google.maps.Map(ref.current, {
-                    center: { lat: 40.75323476064019, lng: -73.98270684615821 },
+                    center: mapPosition,
                     zoom: 14,
                     mapId: 'bb7aca8ebbd95d8e',
+                    mapTypeControl: false,
+                    fullScreenControl: false,
+                    streetViewControl: false,
                 })
             );
         }
     }, [ref, map]);
+
+    useEffect(() => {
+        if (map) {
+            map.setCenter({ lat: mapPosition.lat, lng: mapPosition.lng });
+        }
+    }, [mapPosition]);
 
     return (
         <div ref={ref} id="map">
