@@ -16,23 +16,20 @@ const CreateRatingForm = (props) => {
     const [newRating, setNewRating] = useState({
         score: 0,
         comment: '',
-        // preferenceId: '',
+        preferenceId: null,
     });
-    const [allPref, setNewPref] = useState({
-        preferences: [],
-    });
+    const [allPref, setNewPref] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             const prefData = await dispatch(fetchPreferences());
             console.log(prefData.payload);
-            setNewPref({ ...allPref, preferences: prefData.payload });
-            console.log(allPref);
+            setNewPref(prefData.payload);
         };
         fetchData();
     }, []);
 
-    const { score, comment } = newRating;
+    const { score, comment, preferenceId } = newRating;
     const onChange = (e) => {
         console.log(e.target.name, e.target.value);
         setNewRating({ ...newRating, [e.target.name]: e.target.value });
@@ -71,11 +68,17 @@ const CreateRatingForm = (props) => {
                     onChange={onChange}
                 />
             </Form.Group>
-            <Form.Select aria-label="Default select example">
+            <Form.Select
+                name="preferenceId"
+                aria-label="Default select example"
+                onChange={onChange}
+            >
                 <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                {allPref?.map((preference) => (
+                    <option key={preference.id} value={preference.id}>
+                        {preference.name}
+                    </option>
+                ))}
             </Form.Select>
             <Button
                 disabled={!score || !comment}
