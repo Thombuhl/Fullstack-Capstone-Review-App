@@ -6,6 +6,7 @@ import authReducer from './auth';
 import restaurantsReducer from './restaurants';
 import ratingsReducer from './ratings';
 import preferenceReducer from './preference';
+import mapsReducer from './maps';
 
 // const reducer = combineReducers({ auth, restaurants, ratings });
 // const middleware = applyMiddleware(
@@ -19,6 +20,7 @@ const store = configureStore({
         restaurants: restaurantsReducer,
         ratings: ratingsReducer,
         preferences: preferenceReducer,
+        maps: mapsReducer,
     },
 });
 
@@ -27,4 +29,5 @@ export * from './auth';
 export * from './restaurants';
 export * from './ratings';
 export * from './preference';
+export * from './maps';
 // export * from "./preferences";

@@ -9,6 +9,10 @@ import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
 
+import SearchBar from '../components/Search';
+import AddressPicker from '../components/AddressPicker';
+
+
 /**
  * COMPONENT
  */
@@ -33,11 +37,13 @@ export const Home = () => {
     return (
         <div className="Home">
             {/* <h3>Welcome, {auth.username}</h3> */}
-            <RestaurantsList itemPerPage={10} />
             <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}
             >
+                <SearchBar />
+                <AddressPicker />
+                <RestaurantsList itemPerPage={10} />
                 <GoogleMap>
                     {restaurants.map((res) => {
                         const position = {
