@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const {
-    models: { UserPreference, User },
+    models: { UserPreference, User, Preference },
 } = require('../db/');
 
 router.get('/', async (req, res, next) => {
     try {
-        console.log('\n asdfasd \n');
         const userPreferences = await UserPreference.findAll({
-            include: [User],
+            include: [Preference],
         });
         res.json(userPreferences);
     } catch (err) {
