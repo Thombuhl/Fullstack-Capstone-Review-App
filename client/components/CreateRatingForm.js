@@ -31,7 +31,7 @@ const CreateRatingForm = (props) => {
 
     const { score, comment, preferenceId } = newRating;
     const onChange = (e) => {
-        console.log(e.target.name, e.target.value);
+        // console.log(e.target.name, e.target.value);
         setNewRating({ ...newRating, [e.target.name]: e.target.value });
     };
     const handleSubmit = (e) => {

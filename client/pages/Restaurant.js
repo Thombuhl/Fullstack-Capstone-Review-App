@@ -25,38 +25,24 @@ const Restaurant = (props) => {
         ratings?.filter(
             (rating) => rating.restaurantId * 1 === restaurantId * 1
         ) || [];
-    let { cleaniness, cost, service, authenticity, overall } = {};
 
-    cleaniness = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 1
-    );
-    cost = ratingsForRestaurant.filter((rating) => rating.preferenceId === 2);
-    service = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 3
-    );
-    authenticity = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 4
-    );
-    overall = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 5
-    );
-    const ratingByPref = [cleaniness, cost, service, authenticity, overall];
-    const ratingByScore = [
-        cleaniness?.length,
-        cost?.length,
-        service?.length,
-        authenticity?.length,
-        overall?.length,
-    ];
-    console.log(ratingByPref);
+    const ratingByPref = [];
+    for (let i = 0; i < 5; i++) {
+        const filtered = ratingsForRestaurant.filter(
+            (rating) => rating.preferenceId === i + 1
+        );
+        ratingByPref.push(filtered);
+    }
+    // console.log(ratingByPref);
     let favPref = { preference: null, ratings: 0 };
     ratingByPref?.forEach((ratings) => {
         if (ratings.length > favPref.ratings) {
             favPref.ratings = ratings.length;
             favPref.preference = ratings[0].preference.name;
+            favPref.id = ratings[0].preferenceId;
         }
     });
-    console.log(favPref);
+    // console.log(favPref);
 
     let addRestaurantScore = 0;
     ratingsForRestaurant.forEach((rating) => {
