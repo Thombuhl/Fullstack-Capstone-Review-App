@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CreateRatingForm from '../components/CreateRatingForm';
 import ShowRatingsForRestaurant from '../components/ShowRatingsForRestaurant';
+import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
 import Card from 'react-bootstrap/Card';
 
 /**
@@ -12,9 +13,28 @@ import Card from 'react-bootstrap/Card';
  */
 const Restaurant = (props) => {
     const {
+        auth: { auth },
         ratings,
         restaurants: { restaurants },
     } = useSelector((state) => state);
+    const userPreferences = auth?.userpreferences;
+    console.log(auth);
+    const state = useSelector((state) => state);
+    let topPref = userPreferences?.filter(
+        (userPref, i) => userPref.score * 1 === 5
+    );
+    console.log(userPreferences);
+
+    console.log(topPref);
+
+    const arr = [...userPreferences];
+    console.log(arr);
+    const sorted_by_name = arr.sort((a, b) => {
+        console.log(a, b);
+        return a.id - b.id;
+    });
+    console.log(sorted_by_name);
+
     const restaurantId = props.match.params.id || '';
 
     const restaurant =
@@ -44,6 +64,7 @@ const Restaurant = (props) => {
     });
     // console.log(favPref);
 
+    //Restaurant Score
     let addRestaurantScore = 0;
     ratingsForRestaurant.forEach((rating) => {
         addRestaurantScore += rating.score * 1;
