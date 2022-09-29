@@ -217,59 +217,85 @@ const FacetSearch = () => {
     }, {});
     const pickupBool = Object.values(pickups);
 
+    //Jquery to reset facet to default using dom elements
+    $('button').click(function () {
+        $('select').prop('selectedIndex', 0);
+    });
     // Styled components.
     return (
-  <ResturantFilter className="d-flex">
-                <Select className="nav-item form-select" name="category" onChange={stashFilteredAttributes}>
-                    <Option>Categories</Option>
-                    {categoryNames.map((category) => {
-                        return (
-                            <Option key={category.id}>
-                                {category.category}
-                            </Option>
-                        );
-                    })}
-                </Select>
-                <Select  className="nav-item form-select" name="rating" onChange={stashFilteredNumbers}>
-                    <Option>Rating</Option>
-                    {reviews.map((rate) => {
-                        return <Option key={rate.id}>{rate.rating}</Option>;
-                    })}
-                </Select>
-                <Select  className="nav-item form-select" name="price" onChange={stashFilteredAttributes}>
-                    <Option>Price</Option>
-                    {bougie.map((price) => {
-                        if (!price.price) {
-                            return;
-                        } else {
-                            return (
-                                <Option key={price.id}>{price.price}</Option>
-                            );
-                        }
-                    })}
-                </Select>
-                <Select  className="nav-item form-select" name="hasDelivery" onChange={stashFilteredBooleans}>
-                    <Option>Delivery</Option>
-                    {deliveryBool.map((element) => {
-                        return (
-                            <Option key={element.id}>
-                                {String(element.delivery).toUpperCase()}
-                            </Option>
-                        );
-                    })}
-                </Select>
-                <Select  className="nav-item form-select" name="hasPickup" onChange={stashFilteredBooleans}>
-                    <Option>Pickup</Option>
-                    {pickupBool.map((element) => {
-                        return (
-                            <Option key={element.id}>
-                                {String(element.pickup).toUpperCase()}
-                            </Option>
-                        );
-                    })}
-                </Select>
-      
-            </ResturantFilter>
+        <ResturantFilter className="d-flex">
+            <Select
+                className="nav-item form-select"
+                name="category"
+                onChange={stashFilteredAttributes}
+            >
+                <Option>Categories</Option>
+                {categoryNames.map((category) => {
+                    return (
+                        <Option key={category.id}>{category.category}</Option>
+                    );
+                })}
+            </Select>
+            <Select
+                className="nav-item form-select"
+                name="rating"
+                onChange={stashFilteredNumbers}
+            >
+                <Option>Rating</Option>
+                {reviews.map((rate) => {
+                    return <Option key={rate.id}>{rate.rating}</Option>;
+                })}
+            </Select>
+            <Select
+                className="nav-item form-select"
+                name="price"
+                onChange={stashFilteredAttributes}
+            >
+                <Option>Price</Option>
+                {bougie.map((price) => {
+                    if (!price.price) {
+                        return;
+                    } else {
+                        return <Option key={price.id}>{price.price}</Option>;
+                    }
+                })}
+            </Select>
+            <Select
+                className="nav-item form-select"
+                name="hasDelivery"
+                onChange={stashFilteredBooleans}
+            >
+                <Option>Delivery</Option>
+                {deliveryBool.map((element) => {
+                    return (
+                        <Option key={element.id}>
+                            {String(element.delivery).toUpperCase()}
+                        </Option>
+                    );
+                })}
+            </Select>
+            <Select
+                className="nav-item form-select"
+                name="hasPickup"
+                onChange={stashFilteredBooleans}
+            >
+                <Option>Pickup</Option>
+                {pickupBool.map((element) => {
+                    return (
+                        <Option key={element.id}>
+                            {String(element.pickup).toUpperCase()}
+                        </Option>
+                    );
+                })}
+            </Select>
+            <button
+                type="button"
+                class="btn btn-sm btn-outline-light"
+                onClick={() => setFilterBox([])}
+            >
+                Reset
+            </button>
+        </ResturantFilter>
     );
 };
 
