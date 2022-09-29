@@ -40,7 +40,7 @@ export const Home = () => {
             >
                 <div className="row">
                     <div classsName="col-md-8">
-                        <RestaurantsList itemPerPage={10} />
+                        <RestaurantsList itemPerPage={3} />
                     </div>
                     <div classname="col-md-4">
                         <GoogleMap>
@@ -66,7 +66,7 @@ export const Home = () => {
                     </div>
                 </div>
             </Wrapper>
-            <Pagination itemPerPage={10} />
+            <Pagination itemPerPage={3} />
         </div>
     );
 };

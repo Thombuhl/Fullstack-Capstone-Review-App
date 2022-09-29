@@ -7,12 +7,16 @@ import {
     SliderValueText,
 } from '../styledComponents/SliderStyle';
 
-import { setPreferenceValue, updatePreferenceValue } from '../store/preference';
+import {
+    setPreferenceValue,
+    updatePreferenceValue,
+    fetchUserPreferences,
+} from '../store/preference';
 
 const Slider = (props) => {
     const dispatch = useDispatch();
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(props.value);
 
     const handleOnChange = (evt) => {
         evt.preventDefault();
@@ -25,7 +29,7 @@ const Slider = (props) => {
                 prefId: props.pref_id,
             })
         );
-        dispatch(setPreferenceValue({ score: newValue, id: props.pref_id }));
+        dispatch(fetchUserPreferences());
     };
 
     return (
