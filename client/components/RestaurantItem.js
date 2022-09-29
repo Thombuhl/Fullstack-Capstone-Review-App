@@ -15,21 +15,42 @@ const RestaurantsItem = ({ restaurant }) => {
         // marker.setMap(googleMap);
     }, []);
     return (
-        <div className="RestaurantItem">
-            <img src={restaurant.imgUrl} />
-            <div className="RestaurantItem-content">
+        <div className="list-group-item list-group-item-action d-flex gap-3 py-3 my-1 card shadow-sm col-md-6">
+        <div className="row">
+            <div className="thumb-post col-auto">
+            <img src={restaurant.imgUrl}  className="img-thumbnail"/>
+            </div>
+            <div className="RestaurantItem-content card-block col">
                 <p className="RestaurantItem-name">
                     <Link to={`/restaurants/${restaurant.id}`}>
-                        {restaurant.name}
+                       <p className="card-title h5"> {restaurant.name}</p>
                     </Link>
                 </p>
-                <div className="RestaurantItem-rating">10</div>
-                <div className="RestaurantItem-preference"> 96%</div>
+                <div className="RestaurantItem-rating row">
+                 <div className="col-auto">
+                <strong>Rating Scores</strong>
+                </div>
+                <div className="col">
+                10
+                </div>
+                </div>
+                <div className="RestaurantItem-preference row">
+                 <div className="col-auto">
+                <strong className="text-pur">Prefenrence Fits</strong>
+                </div>
+                <div className="col">
+                96%
+                </div>
+                </div>
                 <div className="RestaurantItem-first-comment">
                     {' '}
                     This place rocks
                 </div>
+                <div className="d-flex flex-row-reverse ">
+                  <Link to={`/restaurants/${restaurant.id}`}><button type="button" class="btn btn-sm btn-outline-light">View</button> </Link>
+                </div>
             </div>
+        </div>
         </div>
     );
 };

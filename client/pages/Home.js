@@ -9,9 +9,6 @@ import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
 
-import SearchBar from '../components/Search';
-import AddressPicker from '../components/AddressPicker';
-
 
 /**
  * COMPONENT
@@ -35,17 +32,24 @@ export const Home = () => {
     };
 
     return (
-        <div className="Home">
+        <div className="Home d-flex">
             {/* <h3>Welcome, {auth.username}</h3> */}
-            <Wrapper
+
+        
+                <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}
-            >
-                <SearchBar />
-                <AddressPicker />
-                <RestaurantsList itemPerPage={10} />
-                <GoogleMap>
-                    {restaurants.map((res) => {
+                >
+    
+            <div className="row">
+                    <div classsName="col-md-8">
+                
+                        <RestaurantsList itemPerPage={3} />
+                     </div>
+                <div classname="col-md-4">
+               
+                    <GoogleMap>
+                        {restaurants.map((res) => {
                         const position = {
                             lat: Number.parseFloat(res.latitude),
                             lng: Number.parseFloat(res.longitude),
@@ -61,9 +65,16 @@ export const Home = () => {
                             />
                         );
                     })}
-                </GoogleMap>
+                    </GoogleMap>
+                 </div>
+            </div>
             </Wrapper>
-            <Pagination itemPerPage={10} />
+                <Pagination itemPerPage={10} />
+      
+ 
+
+
+            
         </div>
     );
 };

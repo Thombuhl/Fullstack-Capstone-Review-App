@@ -6,6 +6,7 @@ import SearchBar from './Search';
 
 import RestaurantItem from './RestaurantItem';
 import FacetSearch from './FacetSearch';
+import AddressPicker from './AddressPicker';
 import {
     ResturantsContainer,
     UIContainer,
@@ -27,11 +28,24 @@ const RestaurantsList = (props) => {
 
     // Styled components.
     return (
-        <ResturantsContainer>
-            <FacetSearch />
 
-            <UIContainer>
+
+    <ResturantsContainer className="mx-5 my-5">
+         <div className="row">
+          <div className="col-auto d-flex flex-row">
+           <SearchBar />
+                <FacetSearch />
+        </div>
+            <div className="col d-flex flex-row-reverse">
+           
+            <AddressPicker />
+            </div>
+        
+      
+            <div className="row py-3">
+            <UIContainer className="list-group h-auto col-md-7 ">
                 {currRes.map((restaurant) => {
+
                     return (
                         <RestaurantItem
                             key={restaurant.id}
@@ -40,7 +54,10 @@ const RestaurantsList = (props) => {
                     );
                 })}
             </UIContainer>
+            </div>
+         </div>
         </ResturantsContainer>
+
     );
 };
 

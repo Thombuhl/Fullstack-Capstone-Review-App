@@ -8,6 +8,7 @@ import {
     ResturantFilter,
     Select,
     Option,
+    Button,
 } from '../styledComponents/RestaurantList';
 
 import '../styles/RestaurantsList.css';
@@ -38,6 +39,7 @@ const FacetSearch = () => {
 
                             //create array of bools for filtering
                             const attributes = objEntry.map(([key, value]) => {
+                                console.log('key', key, 'value', value);
                                 if (restaurant[key] === undefined) {
                                     throw new Error('check key name');
                                 } else {
@@ -69,31 +71,76 @@ const FacetSearch = () => {
 
     //Handle String Events
     const stashFilteredAttributes = (evt) => {
-        console.log('triggered');
+        const prunedFilterBox = {};
+        // user selected value.
         const value = evt.target.value;
-        setFilterBox({
-            ...filterBox,
-            [evt.target.name]: value,
-        });
+        //keys from exisiting filterbox
+        const keys = Object.keys(filterBox);
+        if (value === 'Price') {
+            keys.forEach((key) => {
+                if (key !== 'price') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else if (value === 'Categories') {
+            keys.forEach((key) => {
+                if (key !== 'category') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else {
+            setFilterBox({
+                ...filterBox,
+                [evt.target.name]: value,
+            });
+        }
     };
 
     //Handle Numbered Events
     const stashFilteredNumbers = (evt) => {
+        const prunedFilterBox = {};
         let value = evt.target.value;
-        setFilterBox({
-            ...filterBox,
-            [evt.target.name]: (value = Number(value)),
-        });
+        const keys = Object.keys(filterBox);
+        if (value === 'Rating') {
+            keys.forEach((key) => {
+                if (key !== 'rating') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else {
+            setFilterBox({
+                ...filterBox,
+                [evt.target.name]: (value = Number(value)),
+            });
+        }
     };
-
     //Handle Boolean Events
     const stashFilteredBooleans = (evt) => {
+        const prunedFilterBox = {};
+        const keys = Object.keys(filterBox);
         let value = evt.target.value;
         if (value === 'FALSE') {
             setFilterBox({
                 ...filterBox,
                 [evt.target.name]: (value = false),
             });
+        } else if (value === 'Pickup') {
+            keys.forEach((key) => {
+                if (key !== 'hasPickup') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else if (value === 'Delivery') {
+            keys.forEach((key) => {
+                if (key !== 'hasDelivery') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
         } else {
             setFilterBox({
                 ...filterBox,
@@ -170,77 +217,59 @@ const FacetSearch = () => {
     }, {});
     const pickupBool = Object.values(pickups);
 
-    //Reservation Options
-    const reservations = restaurantsArr.reduce((acc, restaurant) => {
-        const reservation = restaurant.hasReservation;
-        acc[reservation] = acc[reservation] || {
-            id: restaurant.id,
-            reservation,
-            count: 0,
-        };
-        acc[reservation].count++;
-        return acc;
-    }, {});
-    const reservationBool = Object.values(reservations);
-
     // Styled components.
     return (
-        <ResturantFilter>
-            <Select name="category" onChange={stashFilteredAttributes}>
-                <Option>Categories</Option>
-                {categoryNames.map((category) => {
-                    return (
-                        <Option key={category.id}>{category.category}</Option>
-                    );
-                })}
-            </Select>
-            <Select name="rating" onChange={stashFilteredNumbers}>
-                <Option>Rating</Option>
-                {reviews.map((rate) => {
-                    return <Option key={rate.id}>{rate.rating}</Option>;
-                })}
-            </Select>
-            <Select name="price" onChange={stashFilteredAttributes}>
-                <Option>Price</Option>
-                {bougie.map((price) => {
-                    if (!price.price) {
-                        return;
-                    } else {
-                        return <Option key={price.id}>{price.price}</Option>;
-                    }
-                })}
-            </Select>
-            <Select name="hasDelivery" onChange={stashFilteredBooleans}>
-                <Option>Delivery</Option>
-                {deliveryBool.map((element) => {
-                    return (
-                        <Option key={element.id}>
-                            {String(element.delivery).toUpperCase()}
-                        </Option>
-                    );
-                })}
-            </Select>
-            <Select name="hasPickup" onChange={stashFilteredBooleans}>
-                <Option>Pickup</Option>
-                {pickupBool.map((element) => {
-                    return (
-                        <Option key={element.id}>
-                            {String(element.pickup).toUpperCase()}
-                        </Option>
-                    );
-                })}
-            </Select>
-            <Select name="hasReservation" onChange={stashFilteredBooleans}>
-                <Option>Reservations</Option>
-                {reservationBool.map((element) => {
-                    return (
-                        <Option key={element.id}>
-                            {String(element.reservation).toUpperCase()}
-                        </Option>
-                    );
-                })}
-            </Select>
-        </ResturantFilter>
+  <ResturantFilter className="d-flex">
+                <Select className="nav-item form-select" name="category" onChange={stashFilteredAttributes}>
+                    <Option>Categories</Option>
+                    {categoryNames.map((category) => {
+                        return (
+                            <Option key={category.id}>
+                                {category.category}
+                            </Option>
+                        );
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="rating" onChange={stashFilteredNumbers}>
+                    <Option>Rating</Option>
+                    {reviews.map((rate) => {
+                        return <Option key={rate.id}>{rate.rating}</Option>;
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="price" onChange={stashFilteredAttributes}>
+                    <Option>Price</Option>
+                    {bougie.map((price) => {
+                        if (!price.price) {
+                            return;
+                        } else {
+                            return (
+                                <Option key={price.id}>{price.price}</Option>
+                            );
+                        }
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="hasDelivery" onChange={stashFilteredBooleans}>
+                    <Option>Delivery</Option>
+                    {deliveryBool.map((element) => {
+                        return (
+                            <Option key={element.id}>
+                                {String(element.delivery).toUpperCase()}
+                            </Option>
+                        );
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="hasPickup" onChange={stashFilteredBooleans}>
+                    <Option>Pickup</Option>
+                    {pickupBool.map((element) => {
+                        return (
+                            <Option key={element.id}>
+                                {String(element.pickup).toUpperCase()}
+                            </Option>
+                        );
+                    })}
+                </Select>
+      
+            </ResturantFilter>
     );
 };
 
