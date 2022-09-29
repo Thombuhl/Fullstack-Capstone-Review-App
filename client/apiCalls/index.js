@@ -10,4 +10,14 @@ const fetchAllRes = async () => {
     ).data;
 };
 
-export { fetchAllRes };
+const fetchResReviews = async (id) => {
+    return (
+        await axios.get(`/api/restaurants/${id}/ratings`, {
+            headers: {
+                authorization: window.localStorage.getItem('token'),
+            },
+        })
+    ).data;
+};
+
+export { fetchAllRes, fetchResReviews };
