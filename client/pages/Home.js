@@ -9,12 +9,6 @@ import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
 
-<<<<<<< HEAD
-=======
-import SearchBar from '../components/Search';
-import AddressPicker from '../components/AddressPicker';
-
->>>>>>> 1182a97d0762f115ac2894a979eb1cb3d39774b9
 
 /**
  * COMPONENT
@@ -41,19 +35,21 @@ export const Home = () => {
         <div className="Home d-flex">
             {/* <h3>Welcome, {auth.username}</h3> */}
 
-            <Wrapper
+        
+                <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}
-            >
-        <div className="card">
-        <div className="row">
-        <div classsName="col-md-8">
-                <AddressPicker />
-                <RestaurantsList itemPerPage={10} />
-        <div classname="col-md-4">
-        <div classname="card-block px-2">
-                <GoogleMap>
-                    {restaurants.map((res) => {
+                >
+    
+            <div className="row">
+                    <div classsName="col-md-8">
+                
+                        <RestaurantsList itemPerPage={3} />
+                     </div>
+                <div classname="col-md-4">
+               
+                    <GoogleMap>
+                        {restaurants.map((res) => {
                         const position = {
                             lat: Number.parseFloat(res.latitude),
                             lng: Number.parseFloat(res.longitude),
@@ -69,13 +65,15 @@ export const Home = () => {
                             />
                         );
                     })}
-                </GoogleMap>
-            </Wrapper>
+                    </GoogleMap>
+                 </div>
             </div>
-        </div>
-        </div>
-            <Pagination itemPerPage={10} />
-        </div>
+            </Wrapper>
+                <Pagination itemPerPage={10} />
+      
+ 
+
+
             
         </div>
     );

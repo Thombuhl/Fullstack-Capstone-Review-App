@@ -219,53 +219,57 @@ const FacetSearch = () => {
 
     // Styled components.
     return (
-        <ResturantFilter>
-            <Select name="category" onChange={stashFilteredAttributes}>
-                <Option>Categories</Option>
-                {categoryNames.map((category) => {
-                    return (
-                        <Option key={category.id}>{category.category}</Option>
-                    );
-                })}
-            </Select>
-            <Select name="rating" onChange={stashFilteredNumbers}>
-                <Option>Rating</Option>
-                {reviews.map((rate) => {
-                    return <Option key={rate.id}>{rate.rating}</Option>;
-                })}
-            </Select>
-            <Select name="price" onChange={stashFilteredAttributes}>
-                <Option>Price</Option>
-                {bougie.map((price) => {
-                    if (!price.price) {
-                        return;
-                    } else {
-                        return <Option key={price.id}>{price.price}</Option>;
-                    }
-                })}
-            </Select>
-            <Select name="hasDelivery" onChange={stashFilteredBooleans}>
-                <Option>Delivery</Option>
-                {deliveryBool.map((element) => {
-                    return (
-                        <Option key={element.id}>
-                            {String(element.delivery).toUpperCase()}
-                        </Option>
-                    );
-                })}
-            </Select>
-            <Select name="hasPickup" onChange={stashFilteredBooleans}>
-                <Option>Pickup</Option>
-                {pickupBool.map((element) => {
-                    return (
-                        <Option key={element.id}>
-                            {String(element.pickup).toUpperCase()}
-                        </Option>
-                    );
-                })}
-            </Select>
-            <Button onClick={() => setFilterBox([])}>Reset</Button>
-        </ResturantFilter>
+  <ResturantFilter className="d-flex">
+                <Select className="nav-item form-select" name="category" onChange={stashFilteredAttributes}>
+                    <Option>Categories</Option>
+                    {categoryNames.map((category) => {
+                        return (
+                            <Option key={category.id}>
+                                {category.category}
+                            </Option>
+                        );
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="rating" onChange={stashFilteredNumbers}>
+                    <Option>Rating</Option>
+                    {reviews.map((rate) => {
+                        return <Option key={rate.id}>{rate.rating}</Option>;
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="price" onChange={stashFilteredAttributes}>
+                    <Option>Price</Option>
+                    {bougie.map((price) => {
+                        if (!price.price) {
+                            return;
+                        } else {
+                            return (
+                                <Option key={price.id}>{price.price}</Option>
+                            );
+                        }
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="hasDelivery" onChange={stashFilteredBooleans}>
+                    <Option>Delivery</Option>
+                    {deliveryBool.map((element) => {
+                        return (
+                            <Option key={element.id}>
+                                {String(element.delivery).toUpperCase()}
+                            </Option>
+                        );
+                    })}
+                </Select>
+                <Select  className="nav-item form-select" name="hasPickup" onChange={stashFilteredBooleans}>
+                    <Option>Pickup</Option>
+                    {pickupBool.map((element) => {
+                        return (
+                            <Option key={element.id}>
+                                {String(element.pickup).toUpperCase()}
+                            </Option>
+                        );
+                    })}
+                </Select>
+      
+            </ResturantFilter>
     );
 };
 

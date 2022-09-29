@@ -6,6 +6,7 @@ import SearchBar from './Search';
 
 import RestaurantItem from './RestaurantItem';
 import FacetSearch from './FacetSearch';
+import AddressPicker from './AddressPicker';
 import {
     ResturantsContainer,
     UIContainer,
@@ -32,10 +33,12 @@ const RestaurantsList = (props) => {
     <ResturantsContainer className="mx-5 my-5">
          <div className="row">
           <div className="col-auto d-flex flex-row">
+           <SearchBar />
                 <FacetSearch />
         </div>
             <div className="col d-flex flex-row-reverse">
-            <SearchBar />
+           
+            <AddressPicker />
             </div>
         
       
