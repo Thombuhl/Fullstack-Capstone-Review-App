@@ -8,6 +8,10 @@ export const ResturantFilter = styled.div`
 
 `;
 
+export const FiltersContainer = styled.div`
+    display: flex;
+`;
+
 export const Select = styled.select`
     
 `;
@@ -21,4 +25,14 @@ export const UIContainer = styled.div``;
 export const Text = styled.div`
     font-family: Lato, 'Helvetica Neue', Arial, sans-serif;
 
+`;
+
+export const Button = styled.button`
+    margin: 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    color: rgb(74, 74, 74);
+    font-family: Lato, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.8rem;
+    background-color: white;
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { logout } from '../store';
 import { LinksContainer, NavContainer } from '../styledComponents/NavBarStyle';
@@ -28,7 +28,7 @@ const Navbar = () => {
                     </LinksContainer>
                 </div>
                 ) : (
-                  <LandingPage />
+                    <LandingPage />
                 )}
             </NavContainer>
         </div>
