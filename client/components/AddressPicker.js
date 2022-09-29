@@ -55,7 +55,7 @@ const AddressPicker = () => {
     };
     return (
         <form onSubmit={handleSubmit}>
-            <input name="location" placeholder="Address or Zip Code" />
+            <input  className="form-control" name="location" placeholder="Address or Zip Code" />
         </form>
     );
 };

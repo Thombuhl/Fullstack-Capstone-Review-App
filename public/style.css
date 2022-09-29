@@ -10,8 +10,10 @@ body {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
+    color:#2D2E2F !important;
 }
+
 
 label {
     display: block;
@@ -27,6 +29,9 @@ form div {
     display: inline-block;
 }
 
+.text-pur{
+    color:#8c52ff !important;
+}
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -59,10 +64,20 @@ form div {
     height: 100vh;
 }
 
-#map {
-    height: 78vh;
-    width: 55vh;
+.thumb-post img {
+  object-fit: cover; /* Do not scale the image */
+  object-position: bottom; /* Center the image within the element */
+  width: 225px;
+  max-height: 180px;
+  margin-bottom: 1rem;
+}
+
+.map {
+    height: 150vh;
+    width: 50vh;
     position: absolute;
-    right: 50px;
-    top: 160px;
+    right:60px;
+    top: 170px;
+    border-radius:0.25rem;
+    box-shadow: 1px 1px 5px 1px gray;
 }

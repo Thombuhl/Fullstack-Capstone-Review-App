@@ -8,5 +8,4 @@ export const SearchInput = styled.input`
 
 export const ResturantFilter = styled.div`
     display: flex;
-    margin: 0.5rem;
 `;

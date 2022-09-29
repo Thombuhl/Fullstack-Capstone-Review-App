@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const LinksContainer = styled.div`
     display: flex;
     justify-content: right;
-    background: #78909c;
+    background: #8c52ff;
     a {
-        color: black;
+        color: white !important;
+        font-weight:semi-bold;
         text-decoration: none;
     }
 `;
