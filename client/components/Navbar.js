@@ -17,13 +17,16 @@ const Navbar = () => {
         <div>
             <NavContainer>
                 {isLoggedIn ? (
-                    <LinksContainer>
+                <div className="row">
+                <div className = "col-md-1 "><img src="logo.png" weidth="auto" height="30"/></div>
+                    <LinksContainer className="col-md-11">
                         <Link to="/home/1">Home</Link>
                         <Link to="/preference">Preference</Link>
                         <Link to="/" onClick={handleClick}>
                             Logout
                         </Link>
                     </LinksContainer>
+                </div>
                 ) : (
                   <LandingPage />
                 )}

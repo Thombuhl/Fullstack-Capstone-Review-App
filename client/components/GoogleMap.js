@@ -24,7 +24,8 @@ const GoogleMap = ({ children }) => {
     }, [ref, map]);
 
     return (
-        <div ref={ref} id="map">
+    
+        <div ref={ref} className="map" >
             {' '}
             {Children.map(children, (child) => {
                 if (isValidElement(child)) {
@@ -32,6 +33,7 @@ const GoogleMap = ({ children }) => {
                 }
             })}
         </div>
+
     );
 };
 

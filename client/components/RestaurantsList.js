@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
+import SearchBar from '../components/Search';
 import RestaurantItem from './RestaurantItem';
 import {
     ResturantsContainer,
@@ -189,9 +189,12 @@ const RestaurantsList = (props) => {
 
     // Styled components.
     return (
-        <ResturantsContainer>
-            <ResturantFilter>
-                <Select name="category" onChange={stashFilteredAttributes}>
+
+    <ResturantsContainer className="mx-5 my-5">
+         <div className="row">
+          <div className="col-auto d-flex flex-row">
+            <ResturantFilter className="d-flex">
+                <Select className="nav-item form-select" name="category" onChange={stashFilteredAttributes}>
                     <Option>Categories</Option>
                     {categoryNames.map((category) => {
                         return (
@@ -201,13 +204,13 @@ const RestaurantsList = (props) => {
                         );
                     })}
                 </Select>
-                <Select name="rating" onChange={stashFilteredNumbers}>
+                <Select  className="nav-item form-select" name="rating" onChange={stashFilteredNumbers}>
                     <Option>Rating</Option>
                     {reviews.map((rate) => {
                         return <Option key={rate.id}>{rate.rating}</Option>;
                     })}
                 </Select>
-                <Select name="price" onChange={stashFilteredAttributes}>
+                <Select  className="nav-item form-select" name="price" onChange={stashFilteredAttributes}>
                     <Option>Price</Option>
                     {bougie.map((price) => {
                         if (!price.price) {
@@ -219,7 +222,7 @@ const RestaurantsList = (props) => {
                         }
                     })}
                 </Select>
-                <Select name="hasDelivery" onChange={stashFilteredBooleans}>
+                <Select  className="nav-item form-select" name="hasDelivery" onChange={stashFilteredBooleans}>
                     <Option>Delivery</Option>
                     {deliveryBool.map((element) => {
                         return (
@@ -229,7 +232,7 @@ const RestaurantsList = (props) => {
                         );
                     })}
                 </Select>
-                <Select name="hasPickup" onChange={stashFilteredBooleans}>
+                <Select  className="nav-item form-select" name="hasPickup" onChange={stashFilteredBooleans}>
                     <Option>Pickup</Option>
                     {pickupBool.map((element) => {
                         return (
@@ -239,19 +242,16 @@ const RestaurantsList = (props) => {
                         );
                     })}
                 </Select>
-                <Select name="hasReservation" onChange={stashFilteredBooleans}>
-                    <Option>Reservations</Option>
-                    {reservationBool.map((element) => {
-                        return (
-                            <Option key={element.id}>
-                                {String(element.reservation).toUpperCase()}
-                            </Option>
-                        );
-                    })}
-                </Select>
+      
             </ResturantFilter>
-
-            <UIContainer>
+        </div>
+            <div className="col d-flex flex-row-reverse">
+            <SearchBar />
+            </div>
+        
+      
+            <div className="row py-3">
+            <UIContainer className="list-group h-auto col-md-7 ">
                 {filteredRestaurants.map((restaurant) => {
                     return (
                         <RestaurantItem
@@ -261,7 +261,10 @@ const RestaurantsList = (props) => {
                     );
                 })}
             </UIContainer>
+            </div>
+         </div>
         </ResturantsContainer>
+
     );
 };
 

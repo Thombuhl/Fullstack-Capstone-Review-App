@@ -17,6 +17,7 @@ const SearchBar = () => {
     return (
         <SearchInputContainer>
             <SearchInput
+            className="form-control"
                 placeholder="Search"
                 onChange={(event) => setSearchBox(event.target.value)}
             />

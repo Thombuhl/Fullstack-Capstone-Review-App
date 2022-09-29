@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination';
 import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
-import SearchBar from '../components/Search';
+
 
 /**
  * COMPONENT
@@ -30,10 +30,16 @@ export const Home = () => {
     };
 
     return (
-        <div className="Home">
+        <div className="Home d-flex">
             {/* <h3>Welcome, {auth.username}</h3> */}
-            <SearchBar />
-            <RestaurantsList itemPerPage={10} />
+        
+        <div className="card">
+        <div className="row">
+        <div classsName="col-md-8">
+            <RestaurantsList itemPerPage={10}/>
+         </div>
+        <div classname="col-md-4">
+        <div classname="card-block px-2">
             <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}
@@ -48,7 +54,12 @@ export const Home = () => {
                     })}
                 </GoogleMap>
             </Wrapper>
+            </div>
+        </div>
+        </div>
             <Pagination itemPerPage={10} />
+        </div>
+            
         </div>
     );
 };
