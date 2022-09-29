@@ -29,3 +29,13 @@ export const Text = styled.div`
     font-family: Lato, 'Helvetica Neue', Arial, sans-serif;
     font-size: 0.8rem;
 `;
+
+export const Button = styled.button`
+    margin: 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    color: rgb(74, 74, 74);
+    font-family: Lato, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.8rem;
+    background-color: white;
+`;

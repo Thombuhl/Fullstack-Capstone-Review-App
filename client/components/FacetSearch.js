@@ -8,6 +8,7 @@ import {
     ResturantFilter,
     Select,
     Option,
+    Button,
 } from '../styledComponents/RestaurantList';
 
 import '../styles/RestaurantsList.css';
@@ -38,6 +39,7 @@ const FacetSearch = () => {
 
                             //create array of bools for filtering
                             const attributes = objEntry.map(([key, value]) => {
+                                console.log('key', key, 'value', value);
                                 if (restaurant[key] === undefined) {
                                     throw new Error('check key name');
                                 } else {
@@ -69,31 +71,76 @@ const FacetSearch = () => {
 
     //Handle String Events
     const stashFilteredAttributes = (evt) => {
-        console.log('triggered');
+        const prunedFilterBox = {};
+        // user selected value.
         const value = evt.target.value;
-        setFilterBox({
-            ...filterBox,
-            [evt.target.name]: value,
-        });
+        //keys from exisiting filterbox
+        const keys = Object.keys(filterBox);
+        if (value === 'Price') {
+            keys.forEach((key) => {
+                if (key !== 'price') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else if (value === 'Categories') {
+            keys.forEach((key) => {
+                if (key !== 'category') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else {
+            setFilterBox({
+                ...filterBox,
+                [evt.target.name]: value,
+            });
+        }
     };
 
     //Handle Numbered Events
     const stashFilteredNumbers = (evt) => {
+        const prunedFilterBox = {};
         let value = evt.target.value;
-        setFilterBox({
-            ...filterBox,
-            [evt.target.name]: (value = Number(value)),
-        });
+        const keys = Object.keys(filterBox);
+        if (value === 'Rating') {
+            keys.forEach((key) => {
+                if (key !== 'rating') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else {
+            setFilterBox({
+                ...filterBox,
+                [evt.target.name]: (value = Number(value)),
+            });
+        }
     };
-
     //Handle Boolean Events
     const stashFilteredBooleans = (evt) => {
+        const prunedFilterBox = {};
+        const keys = Object.keys(filterBox);
         let value = evt.target.value;
         if (value === 'FALSE') {
             setFilterBox({
                 ...filterBox,
                 [evt.target.name]: (value = false),
             });
+        } else if (value === 'Pickup') {
+            keys.forEach((key) => {
+                if (key !== 'hasPickup') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
+        } else if (value === 'Delivery') {
+            keys.forEach((key) => {
+                if (key !== 'hasDelivery') {
+                    prunedFilterBox[key] = filterBox[key];
+                }
+            });
+            setFilterBox(prunedFilterBox);
         } else {
             setFilterBox({
                 ...filterBox,
@@ -170,19 +217,6 @@ const FacetSearch = () => {
     }, {});
     const pickupBool = Object.values(pickups);
 
-    //Reservation Options
-    const reservations = restaurantsArr.reduce((acc, restaurant) => {
-        const reservation = restaurant.hasReservation;
-        acc[reservation] = acc[reservation] || {
-            id: restaurant.id,
-            reservation,
-            count: 0,
-        };
-        acc[reservation].count++;
-        return acc;
-    }, {});
-    const reservationBool = Object.values(reservations);
-
     // Styled components.
     return (
         <ResturantFilter>
@@ -230,16 +264,7 @@ const FacetSearch = () => {
                     );
                 })}
             </Select>
-            <Select name="hasReservation" onChange={stashFilteredBooleans}>
-                <Option>Reservations</Option>
-                {reservationBool.map((element) => {
-                    return (
-                        <Option key={element.id}>
-                            {String(element.reservation).toUpperCase()}
-                        </Option>
-                    );
-                })}
-            </Select>
+            <Button onClick={() => setFilterBox([])}>Reset</Button>
         </ResturantFilter>
     );
 };
