@@ -9,7 +9,6 @@ import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
 
-
 /**
  * COMPONENT
  */
@@ -35,46 +34,39 @@ export const Home = () => {
         <div className="Home d-flex">
             {/* <h3>Welcome, {auth.username}</h3> */}
 
-        
-                <Wrapper
+            <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}
-                >
-    
-            <div className="row">
+            >
+                <div className="row">
                     <div classsName="col-md-8">
-                
                         <RestaurantsList itemPerPage={3} />
-                     </div>
-                <div classname="col-md-4">
-               
-                    <GoogleMap>
-                        {restaurants.map((res) => {
-                        const position = {
-                            lat: Number.parseFloat(res.latitude),
-                            lng: Number.parseFloat(res.longitude),
-                        };
-                        return (
-                            <Marker
-                                position={position}
-                                key={res.id}
-                                animation={2}
-                                func={() =>
-                                    history.push(`/restaurants/${res.id}`)
-                                }
-                            />
-                        );
-                    })}
-                    </GoogleMap>
-                 </div>
-            </div>
+                    </div>
+                    <div classname="col-md-4">
+                        <GoogleMap>
+                            {restaurants.map((res) => {
+                                const position = {
+                                    lat: Number.parseFloat(res.latitude),
+                                    lng: Number.parseFloat(res.longitude),
+                                };
+                                return (
+                                    <Marker
+                                        position={position}
+                                        key={res.id}
+                                        animation={2}
+                                        func={() =>
+                                            history.push(
+                                                `/restaurants/${res.id}`
+                                            )
+                                        }
+                                    />
+                                );
+                            })}
+                        </GoogleMap>
+                    </div>
+                </div>
             </Wrapper>
-                <Pagination itemPerPage={10} />
-      
- 
-
-
-            
+            <Pagination itemPerPage={3} />
         </div>
     );
 };

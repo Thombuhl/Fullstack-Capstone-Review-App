@@ -1,37 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Slider from './Slider';
 import {
     Container,
     Text,
-    Button,
     PreferenceText,
     AllPreferences,
     PreferenceContainer,
 } from '../styledComponents/PreferenceStyle';
 
-import {
-    addPreference,
-    setUserPreference,
-    fetchPreferences,
-    fetchUserPreferences,
-} from '../store/preference';
+import { fetchPreferences, fetchUserPreferences } from '../store/preference';
 
 const Preference = () => {
     const dispatch = useDispatch();
-
-    const [preferences, setPreferences] = useState([]);
+    const { userPref, prefNames } = useSelector((state) => state.preferences);
 
     useEffect(() => {
         const fetchData = async () => {
-            const prefData = await dispatch(fetchPreferences());
-            console.log(prefData.payload);
-            setPreferences(prefData.payload);
-
-            const userPrefData = await dispatch(fetchUserPreferences());
-            console.log(userPrefData.payload);
-            dispatch(addPreference(prefData.payload));
-            dispatch(setUserPreference(userPrefData.payload));
+            dispatch(fetchPreferences());
+            dispatch(fetchUserPreferences());
         };
         fetchData();
     }, []);
@@ -41,20 +28,27 @@ const Preference = () => {
             <Container>
                 <Text> Lets Setup your Preferences</Text>
                 <AllPreferences>
-                    {preferences
-                        ? preferences.map((preference) => {
-                              return (
-                                  <>
-                                      <PreferenceContainer>
-                                          <PreferenceText>
-                                              {preference.name}
-                                          </PreferenceText>
-                                      </PreferenceContainer>
-                                      <Slider pref_id={preference.id} />
-                                  </>
-                              );
-                          })
-                        : null}
+                    {userPref.map((pref) => {
+                        return (
+                            <div key={pref.id}>
+                                <PreferenceContainer>
+                                    <PreferenceText>
+                                        {
+                                            prefNames.find(
+                                                (item) =>
+                                                    item.id ===
+                                                    pref.preferenceId
+                                            ).name
+                                        }
+                                    </PreferenceText>
+                                </PreferenceContainer>
+                                <Slider
+                                    value={pref.score}
+                                    pref_id={pref.preferenceId}
+                                />
+                            </div>
+                        );
+                    })}
                 </AllPreferences>
             </Container>
         </>

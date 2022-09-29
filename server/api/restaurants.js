@@ -5,7 +5,6 @@ const Rating = require('../db/models/Rating');
 const User = require('../db/models/User');
 
 router.get('/', async (req, res, next) => {
-    // const property = req.body.property || {};
     try {
         const restaurants = await Restaurant.findAll({
             include: [
@@ -18,6 +17,24 @@ router.get('/', async (req, res, next) => {
         res.json(restaurants);
     } catch (err) {
         next(err);
+    }
+});
+
+router.get('/:id/ratings', async (req, res, next) => {
+    try {
+        const reviews = await Rating.findAll({
+            where: {
+                restaurantId: req.params.id,
+            },
+            include: [
+                {
+                    model: User,
+                },
+            ],
+        });
+        res.send(reviews);
+    } catch (ex) {
+        next(ex);
     }
 });
 
