@@ -55,7 +55,7 @@ const fetchPrefLabel = createAsyncThunk(
 
 const prefrenceSlice = createSlice({
     name: 'preference',
-    initialState: {},
+    initialState: { prefNames: [], userPref: [], prefLabel: [] },
     reducers: {
         setPreferenceValue(state, action) {
             const score = parseInt(action.payload.score);
@@ -79,10 +79,21 @@ const prefrenceSlice = createSlice({
             state.userPref = payload;
         },
         setPreferenceLabel(state, action) {
-            console.log(action);
             const { payload } = action;
             state.prefLabel = payload;
         },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchPreferences.fulfilled, (state, action) => {
+            state.prefNames = [...action.payload];
+        });
+        builder.addCase(fetchUserPreferences.fulfilled, (state, action) => {
+            const newPref = action.payload.sort(
+                (a, b) => a.preferenceId - b.preferenceId
+            );
+            console.log(newPref);
+            state.userPref = newPref;
+        });
     },
 });
 
