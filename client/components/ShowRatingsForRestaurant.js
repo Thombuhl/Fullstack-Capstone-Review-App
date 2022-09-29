@@ -19,6 +19,8 @@ const ShowRatingsForRestaurant = ({ restaurantId }) => {
             (rating) => rating.restaurantId * 1 === restaurantId * 1
         ) || [];
 
+    // ratingByPref.map(rating => if )
+
     return (
         <Card style={{ width: '50%' }}>
             <Card.Header>

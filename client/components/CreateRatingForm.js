@@ -4,9 +4,6 @@ import { createRating } from '../store';
 import { useSelector, useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import InputGroup from 'react-bootstrap/InputGroup';
 import { fetchPreferences } from '../store/preference';
 
 const CreateRatingForm = (props) => {
@@ -26,7 +23,7 @@ const CreateRatingForm = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             const prefData = await dispatch(fetchPreferences());
-            console.log(prefData.payload);
+            // console.log(prefData.payload);
             setNewPref(prefData.payload);
         };
         fetchData();
