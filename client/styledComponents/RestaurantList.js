@@ -5,8 +5,11 @@ export const ResturantsContainer = styled.div`
 `;
 
 export const ResturantFilter = styled.div`
-    display: flex;
     margin: 0.5rem;
+`;
+
+export const FiltersContainer = styled.div`
+    display: flex;
 `;
 
 export const Select = styled.select`

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchRestaurants = createAsyncThunk(
     'restaurants/fetchRestaurants',
-    async () => {
+    async (property) => {
         const response = await axios.get('/api/restaurants', {
             headers: {
                 authorization: window.localStorage.getItem('token'),

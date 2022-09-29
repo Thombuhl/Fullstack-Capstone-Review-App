@@ -8,8 +8,10 @@ import Pagination from '../components/Pagination';
 import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
+
 import SearchBar from '../components/Search';
 import AddressPicker from '../components/AddressPicker';
+
 
 /**
  * COMPONENT

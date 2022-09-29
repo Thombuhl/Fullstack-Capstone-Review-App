@@ -5,6 +5,7 @@ const Rating = require('../db/models/Rating');
 const User = require('../db/models/User');
 
 router.get('/', async (req, res, next) => {
+    // const property = req.body.property || {};
     try {
         const restaurants = await Restaurant.findAll({
             include: [

@@ -1,82 +1,94 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+// import { connect } from 'react-redux';
 import { createRating } from '../store';
+import { useSelector, useDispatch } from 'react-redux';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { fetchPreferences } from '../store/preference';
 
-class CreateRatingForm extends Component {
-    constructor() {
-        super();
-        this.state = {
-            score: '',
-            comment: '',
+const CreateRatingForm = (props) => {
+    const dispatch = useDispatch();
+    const {
+        auth: { auth },
+    } = useSelector((state) => state);
+    const { restaurantId } = props;
+
+    const [newRating, setNewRating] = useState({
+        score: 0,
+        comment: '',
+        preferenceId: null,
+    });
+    const [allPref, setNewPref] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const prefData = await dispatch(fetchPreferences());
+            console.log(prefData.payload);
+            setNewPref(prefData.payload);
         };
-        this.onChange = this.onChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+        fetchData();
+    }, []);
 
-    onChange(e) {
-        // console.log(e.target.value);
-        this.setState({ [e.target.name]: e.target.value });
-        // console.log(this.state);
-    }
-
-    handleSubmit(e) {
+    const { score, comment, preferenceId } = newRating;
+    const onChange = (e) => {
+        console.log(e.target.name, e.target.value);
+        setNewRating({ ...newRating, [e.target.name]: e.target.value });
+    };
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const { createRating, auth, restaurantId, ratings } = this.props;
-        // console.log(this.state);
-        this.props.createRating({
-            ...this.state,
-            userId: auth.id,
-            restaurantId: restaurantId,
-        });
-        this.setState({
-            score: '',
-            comment: '',
-        });
-    }
-
-    render() {
-        const { score, comment } = this.state;
-        const { handleSubmit, onChange } = this;
-
-        return (
-            <form onSubmit={handleSubmit} className="text-center">
-                <h2 className="fw-bold">Post a Rating</h2>
-                <input
-                    type="range"
-                    min="0"
-                    max="5"
-                    step="1"
-                    value={score}
-                    name="score"
-                    onChange={onChange}
-                    // onInput="rangeValue.innerText = this.value"
-                />
-                <h2>{score}</h2>
-                <div className="mb-2">
-                    <textarea
-                        placeholder="Comment (Required)"
-                        name="comment"
-                        value={comment}
-                        onChange={onChange}
-                    />
-                </div>
-                <br />
-                <button disabled={!score || !comment}>Create</button>
-            </form>
+        dispatch(
+            createRating({
+                ...newRating,
+                userId: auth.id,
+                restaurantId: restaurantId,
+            })
         );
-    }
-}
-const mapState = (state) => {
-    // console.log(state);
-    return {
-        auth: state.auth.auth || {},
     };
+
+    return (
+        <Form onSubmit={handleSubmit}>
+            <Form.Range
+                min="1"
+                max="5"
+                step="1"
+                value={score}
+                name="score"
+                onChange={onChange}
+            />
+            <Form.Group
+                className="mb-3"
+                // controlId="exampleForm.ControlTextarea1"
+            >
+                <Form.Label>Your Review</Form.Label>
+                <Form.Control
+                    as="textarea"
+                    rows={2}
+                    value={comment}
+                    name="comment"
+                    onChange={onChange}
+                />
+            </Form.Group>
+            <Form.Select
+                name="preferenceId"
+                aria-label="Default select example"
+                onChange={onChange}
+            >
+                <option>Open this select menu</option>
+                {allPref?.map((preference) => (
+                    <option key={preference.id} value={preference.id}>
+                        {preference.name}
+                    </option>
+                ))}
+            </Form.Select>
+            <Button
+                disabled={!score || !comment}
+                variant="primary"
+                type="submit"
+            >
+                Submit
+            </Button>
+        </Form>
+    );
 };
-const mapDispatch = (dispatch) => {
-    return {
-        createRating: (rating) => {
-            dispatch(createRating(rating));
-        },
-    };
-};
-export default connect(mapState, mapDispatch)(CreateRatingForm);
+
+export default CreateRatingForm;
