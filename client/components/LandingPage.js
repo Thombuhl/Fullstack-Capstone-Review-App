@@ -39,7 +39,7 @@ const LandingPage = () => {
                             {/* The navbar will show these links before you log in */}
                         </div>
                                     <div className="py-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
-               <Link to='/signup'> <Button className="btn btn-primary btn-outline-light btn-lg px-4 gap-3">
+               <Link to='/signup'> <Button className="btn btn-primary btn-outline-light btn-lg px-4">
                     Create Account
                 </Button></Link>
                <Link to='/login'> <Button className="btn btn-outline-light btn-lg px-4" variant="primary">
