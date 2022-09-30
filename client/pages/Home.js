@@ -8,7 +8,9 @@ import Pagination from '../components/Pagination';
 import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
 import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
-
+import FacetSearch from '../components/FacetSearch';
+import AddressPicker from '../components/AddressPicker';
+import SearchBar from '../components/Search';
 /**
  * COMPONENT
  */
@@ -31,18 +33,38 @@ export const Home = () => {
     };
 
     return (
-        <div className="Home d-flex">
+        <div className="Home mx-5 my-5">
             {/* <h3>Welcome, {auth.username}</h3> */}
 
             <Wrapper
                 apiKey="AIzaSyAUnodcwAgear2MI8lHnPEwwCdjh-8AKrM"
                 render={render}
             >
-                <div className="row">
-                    <div classsName="col-md-8">
+            <div className="row">
+                <div className="col-2">
+                     <SearchBar />
+                </div>
+                <div className="col-5 ">
+                  <FacetSearch />
+            </div>
+
+            <div className="col-5 ">
+                 <AddressPicker />
+            </div>
+        
+        </div>
+            <div className="row align-items-start">
+                    <div className="col-12">
+                        <div className="row">
                         <RestaurantsList itemPerPage={3} />
+                        </div>
+                        <div className="row">
+                        <div className="col-8">
+                        <Pagination classname=" offset-md-3 col-12" itemPerPage={3} />
+                        </div>
+                        </div>
                     </div>
-                    <div classname="col-md-4">
+                      
                         <GoogleMap>
                             {restaurants.map((res) => {
                                 const position = {
@@ -63,10 +85,11 @@ export const Home = () => {
                                 );
                             })}
                         </GoogleMap>
-                    </div>
+            
                 </div>
+            
             </Wrapper>
-            <Pagination itemPerPage={3} />
+
         </div>
     );
 };

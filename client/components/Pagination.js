@@ -14,7 +14,7 @@ function Pagination(props) {
         let content = [];
         for (let i = 1; i <= totalPage; i++) {
             content.push(
-                <Link
+                <Link className="page-item page-link"
                     onClick={handleClick}
                     // className={({ isActive }) =>
                     //     isActive ? 'selected' : undefined
@@ -28,6 +28,6 @@ function Pagination(props) {
         }
         return content;
     };
-    return <div className="Page-Wrapper">{getNavContent()}</div>;
+    return <div className="Page-Wrapper pagination justify-content-center">{getNavContent()}</div>;
 }
 export default Pagination;

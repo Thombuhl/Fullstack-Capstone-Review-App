@@ -36,7 +36,7 @@ const GoogleMap = ({ children }) => {
 
     return (
     
-        <div ref={ref} className="map" >
+        <div ref={ref} className="map col-4 container-fluid" >
             {' '}
             {Children.map(children, (child) => {
                 if (isValidElement(child)) {

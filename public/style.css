@@ -4,8 +4,7 @@
 }
 body {
     font-family: sans-serif;
-    display: flex;
-    align-items: center;
+   
     padding-bottom: 40px;
 }
 
@@ -73,11 +72,12 @@ form div {
 }
 
 .map {
-    height: 150vh;
-    width: 50vh;
-    position: absolute;
-    right:60px;
-    top: 170px;
+    height: 65vh;
+    overflow:hidden;
+    display: flex;
+    position:absolute;
+     right:50px;
+top:190px;
     border-radius:0.25rem;
     box-shadow: 1px 1px 5px 1px gray;
 }

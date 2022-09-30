@@ -17,15 +17,18 @@ const Navbar = () => {
         <div>
             <NavContainer>
                 {isLoggedIn ? (
+                <div className="contianer">
                 <div className="row">
-                <div className = "col-md-1 "><img src="logo.png" weidth="auto" height="30"/></div>
-                    <LinksContainer className="col-md-11">
-                        <Link to="/home/1">Home</Link>
-                        <Link to="/preference">Preference</Link>
-                        <Link to="/" onClick={handleClick}>
+                    <div  className="col" >
+                    <LinksContainer className="my-2 mx-4 px-4 d-flex">
+                        <Link className="" to="/home/1">Home</Link>
+                        <Link className="" to="/preference">Preference</Link>
+                        <Link className="" to="/" onClick={handleClick}>
                             Logout
                         </Link>
                     </LinksContainer>
+                    </div>
+                </div>
                 </div>
                 ) : (
                     <LandingPage />
