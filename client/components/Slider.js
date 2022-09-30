@@ -38,7 +38,7 @@ const Slider = (props) => {
                 <SliderValueText>{value}</SliderValueText>
                 <SliderInput
                     type="range"
-                    min={0}
+                    min={1}
                     max={5}
                     value={value}
                     className="slider"
