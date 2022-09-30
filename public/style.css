@@ -72,12 +72,21 @@ form div {
 }
 
 .map {
-    height: 65vh;
+    height: 66.5vh;
     overflow:hidden;
     display: flex;
     position:absolute;
      right:50px;
-top:190px;
+top:240px;
     border-radius:0.25rem;
     box-shadow: 1px 1px 5px 1px gray;
+}
+
+#searcher {
+    display: flex;
+    justify-content: space-between
+}
+
+#address {
+    width: 300px;
 }

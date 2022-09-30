@@ -45,7 +45,7 @@ const SearchBar = () => {
                 />
             </SearchInputContainer>
             {searchBox.length !== 0 && (
-                <div>
+                <>
                     {restaurants
                         .filter(
                             (restaurant) =>
@@ -62,7 +62,7 @@ const SearchBar = () => {
                                 />
                             );
                         })}
-                </div>
+                </>
             )}
         </>
     );

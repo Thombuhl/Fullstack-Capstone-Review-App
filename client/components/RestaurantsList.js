@@ -9,6 +9,7 @@ import FacetSearch from './FacetSearch';
 import AddressPicker from './AddressPicker';
 import {
     ResturantsContainer,
+    Search,
     UIContainer,
 } from '../styledComponents/RestaurantList';
 
@@ -28,26 +29,21 @@ const RestaurantsList = (props) => {
 
     // Styled components.
     return (
-
-
-    <ResturantsContainer className="my-1">
-         
+        <ResturantsContainer className="my-1">
             <div className="row py-3">
-            <UIContainer className="list-group h-auto col-md-7 ">
-                {currRes.map((restaurant) => {
-
-                    return (
-                        <RestaurantItem
-                            key={restaurant.id}
-                            restaurant={restaurant}
-                        />
-                    );
-                })}
-            </UIContainer>
+                <UIContainer className="list-group h-auto col-md-7 ">
+                    <SearchBar />
+                    {currRes.map((restaurant) => {
+                        return (
+                            <RestaurantItem
+                                key={restaurant.id}
+                                restaurant={restaurant}
+                            />
+                        );
+                    })}
+                </UIContainer>
             </div>
-  
         </ResturantsContainer>
-
     );
 };
 
