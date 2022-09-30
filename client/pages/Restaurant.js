@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
-import {
-    scoreWeighted,
-    regularScore,
-    bestFeature,
-} from '../scoreFunctions.js/';
+import { scoreWeighted, regularScore, bestFeature } from '../scoreFunctions';
 
 import CreateRatingForm from '../components/CreateRatingForm';
 import ShowRatingsForRestaurant from '../components/ShowRatingsForRestaurant';
@@ -25,6 +21,7 @@ const Restaurant = (props) => {
         ratings,
         restaurants: { restaurants },
     } = useSelector((state) => state);
+    console.log(useSelector((state) => state));
 
     const userPreferences = auth?.userpreferences;
 
@@ -65,9 +62,7 @@ const Restaurant = (props) => {
                         </Card.Title>
                     )}
                     {weighScore && (
-                        <Card.Title>
-                            Preference Score: {weighScore} out of 5
-                        </Card.Title>
+                        <Card.Title>Preference Score: {weighScore}%</Card.Title>
                     )}
                     {favPref?.preference && (
                         <Card.Text>
