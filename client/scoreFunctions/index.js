@@ -1,4 +1,4 @@
-export const scoreWeighted = (userpreferences, ratings, decVal = 2) => {
+export const scoreWeighted = (userpreferences, ratings, decVal = 0) => {
     let denominator = 0;
     let numberator = 0;
     ratings.forEach((rating) => {
@@ -13,10 +13,10 @@ export const scoreWeighted = (userpreferences, ratings, decVal = 2) => {
     if (isNaN(score)) {
         return null;
     }
-    return parseFloat(score).toFixed(decVal);
+    return parseFloat(score * 20).toFixed(decVal);
 };
 
-export const regularScore = (ratingsForRestaurant, decVal = 2) => {
+export const regularScore = (ratingsForRestaurant, decVal = 1) => {
     let numberator = 0;
     ratingsForRestaurant.forEach((rating) => {
         numberator += rating.score * 1;
