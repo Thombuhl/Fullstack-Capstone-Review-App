@@ -1,21 +1,32 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import '../styles/OneRestaurant.css';
 import { Link } from 'react-router-dom';
+
+import {
+    scoreWeighted,
+    regularScore,
+    bestFeature,
+} from '../scoreFunctions.js/';
+
 import CreateRatingForm from '../components/CreateRatingForm';
 import ShowRatingsForRestaurant from '../components/ShowRatingsForRestaurant';
+import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
+
 import Card from 'react-bootstrap/Card';
 
 /**
  * COMPONENT
  */
 const Restaurant = (props) => {
+    const restaurantId = props.match.params.id || '';
     const {
+        auth: { auth },
         ratings,
         restaurants: { restaurants },
     } = useSelector((state) => state);
-    const restaurantId = props.match.params.id || '';
+
+    const userPreferences = auth?.userpreferences;
 
     const restaurant =
         restaurants?.find((restaurant) => restaurantId * 1 === restaurant.id) ||
@@ -25,45 +36,11 @@ const Restaurant = (props) => {
         ratings?.filter(
             (rating) => rating.restaurantId * 1 === restaurantId * 1
         ) || [];
-    let { cleaniness, cost, service, authenticity, overall } = {};
 
-    cleaniness = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 1
-    );
-    cost = ratingsForRestaurant.filter((rating) => rating.preferenceId === 2);
-    service = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 3
-    );
-    authenticity = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 4
-    );
-    overall = ratingsForRestaurant.filter(
-        (rating) => rating.preferenceId === 5
-    );
-    const ratingByPref = [cleaniness, cost, service, authenticity, overall];
-    const ratingByScore = [
-        cleaniness?.length,
-        cost?.length,
-        service?.length,
-        authenticity?.length,
-        overall?.length,
-    ];
-    console.log(ratingByPref);
-    let favPref = { preference: null, ratings: 0 };
-    ratingByPref?.forEach((ratings) => {
-        if (ratings.length > favPref.ratings) {
-            favPref.ratings = ratings.length;
-            favPref.preference = ratings[0].preference.name;
-        }
-    });
-    console.log(favPref);
-
-    let addRestaurantScore = 0;
-    ratingsForRestaurant.forEach((rating) => {
-        addRestaurantScore += rating.score * 1;
-    });
-    const restaurantScore = addRestaurantScore / ratingsForRestaurant.length;
-    // console.log(restaurantScore);
+    //Restaurant Score, Weighted Score, Strongest Feature
+    const regScore = regularScore(ratingsForRestaurant);
+    const weighScore = scoreWeighted(userPreferences, ratingsForRestaurant);
+    const favPref = bestFeature(ratingsForRestaurant);
 
     return (
         <div className="one-restaurant container">
@@ -71,7 +48,6 @@ const Restaurant = (props) => {
                 <Card.Img
                     src={restaurant.imgUrl}
                     style={{
-                        // maxHeight: '500px',
                         height: '350px',
                         objectFit: 'none',
                         filter: 'brightness(50%)',
@@ -83,13 +59,21 @@ const Restaurant = (props) => {
                         <Link to="/home/1">Go Back</Link>
                     </Card.Header>
                     <Card.Title>{restaurant.name}</Card.Title>
-                    {!isNaN(restaurantScore) && (
+                    {regScore && (
                         <Card.Title>
-                            Standard Score:{' '}
-                            {parseFloat(restaurantScore).toFixed(2)} out of 5
+                            Standard Score: {regScore} out of 5
                         </Card.Title>
                     )}
-                    <Card.Text>Top Feature: {favPref?.preference}</Card.Text>
+                    {weighScore && (
+                        <Card.Title>
+                            Preference Score: {weighScore} out of 5
+                        </Card.Title>
+                    )}
+                    {favPref?.preference && (
+                        <Card.Text>
+                            Top Feature: {favPref?.preference}
+                        </Card.Text>
+                    )}
                     <Card.Text>{restaurant.description}</Card.Text>
                     <Card.Text>{restaurant.fullAddress}</Card.Text>
                 </Card.ImgOverlay>
