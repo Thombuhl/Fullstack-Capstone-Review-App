@@ -7,7 +7,11 @@ import Marker from '../components/Marker';
 import Pagination from '../components/Pagination';
 import RestaurantsList from '../components/RestaurantsList';
 import '../styles/Home.css';
-import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
+import {
+    fetchPrefLabel,
+    setPreferenceLabel,
+    fetchPreferences,
+} from '../store/preference';
 import FacetSearch from '../components/FacetSearch';
 import AddressPicker from '../components/AddressPicker';
 import SearchBar from '../components/Search';
@@ -24,6 +28,7 @@ export const Home = () => {
         const fetchData = async () => {
             const prefLabels = await dispatch(fetchPrefLabel());
             dispatch(setPreferenceLabel(prefLabels.payload));
+            dispatch(fetchPreferences());
         };
         fetchData();
     }, []);

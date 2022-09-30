@@ -9,7 +9,7 @@ import {
     PreferenceContainer,
 } from '../styledComponents/PreferenceStyle';
 
-import { fetchPreferences, fetchUserPreferences } from '../store/preference';
+import { fetchUserPreferences } from '../store/preference';
 
 const Preference = () => {
     const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const Preference = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            dispatch(fetchPreferences());
             dispatch(fetchUserPreferences());
         };
         fetchData();
