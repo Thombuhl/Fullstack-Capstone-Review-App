@@ -4,15 +4,14 @@
 }
 body {
     font-family: sans-serif;
-   
+
     padding-bottom: 40px;
 }
 
 a {
     text-decoration: none !important;
-    color:#2D2E2F !important;
+    color: #2d2e2f !important;
 }
-
 
 label {
     display: block;
@@ -28,8 +27,8 @@ form div {
     display: inline-block;
 }
 
-.text-pur{
-    color:#8c52ff !important;
+.text-pur {
+    color: #8c52ff !important;
 }
 .form-signin {
     max-width: 330px;
@@ -58,33 +57,33 @@ form div {
 
 .carousel-item.active {
     background-image: url('homebg.gif');
-    background-position: top center;
     background-repeat: no-repeat;
     height: 100vh;
+    background-size: cover;
 }
 
 .thumb-post img {
-  object-fit: cover; /* Do not scale the image */
-  object-position: bottom; /* Center the image within the element */
-  width: 225px;
-  max-height: 180px;
-  margin-bottom: 1rem;
+    object-fit: cover; /* Do not scale the image */
+    object-position: bottom; /* Center the image within the element */
+    width: 225px;
+    max-height: 180px;
+    margin-bottom: 1rem;
 }
 
 .map {
     height: 66.5vh;
-    overflow:hidden;
+    overflow: hidden;
     display: flex;
-    position:absolute;
-     right:50px;
-top:240px;
-    border-radius:0.25rem;
+    position: absolute;
+    right: 50px;
+    top: 240px;
+    border-radius: 0.25rem;
     box-shadow: 1px 1px 5px 1px gray;
 }
 
 #searcher {
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 #address {

@@ -8,7 +8,6 @@ import {
     ResturantFilter,
     Select,
     Option,
-    Button,
 } from '../styledComponents/RestaurantList';
 
 import '../styles/RestaurantsList.css';
@@ -26,7 +25,6 @@ const FacetSearch = () => {
 
     useEffect(() => {
         const setRes = async () => {
-            console.log('started');
             let res = await fetchAllRes();
             setAllRes(res);
             if (filterBox) {
@@ -290,7 +288,7 @@ const FacetSearch = () => {
             </Select>
             <button
                 type="button"
-                class="btn btn-sm btn-outline-light"
+                className="btn btn-sm btn-outline-light"
                 onClick={() => setFilterBox([])}
             >
                 Reset
