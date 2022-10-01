@@ -7,7 +7,7 @@ import { scoreWeighted, regularScore, bestFeature } from '../scoreFunctions';
 
 import CreateRatingForm from '../components/CreateRatingForm';
 import ShowRatingsForRestaurant from '../components/ShowRatingsForRestaurant';
-import { fetchPrefLabel, setPreferenceLabel } from '../store/preference';
+import { fetchUserPreferences, fetchPreferences } from '../store/preference';
 
 import Card from 'react-bootstrap/Card';
 
@@ -20,10 +20,17 @@ const Restaurant = (props) => {
         auth: { auth },
         ratings,
         restaurants: { restaurants },
+        preferences: { userPref },
     } = useSelector((state) => state);
-    console.log(useSelector((state) => state));
 
-    const userPreferences = auth?.userpreferences;
+    const dispatch = useDispatch();
+    console.log(userPref);
+    useEffect(() => {
+        const fetchData = async () => {
+            dispatch(fetchUserPreferences());
+        };
+        fetchData();
+    }, []);
 
     const restaurant =
         restaurants?.find((restaurant) => restaurantId * 1 === restaurant.id) ||
@@ -36,7 +43,7 @@ const Restaurant = (props) => {
 
     //Restaurant Score, Weighted Score, Strongest Feature
     const regScore = regularScore(ratingsForRestaurant);
-    const weighScore = scoreWeighted(userPreferences, ratingsForRestaurant);
+    const weighScore = scoreWeighted(userPref, ratingsForRestaurant);
     const favPref = bestFeature(ratingsForRestaurant);
 
     return (
