@@ -48,7 +48,9 @@ const RestaurantsItem = ({ restaurant }) => {
                             </strong>
                         </div>
                         <div className="col">
-                            {scoreWeighted(userPref, reviews, 1)}
+                            {scoreWeighted(userPref, reviews, 1)
+                                ? `${scoreWeighted(userPref, reviews, 1)}%`
+                                : 'No Reviews To Compare'}
                         </div>
                     </div>
                     <div className="RestaurantItem-first-comment">

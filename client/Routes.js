@@ -29,6 +29,9 @@ class Routes extends Component {
                         <Route path="/login" component={Home}>
                             <Redirect to="/home/1" />{' '}
                         </Route>
+                        <Route path="/signup">
+                            <Redirect to="/preference" />
+                        </Route>
                         <Route path="/restaurants/:id" component={Restaurant} />
                         <Route path="/preference" component={Preference} />
 

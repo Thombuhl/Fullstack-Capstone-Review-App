@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Slider from './Slider';
 import {
     Container,
@@ -13,6 +14,7 @@ import { fetchUserPreferences } from '../store/preference';
 
 const Preference = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { userPref, prefNames } = useSelector((state) => state.preferences);
 
     useEffect(() => {
@@ -21,6 +23,10 @@ const Preference = () => {
         };
         fetchData();
     }, []);
+
+    const handleClick = () => {
+        history.push('/home/1');
+    };
 
     return (
         <>
@@ -49,6 +55,13 @@ const Preference = () => {
                         );
                     })}
                 </AllPreferences>
+                <button
+                    className="w-50 btn btn-sm btn-primary mt-3"
+                    type="submit"
+                    onClick={handleClick}
+                >
+                    Save Preferences
+                </button>
             </Container>
         </>
     );
