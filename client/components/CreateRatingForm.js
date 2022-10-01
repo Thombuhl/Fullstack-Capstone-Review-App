@@ -46,9 +46,9 @@ const CreateRatingForm = (props) => {
     };
 
     return (
-        <div className="card my-3 py-3 text-left">
+        <div className="card my-3 text-left">
             <Form onSubmit={handleSubmit}>
-                <div class="row g-1 align-items-center justify-content-left">
+                <div class="row mt-3 align-items-center justify-content-center">
                     <div class="col-auto">
                         <strong
                             className="card-title"
@@ -63,7 +63,7 @@ const CreateRatingForm = (props) => {
                             aria-label="Default select example"
                             onChange={onChange}
                         >
-                            <option value="">Pick Your Review Catagory</option>
+                            <option value="">Pick Your Standout Feature</option>
                             {allPref?.map((preference) => (
                                 <option
                                     key={preference.id}
@@ -75,13 +75,13 @@ const CreateRatingForm = (props) => {
                         </Form.Select>
                     </div>
                 </div>
-                <div className="row g-1 align-items-center">
-                    <div className="col-auto">
-                        <strong className="" style={{ color: '#454343' }}>
+                <div className="row align-items-center justify-content-start">
+                    <div className="col">
+                        <strong style={{ color: '#454343' }}>
                             I will give {score}
                         </strong>
                     </div>
-                    <div className="col-auto w-25">
+                    <div className="col">
                         <Form.Range
                             min="1"
                             max="5"
@@ -89,12 +89,11 @@ const CreateRatingForm = (props) => {
                             value={score}
                             name="score"
                             onChange={onChange}
-                            className="slider"
                         />
                     </div>
                 </div>
-                <div className="row g-1 align-items-end">
-                    <div className="col-auto container ">
+                <div className="row align-items-end justify-content-center">
+                    <div className="col-10 container d-flex">
                         <Form.Group className="w-100">
                             <Form.Control
                                 as="textarea"
@@ -102,18 +101,19 @@ const CreateRatingForm = (props) => {
                                 name="comment"
                                 placeholder="Type Your Comment"
                                 onChange={onChange}
+                                rows={5}
                             />
                         </Form.Group>
                     </div>
-                    <div className="col-auto align-bottom">
-                        <Button
-                            disabled={!score || !comment || !preferenceId}
-                            // variant="primary"
-                            type="submit"
-                        >
-                            Submit
-                        </Button>
-                    </div>
+                </div>
+                <div className="row align-items-end justify-content-end">
+                    <Button
+                        disabled={!score || !comment || !preferenceId}
+                        // variant="primary"
+                        type="submit"
+                    >
+                        Submit
+                    </Button>
                 </div>
             </Form>
         </div>
