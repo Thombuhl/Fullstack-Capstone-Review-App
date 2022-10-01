@@ -48,11 +48,11 @@ const CreateRatingForm = (props) => {
     return (
         <div className="card my-3 text-left">
         <Form onSubmit={handleSubmit}>
-    <div class="row mt-3 align-items-center justify-content-center">
+    <div class="row mt-3 align-items-center justify-content-left">
         <div class='col-auto'>
             <strong className="card-title" style={{color:"#454343"}} >Start a Review</strong>
         </div>
-        <div className="container col-auto w-50">
+        <div className=" col-auto w-75">
             <Form.Select
                 name="preferenceId"
                 aria-label="Default select example"
@@ -67,11 +67,11 @@ const CreateRatingForm = (props) => {
             </Form.Select>
         </div>
     </div>
-    <div className="row align-items-center justify-content-start">
+    <div className="row align-items-center">
         <div className="col">          
              <strong style={{color:"#454343"}}>I will give {score}</strong>
          </div>
-        <div className="col">
+        <div className="col-10 container" >
             <Form.Range
                 min="1"
                 max="5"
