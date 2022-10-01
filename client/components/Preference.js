@@ -4,12 +4,14 @@ import Slider from './Slider';
 import {
     Container,
     Text,
-    PreferenceText,
     AllPreferences,
     PreferenceContainer,
 } from '../styledComponents/PreferenceStyle';
 
 import { fetchPreferences, fetchUserPreferences } from '../store/preference';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const Preference = () => {
     const dispatch = useDispatch();
@@ -26,30 +28,27 @@ const Preference = () => {
     return (
         <>
             <Container>
-                <Text> Lets Setup your Preferences</Text>
+                <div className="header"></div>
                 <AllPreferences>
+                    <Text> Lets Setup your Preferences</Text>
                     {userPref.map((pref) => {
                         return (
-                            <div key={pref.id}>
-                                <PreferenceContainer>
-                                    <PreferenceText>
-                                        {
-                                            prefNames.find(
-                                                (item) =>
-                                                    item.id ===
-                                                    pref.preferenceId
-                                            ).name
-                                        }
-                                    </PreferenceText>
-                                </PreferenceContainer>
+                            <div key={pref.id} id="pref">
                                 <Slider
                                     value={pref.score}
                                     pref_id={pref.preferenceId}
+                                    name={
+                                        prefNames.find(
+                                            (item) =>
+                                                item.id === pref.preferenceId
+                                        ).name
+                                    }
                                 />
                             </div>
                         );
                     })}
                 </AllPreferences>
+                <div className="footer"></div>
             </Container>
         </>
     );

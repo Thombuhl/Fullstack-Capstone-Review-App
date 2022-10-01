@@ -7,6 +7,8 @@ import {
     SliderValueText,
 } from '../styledComponents/SliderStyle';
 
+import { RootContainer, Text } from '../styledComponents/SliderStyle';
+
 import {
     setPreferenceValue,
     updatePreferenceValue,
@@ -33,7 +35,8 @@ const Slider = (props) => {
     };
 
     return (
-        <>
+        <RootContainer>
+            <Text className="py-2 display-5 fw-bold">{props.name}</Text>
             <SliderContainer>
                 <SliderValueText>{value}</SliderValueText>
                 <SliderInput
@@ -45,7 +48,7 @@ const Slider = (props) => {
                     onChange={handleOnChange}
                 ></SliderInput>
             </SliderContainer>
-        </>
+        </RootContainer>
     );
 };
 
