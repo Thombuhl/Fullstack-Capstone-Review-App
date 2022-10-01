@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Slider from './Slider';
 import {
     Container,
@@ -8,22 +9,23 @@ import {
     PreferenceContainer,
 } from '../styledComponents/PreferenceStyle';
 
-import { fetchPreferences, fetchUserPreferences } from '../store/preference';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import { fetchUserPreferences } from '../store/preference';
 
 const Preference = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { userPref, prefNames } = useSelector((state) => state.preferences);
 
     useEffect(() => {
         const fetchData = async () => {
-            dispatch(fetchPreferences());
             dispatch(fetchUserPreferences());
         };
         fetchData();
     }, []);
+
+    const handleClick = () => {
+        history.push('/home/1');
+    };
 
     return (
         <>
@@ -48,7 +50,16 @@ const Preference = () => {
                         );
                     })}
                 </AllPreferences>
+
                 <div className="footer"></div>
+
+                <button
+                    className="w-50 btn btn-sm btn-primary mt-3"
+                    type="submit"
+                    onClick={handleClick}
+                >
+                    Save Preferences
+                </button>
             </Container>
         </>
     );

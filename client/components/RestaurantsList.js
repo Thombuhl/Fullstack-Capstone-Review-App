@@ -1,5 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUserPreferences } from '../store';
 
 import { useParams } from 'react-router-dom';
 import SearchBar from './Search';
@@ -9,12 +10,14 @@ import FacetSearch from './FacetSearch';
 import AddressPicker from './AddressPicker';
 import {
     ResturantsContainer,
+    Search,
     UIContainer,
 } from '../styledComponents/RestaurantList';
 
 import '../styles/RestaurantsList.css';
 
 const RestaurantsList = (props) => {
+    const dispatch = useDispatch();
     const { page } = useParams();
     const { itemPerPage } = props;
 
@@ -25,29 +28,27 @@ const RestaurantsList = (props) => {
         (page - 1) * itemPerPage,
         page * itemPerPage
     );
+    useEffect(() => {
+        dispatch(fetchUserPreferences());
+    }, []);
 
     // Styled components.
     return (
-
-
-    <ResturantsContainer className="my-1">
-         
+        <ResturantsContainer className="my-1">
             <div className="row py-3">
-            <UIContainer className="list-group h-auto col-md-7 ">
-                {currRes.map((restaurant) => {
-
-                    return (
-                        <RestaurantItem
-                            key={restaurant.id}
-                            restaurant={restaurant}
-                        />
-                    );
-                })}
-            </UIContainer>
+                <UIContainer className="list-group h-auto col-md-7 ">
+                    <SearchBar />
+                    {currRes.map((restaurant) => {
+                        return (
+                            <RestaurantItem
+                                key={restaurant.id}
+                                restaurant={restaurant}
+                            />
+                        );
+                    })}
+                </UIContainer>
             </div>
-  
         </ResturantsContainer>
-
     );
 };
 

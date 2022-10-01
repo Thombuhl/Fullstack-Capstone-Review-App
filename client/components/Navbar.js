@@ -17,19 +17,27 @@ const Navbar = () => {
         <div>
             <NavContainer>
                 {isLoggedIn ? (
-                <div className="contianer">
-                <div className="row">
-                    <div  className="col" >
-                    <LinksContainer className="my-2 mx-4 px-4 d-flex">
-                        <Link className="" to="/home/1">Home</Link>
-                        <Link className="" to="/preference">Preference</Link>
-                        <Link className="" to="/" onClick={handleClick}>
-                            Logout
-                        </Link>
-                    </LinksContainer>
+                    <div className="contianer">
+                        <div className="row">
+                            <div className="col">
+                                <LinksContainer className="mb-2  px-4 d-flex">
+                                    <Link className="" to="/home/1">
+                                        Home
+                                    </Link>
+                                    <Link className="" to="/preference">
+                                        Preference
+                                    </Link>
+                                    <Link
+                                        className=""
+                                        to="/"
+                                        onClick={handleClick}
+                                    >
+                                        Logout
+                                    </Link>
+                                </LinksContainer>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </div>
                 ) : (
                     <LandingPage />
                 )}

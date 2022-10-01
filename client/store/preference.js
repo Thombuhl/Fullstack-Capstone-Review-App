@@ -91,7 +91,6 @@ const prefrenceSlice = createSlice({
             const newPref = action.payload.sort(
                 (a, b) => a.preferenceId - b.preferenceId
             );
-            console.log(newPref);
             state.userPref = newPref;
         });
     },
