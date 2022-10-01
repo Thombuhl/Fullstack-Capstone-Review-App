@@ -17,7 +17,7 @@ import {
 import '../styles/RestaurantsList.css';
 
 const RestaurantsList = (props) => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const { page } = useParams();
     const { itemPerPage } = props;
 
@@ -28,9 +28,9 @@ const RestaurantsList = (props) => {
         (page - 1) * itemPerPage,
         page * itemPerPage
     );
-    useEffect(() => {
-        dispatch(fetchUserPreferences());
-    }, []);
+    // useEffect(() => {
+    //     dispatch(fetchUserPreferences());
+    // }, []);
 
     // Styled components.
     return (

@@ -5,7 +5,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './pages/Home';
 import Preference from './components/Preference';
 import Restaurant from './pages/Restaurant';
-import { me, fetchRatings, fetchRestaurants } from './store';
+import { me, fetchRatings, fetchRestaurants, fetchPreferences } from './store';
 
 /**
  * COMPONENT
@@ -65,6 +65,7 @@ const mapDispatch = (dispatch) => {
             dispatch(me());
             dispatch(fetchRatings());
             dispatch(fetchRestaurants());
+            dispatch(fetchPreferences());
         },
     };
 };
