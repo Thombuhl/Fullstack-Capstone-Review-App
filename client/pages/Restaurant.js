@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 import { scoreWeighted, regularScore, bestFeature } from '../scoreFunctions';
@@ -47,7 +47,10 @@ const Restaurant = (props) => {
     const favPref = bestFeature(ratingsForRestaurant);
 
     return (
+    
         <div className="one-restaurant container">
+           <Button className="backbutton" variant="outline-light" href="/home/1"> Go Back</Button>
+            <div className="row py-3">
             <Card className="bg-dark text-white">
                 <Card.Img
                     src={restaurant.imgUrl}
@@ -60,7 +63,7 @@ const Restaurant = (props) => {
                 />
                 <Card.ImgOverlay>
                     <Card.Header>
-                        <Link to="/home/1">Go Back</Link>
+                
                     </Card.Header>
                     <Card.Title>{restaurant.name}</Card.Title>
                     {regScore && (
@@ -79,9 +82,15 @@ const Restaurant = (props) => {
                     <Card.Text>{restaurant.description}</Card.Text>
                     <Card.Text>{restaurant.fullAddress}</Card.Text>
                 </Card.ImgOverlay>
-            </Card>
-            <CreateRatingForm restaurantId={restaurantId} />
-            <ShowRatingsForRestaurant restaurantId={restaurantId} />
+                </Card>
+            </div>
+            <div className="row">
+                <CreateRatingForm restaurantId={restaurantId} />
+            </div>
+            <div className="row">
+                <ShowRatingsForRestaurant restaurantId={restaurantId} />
+            </div>
+
         </div>
     );
 };
