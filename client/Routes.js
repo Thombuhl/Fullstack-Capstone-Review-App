@@ -5,7 +5,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './pages/Home';
 import Preference from './components/Preference';
 import Restaurant from './pages/Restaurant';
-import { me, fetchRatings, fetchRestaurants } from './store';
+import { me, fetchRatings, fetchRestaurants, fetchPreferences } from './store';
 
 /**
  * COMPONENT
@@ -23,8 +23,15 @@ class Routes extends Component {
                 {isLoggedIn ? (
                     <Switch>
                         <Route path="/home/:page" component={Home} />
-                        <Route path="/home" component={Home}><Redirect to="/home/1" /> </Route>
-                        <Route path="/login" component={Home}><Redirect to="/home/1" /> </Route>
+                        <Route path="/home" component={Home}>
+                            <Redirect to="/home/1" />{' '}
+                        </Route>
+                        <Route path="/login" component={Home}>
+                            <Redirect to="/home/1" />{' '}
+                        </Route>
+                        <Route path="/signup">
+                            <Redirect to="/preference" />
+                        </Route>
                         <Route path="/restaurants/:id" component={Restaurant} />
                         <Route path="/preference" component={Preference} />
 
@@ -58,6 +65,7 @@ const mapDispatch = (dispatch) => {
             dispatch(me());
             dispatch(fetchRatings());
             dispatch(fetchRestaurants());
+            dispatch(fetchPreferences());
         },
     };
 };

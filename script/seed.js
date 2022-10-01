@@ -13,6 +13,8 @@ const {
     },
 } = require('../server/db');
 
+const { createRandomRatings } = require('../script/ratingsSeed');
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -294,6 +296,9 @@ async function seed() {
     five.userId = 5;
     five.preferenceId = overall.id;
     await five.save();
+
+    await createRandomRatings();
+    console.log('Created fake ratings!');
 
     // date, quick, hungry, lazy, budget
 
