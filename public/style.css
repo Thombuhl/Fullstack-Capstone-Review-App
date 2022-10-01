@@ -26,6 +26,12 @@ form div {
     display: inline-block;
 }
 
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
 .text-pur {
     color: #8c52ff !important;
 }
@@ -120,7 +126,7 @@ form div {
     margin: 1.2rem
 }
 
-.header {
+/* .header {
     background-color:	#c080ff;
     height: 150px;
 }
@@ -128,7 +134,7 @@ form div {
 .footer {
     height: 220px;
     background-color: #a64dff;
-}
+} */
 
 #searcher {
     display: flex;
