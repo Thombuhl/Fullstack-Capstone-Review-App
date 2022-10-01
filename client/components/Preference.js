@@ -49,17 +49,16 @@ const Preference = () => {
                             </div>
                         );
                     })}
+                    <div className="footer">
+                        <button
+                            className="w-25 btn btn-sm btn-primary mt-3"
+                            type="submit"
+                            onClick={handleClick}
+                        >
+                            Save Preferences
+                        </button>
+                    </div>
                 </AllPreferences>
-
-                <div className="footer"></div>
-
-                <button
-                    className="w-50 btn btn-sm btn-primary mt-3"
-                    type="submit"
-                    onClick={handleClick}
-                >
-                    Save Preferences
-                </button>
             </Container>
         </>
     );

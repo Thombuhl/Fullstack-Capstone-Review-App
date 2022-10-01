@@ -10,7 +10,6 @@ body {
 
 a {
     text-decoration: none !important;
-    color: #2d2e2f !important;
 }
 
 label {
@@ -25,6 +24,12 @@ nav a {
 form div {
     margin: 1em;
     display: inline-block;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
 }
 
 .text-pur {
@@ -80,6 +85,11 @@ form div {
     border-radius: 0.25rem;
     box-shadow: 1px 1px 5px 1px gray;
 }
+.backbutton{
+    position:absolute;
+    left:65px;
+    top:20px;
+}
 
 
 .slider {
@@ -116,7 +126,7 @@ form div {
     margin: 1.2rem
 }
 
-.header {
+/* .header {
     background-color:	#c080ff;
     height: 150px;
 }
@@ -124,7 +134,7 @@ form div {
 .footer {
     height: 220px;
     background-color: #a64dff;
-}
+} */
 
 #searcher {
     display: flex;

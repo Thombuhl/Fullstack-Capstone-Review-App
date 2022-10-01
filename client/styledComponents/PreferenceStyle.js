@@ -25,13 +25,9 @@ export const Text = styled.div`
 export const AllPreferences = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
-    background: linear-gradient(
-        to left top,
-        rgba(140, 82, 255, 0.6),
-        rgba(140, 82, 255, 0.2)
-    );
+    margin-top: 9rem;
 `;
 
 export const SliderPreferences = styled.div`

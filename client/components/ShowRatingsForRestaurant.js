@@ -22,7 +22,7 @@ const ShowRatingsForRestaurant = ({ restaurantId }) => {
     // ratingByPref.map(rating => if )
 
     return (
-        <Card style={{ width: '50%' }}>
+        <Card >
             <Card.Header>
                 {ratingsForRestaurant.length || 'No'} Reviews
             </Card.Header>
