@@ -49,7 +49,7 @@ const RestaurantsItem = ({ restaurant }) => {
                         </div>
                         <div className="col">
                             {scoreWeighted(userPref, reviews, 1)
-                                ? `${scoreWeighted(userPref, reviews, 1)}%`
+                                ? `${scoreWeighted(userPref, reviews, 0)}%`
                                 : 'No Reviews To Compare'}
                         </div>
                     </div>

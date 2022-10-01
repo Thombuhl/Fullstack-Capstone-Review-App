@@ -24,7 +24,7 @@ const Restaurant = (props) => {
     } = useSelector((state) => state);
 
     const dispatch = useDispatch();
-    console.log(userPref);
+
     useEffect(() => {
         const fetchData = async () => {
             dispatch(fetchUserPreferences());
