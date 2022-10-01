@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import '../styles/RestaurantItem.css';
 import { Link } from 'react-router-dom';
 import { fetchResReviews } from '../apiCalls';
-import { scoreWeighted, regularScore } from '../scoreFunctions.js';
+import { scoreWeighted, regularScore } from '../scoreFunctions';
 
 const RestaurantsItem = ({ restaurant }) => {
     const { userPref } = useSelector((state) => state.preferences);
@@ -48,7 +48,9 @@ const RestaurantsItem = ({ restaurant }) => {
                             </strong>
                         </div>
                         <div className="col">
-                            {scoreWeighted(userPref, reviews, 1)}
+                            {scoreWeighted(userPref, reviews, 1)
+                                ? `${scoreWeighted(userPref, reviews, 1)}%`
+                                : 'No Reviews To Compare'}
                         </div>
                     </div>
                     <div className="RestaurantItem-first-comment">
