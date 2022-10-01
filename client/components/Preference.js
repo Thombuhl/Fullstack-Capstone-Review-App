@@ -5,7 +5,6 @@ import Slider from './Slider';
 import {
     Container,
     Text,
-    PreferenceText,
     AllPreferences,
     PreferenceContainer,
 } from '../styledComponents/PreferenceStyle';
@@ -31,30 +30,29 @@ const Preference = () => {
     return (
         <>
             <Container>
-                <Text> Lets Setup your Preferences</Text>
+                <div className="header"></div>
                 <AllPreferences>
+                    <Text> Lets Setup your Preferences</Text>
                     {userPref.map((pref) => {
                         return (
-                            <div key={pref.id}>
-                                <PreferenceContainer>
-                                    <PreferenceText>
-                                        {
-                                            prefNames.find(
-                                                (item) =>
-                                                    item.id ===
-                                                    pref.preferenceId
-                                            ).name
-                                        }
-                                    </PreferenceText>
-                                </PreferenceContainer>
+                            <div key={pref.id} id="pref">
                                 <Slider
                                     value={pref.score}
                                     pref_id={pref.preferenceId}
+                                    name={
+                                        prefNames.find(
+                                            (item) =>
+                                                item.id === pref.preferenceId
+                                        ).name
+                                    }
                                 />
                             </div>
                         );
                     })}
                 </AllPreferences>
+
+                <div className="footer"></div>
+
                 <button
                     className="w-50 btn btn-sm btn-primary mt-3"
                     type="submit"

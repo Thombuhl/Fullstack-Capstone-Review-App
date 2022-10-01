@@ -6,6 +6,11 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     background-color: rgb(247, 247, 247);
+    background-image: url('homebg.gif');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 `;
 
 export const Text = styled.div`
@@ -14,6 +19,7 @@ export const Text = styled.div`
     color: rgb(74, 74, 74);
     font-size: 3.2rem;
     margin: none;
+    text-align: center;
 `;
 
 export const AllPreferences = styled.div`
@@ -21,6 +27,11 @@ export const AllPreferences = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     width: 100%;
+    background: linear-gradient(
+        to left top,
+        rgba(140, 82, 255, 0.6),
+        rgba(140, 82, 255, 0.2)
+    );
 `;
 
 export const SliderPreferences = styled.div`
