@@ -14,7 +14,7 @@ const CreateRatingForm = (props) => {
     const { restaurantId } = props;
 
     const [newRating, setNewRating] = useState({
-        score: 0,
+        score: 3,
         comment: '',
         preferenceId: null,
     });
@@ -47,6 +47,7 @@ const CreateRatingForm = (props) => {
 
     return (
         <div className="card my-3 text-left">
+
         <Form onSubmit={handleSubmit}>
     <div class="row mt-3 align-items-center justify-content-left">
         <div class='col-auto'>
@@ -107,6 +108,7 @@ const CreateRatingForm = (props) => {
             </Button>
     </div>
         </Form>
+
         </div>
     );
 };
