@@ -14,7 +14,7 @@ const CreateRatingForm = (props) => {
     const { restaurantId } = props;
 
     const [newRating, setNewRating] = useState({
-        score: 0,
+        score: 3,
         comment: '',
         preferenceId: null,
     });
@@ -108,7 +108,7 @@ const CreateRatingForm = (props) => {
                 </div>
                 <div className="row align-items-end justify-content-end">
                     <Button
-                        disabled={!score || !comment || !preferenceId}
+                        disabled={!comment || !preferenceId}
                         // variant="primary"
                         type="submit"
                     >
