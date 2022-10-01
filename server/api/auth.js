@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../db/models/User');
+const UserPreference = require('../db/models/UserPreference');
 
 router.post('/login', async (req, res, next) => {
     try {
@@ -17,6 +18,17 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
     try {
         const user = await User.create(req.body);
+        let i = 0;
+        while (i < 5) {
+            await Promise.all([
+                UserPreference.create({
+                    score: 3,
+                    userId: user.id,
+                    preferenceId: i + 1,
+                }),
+            ]);
+            i++;
+        }
         res.send({ token: await user.generateToken() });
     } catch (err) {
         if (err.name === 'SequelizeUniqueConstraintError') {
