@@ -10,8 +10,8 @@ const init = async () => {
             await db.sync();
         }
         // start listening (and create a 'server' object representing our server)
-        app.listen(process.env.PORT || 8080, () =>
-            console.log(`Mixing it up on port ${PORT}`)
+        app.listen(process.env.PORT, () =>
+            console.log(`Mixing it up on port `)
         );
     } catch (ex) {
         console.log(ex);
